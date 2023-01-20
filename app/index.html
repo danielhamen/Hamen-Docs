@@ -1,0 +1,521 @@
+<DOCTYPE HTML>
+<html>
+    <head>
+		<title>Hamen Docu</title>
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
+		<script type="text/javascript">
+			function updateResizeBar() {
+				let width = getComputedStyle(document.querySelector(".docu-tree")).getPropertyValue("width");
+				document.querySelector(".resize-docu-tree").style.left = width;
+				document.querySelector(".docu-tree-content").style.width = width;
+			}
+
+			window.addEventListener("load", () => {
+				// Move the resize thing
+				updateResizeBar();
+
+				// Resize documentation tree:
+				let resize = document.querySelector(".resize-docu-tree");
+				resize.addEventListener("drag", e => {
+					let x = e.clientX;
+					if (x >= 250 && x <= 600) {
+						let width = x + "px";
+						document.querySelector(":root").style.setProperty("--tree-width", width);
+						updateResizeBar();
+					}
+				});
+				
+				// Add the 'link section' icons:
+				Array.from(document.querySelectorAll(".add-section-link")).forEach(link => {
+					link.innerHTML += `<span class="material-symbols-outlined link-section"> link </span>`;
+				});
+				
+				window.addEventListener("resize", () => {
+					updateResizeBar();
+				})
+				
+				// 
+				Array.from(document.querySelectorAll(".title.toggle")).forEach(chev => {
+					let chev_ = chev.getElementsByClassName("chevron")[0];
+					chev.addEventListener("click", function() {
+						chev_.classList.toggle("rot");
+						let options = chev.parentElement.getElementsByClassName("option");
+						for (let i = 0; i < options.length; i++) {
+							options[i].classList.toggle("display-none");
+						}
+					})
+				})
+			})
+		</script>
+
+		<style>
+			:root {
+				--content-color: hsl(0deg, 0%, 97%);
+				--tree-color: hsl(0deg, 0%, 95%);
+				--tree-width: 20em;
+				--header-size: 4.3em;
+			}
+			
+			.display-none {
+				display: none;
+			}
+			
+			p,a,.text {
+				font-family: 'Sofia Sans Semi Condensed', sans-serif;
+			}
+
+			body {
+				width: 100vw;
+				height: 100vh;
+				padding: 0;
+				margin: 0;
+			}
+
+			.docu-content {
+				width: 100%;
+				padding: 3em;
+				box-sizing: border-box;
+				background: var(--content-color);
+			}
+
+			.documentation {
+				width: 100%;
+				height: 100%;
+				display: flex;
+			}
+
+			p {
+				color: hsl(0deg, 0%, 10%);
+				font-weight: 400;
+				line-height: 1.5;
+				margin: 0;
+			}
+			
+			.docu-tree {
+				width: var(--tree-width);
+				display: flex;
+				height: 100%;
+			}
+			
+			.resize-docu-tree {
+				width: 2px;
+				height: 100%;
+				position: fixed;
+				background: rgba(0, 0, 0, 0.3);
+				cursor: e-resize;
+			}
+			
+			#content-title {
+				font-family: 'Exo 2', serif;
+				font-size: 1.7em;
+			}
+			
+			.content-titles {
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+			}
+			
+			.link-section {
+				cursor: pointer;
+				user-select: none;
+				padding-left: 0.3em;
+				font-size: 0.8em !important;
+				padding-top: 0.45em;
+			}
+			
+			.link-section:hover {
+				color: hsl(0deg, 0%, 3%);
+			}
+			
+			.link-section:active {
+				color: hsl(0deg, 0%, 0%);
+			}
+			
+			*:has(>.link-section) {
+				display: flex;
+				align-items: center;
+			}
+			
+			#content-title {
+				color: hsl(0deg, 0%, 10%);
+				padding-top: 0.7em;
+			}
+			
+			.documentation-options {
+				justify-content: space-between;
+				width: fit-content;
+				margin-top: 1em;
+				height: fit-content;
+				display: flex;
+			}
+			
+			.documentation-option {
+				font-weight: 600;
+			}
+			
+			a {
+				text-decoration: none;
+				color: #2a6edd;
+				font-weight: bold;
+			}
+			
+			a:hover {
+				color: #3d567d;
+				text-decoration: underline;
+			}
+			
+			a:active {
+				color: #3d567d;
+				text-decoration: underline;
+			}
+			
+			.documentation-option-separator {
+				width: 1px;
+				height: 1em;
+				margin-left: 1em;
+				margin-right: 1em;
+				border-radius: 1em;
+				background: rgba(0, 0, 0, 0.4);
+			}
+			
+			docu-hr {
+				display: block;
+				width: 100%;
+				border-radius: 1em;
+				height: 2px;
+				background: rgba(0, 0, 0, 0.15);
+				margin-top: 1em;
+				margin-bottom: 1em;
+				min-height: 2px;
+			}
+			
+			.content-body {
+				display: flex;
+				flex-direction: column;
+			}
+			
+			docu-section > p {
+				margin-top: 1em;
+				margin-bottom: 1em;
+			}
+			
+			docu-section > p.first {
+				margin-top: 0;
+			}
+			
+			docu-footer {
+				width: 100%;
+				display: flex;
+			}
+			
+			.rate-article {
+				width: 100%;
+			}
+			
+			.rate-article > .stars {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			
+			.star {
+				user-select: none;
+				cursor: pointer;
+				font-size: 2.4em !important;
+			}
+			
+			.star.active {
+				font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48 !important;
+			}
+			
+			.docu-tree-content {
+				height: 100%;
+				position: fixed;
+				background: var(--tree-color);
+				display: flex;
+				flex-direction: column;
+				overflow-y: scroll;
+			}
+			
+			.docu-tree-content > .title {
+			}
+						
+			.docu-tree-titles {
+				display: flex;
+				flex-direction: column;
+				box-sizing: border-box;
+				padding: 1.5em;
+				padding-bottom: 0.7em;
+				padding-top: 2.5em;
+			}
+			
+			.docu-tree-titles > span {
+				width: fit-content;
+			}
+			
+			.docu-tree-titles > .title {
+				font-family: 'Exo 2', serif;
+				font-size: 1.4em;
+				margin-bottom: 0.5em;
+			}
+			
+			.docu-tree-titles > .sub-title {
+				font-size: 0.95em;
+				color: hsl(0deg, 0%, 20%);
+			}
+			
+			.docu-tcs > .title.toggle {
+				cursor: pointer;
+				user-select: none;
+				margin-bottom: 0.5em;
+				font-size: 0.95em;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				color: hsl(0deg, 0%, 20%);
+			}
+
+			.docu-tcs > .title.toggle > .chevron {
+				font-size: 1.2em;
+				transition: 0.2s;
+				transform: rotate(90deg);
+			}
+
+			.docu-tcs > .title.toggle > .chevron.rot {
+				transform: rotate(180deg);
+			}
+			
+			.docu-tcs {
+				display: flex;
+				flex-direction: column;
+				padding: 1.5em;
+				padding-top: 0.5em;
+				box-sizing: border-box;
+			}
+			
+			.docu-tcs > .title {
+				font-family: 'Sofia Sans Semi Condensed', sans-serif;
+			}
+			
+			.docu-tcs > span,a {
+			}
+			
+			.option {
+				margin-top: 0.5em;
+				margin-bottom: 0.5em;
+				box-sizing: border-box;
+				padding-left: 1em;
+				font-size: 0.95em;
+			}
+			
+			.docu-tcs > .title {
+				transition: 0.2s;
+				font-weight: 700;
+			}
+			
+			.docu-tcs > .title:hover {
+			}
+			
+			header {
+				width: 100%;
+				height: var(--header-size);
+				background: hsl(0deg, 0%, 90%);
+				border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+				box-shadow: 0 0 50px 3px rgba(0, 0, 0, 0.2);
+				position: fixed;
+				z-index: 8;
+				top: 0;
+				display: flex;
+				align-items: center;
+			}
+			
+			main {
+				height: calc(100vh - var(--header-size));
+				margin-top: var(--header-size);
+			}
+			
+			header > .logo {
+				width: 18em;
+				height: 3em;
+				margin-left: calc(calc(var(--header-size) - 3em) / 2);
+				background: black;
+			}
+			
+			header > .actions {
+				display: flex;
+				width: 100%;
+				justify-content: flex-end;
+				align-items: center;
+			}
+			
+			header > .actions > span {
+				user-select: none;
+				cursor: pointer;
+				margin: 1em;
+			}
+			
+			#header-search {
+				font-size: 0.95em;
+				height: 100%;
+				padding-top: 0.8em;
+				padding-bottom: 0.8em;
+				outline: none;
+				padding-left: 1em;
+				transition: 0.4s;
+				width: 40%;
+				border-radius: 0.5em;
+				border: 1px solid hsl(0deg, 0%, 70%);
+			}
+			
+			#header-search.hidden {
+				width: 0;
+			}
+			
+			#header-search:focus {
+				border: 1px solid hsl(0deg, 0%, 50%);
+			}
+		</style>
+    </head>
+    <body>
+		<script type="text/javascript">
+			window.addEventListener("load", () => {
+				document.querySelector("#header-search-icon").addEventListener("click", function() {
+					let input = document.querySelector("#header-search");
+					if (this.innerHTML.trim() === "search") {
+						this.innerHTML = "close";
+						input.classList.add("hidden");
+						input.focus();
+						input.select();
+					} else {
+						this.innerHTML = "search";
+						input.classList.remove("hidden");
+					}
+				})
+			})
+		</script>
+		<header>
+			<div class="logo"></div>
+			<div class="actions">
+				<input type="text" id="header-search" class="text hidden" placeholder="Search a Software, Company, etc">
+				<span class="material-symbols-outlined" id="header-search-icon"> search </span>
+				<span class="material-symbols-outlined" id="header-account-icon"> person </span>
+			</div>
+		</header>
+		<main>
+			<div class="documentation">
+				<!-- Document Tree: -->
+				<div class="docu-tree">
+					<div class="docu-tree-content">
+						<div class="docu-tree-titles">
+							<span class="title">AWS Guide:</span>
+							<span class="sub-title text">Developer Guide</span>
+						</div>
+						<docu-hr style="width: 80%;margin-left: auto;margin-right: auto;"></docu-hr>
+						<div class="docu-tcs">
+							<span class="title toggle">
+								Introduction:
+								<span class="material-symbols-outlined chevron"> chevron_right </span>
+							</span>
+							<a class="option" href="#">What is AWS?</a>
+							<a class="option" href="#">Getting Started</a>
+							<a class="option" href="#">What is AWS?</a>
+						</div>
+						<div class="docu-tcs">
+							<span class="title toggle">
+								Lambda Foundations:
+								<span class="material-symbols-outlined chevron"> chevron_right </span>
+							</span>
+							<a class="option" href="#">Concepts</a>
+							<a class="option" href="#">Features</a>
+							<a class="option" href="#">Programming model</a>
+							<a class="option" href="#">Architectures</a>
+							<a class="option" href="#">Execution environment</a>
+							<a class="option" href="#">Networking</a>
+							<a class="option" href="#">Deployment packages</a>
+							<a class="option" href="#">Lambda console</a>
+							<a class="option" href="#">Lambda CLI</a>
+						</div>
+						<div class="docu-tcs">
+							<span class="title toggle">
+								Permissions:
+								<span class="material-symbols-outlined chevron"> chevron_right </span>
+							</span>
+							<a class="option" href="#">Execution role</a>
+							<a class="option" href="#">User policies</a>
+							<a class="option" href="#">Control access using tags</a>
+							<a class="option" href="#">Resource-based policies</a>
+							<a class="option" href="#">Resources and conditions</a>
+							<a class="option" href="#">Permissions boundaries</a>
+						</div>
+						<br>
+						<br>
+						<br>
+						<br>
+					</div>
+				<div class="resize-docu-tree" draggable="true"></div>
+				</div>
+
+				<!-- Content: -->
+				<div class="docu-content">
+					<div class="content-titles">
+						<span id="content-title" class="add-section-link">
+							Lambda Permissions
+						</span>
+						<span class="documentation-options">
+							<a href="#" class="documentation-option">PDF</a>
+							<div class="documentation-option-separator"></div>
+							<a href="#" class="documentation-option">XML</a>
+							<div class="documentation-option-separator"></div>
+							<a href="#" class="documentation-option">Markdown</a>
+						</span>
+						<br>
+						<docu-hr></docu-hr>
+						<br>
+					</div>
+					<div class="content-body">
+						<docu-section>
+							<p class="first">
+								You can use AWS Identity and Access Management (IAM) to manage access to the Lambda API and resources such as functions and layers. For users and applications in your account that use Lambda, you can create IAM policies that apply to IAM users, groups, or roles.
+							</p>
+							<p>
+								Every Lambda function has an IAM role called an <a href="">execution role</a>. In this role, you can attach a policy that defines the permissions that your function needs to access other AWS services and resources. At a minimum, your function needs access to Amazon CloudWatch Logs for log streaming. If your function calls other service APIs with the AWS SDK, you must include the necessary permissions in the execution role's policy. Lambda also uses the execution role to get permission to read from event sources when you use an <a href="">event source mapping</a> to invoke your function.
+							</p>
+							<p>
+								To give other accounts and AWS services permission to use your Lambda resources, use a resource-based policy. Lambda resources include functions, versions, aliases, and layer versions. When a user tries to access a Lambda resource, Lambda considers both the user's identity-based policies and the resource's resource-based policy. When an AWS service such as Amazon Simple Storage Service (Amazon S3) calls your Lambda function, Lambda considers only the resource-based policy.
+							</p>
+							<p>
+								To manage permissions for users and applications in your account, we recommend using an AWS managed policy. You can use these managed policies as-is, or as a starting point for writing your own more restrictive policies. Policies can restrict user permissions by the resource that an action affects, and by additional optional conditions. For more information, see Resources and conditions for Lambda actions.
+							</p>
+							<docu-related-articles>
+								<span class="docu-related-articles-title"></span>
+							</docu-related-articles>
+						</docu-section>
+						<docu-hr></docu-hr>
+						<docu-footer>
+							<!--
+							<div class="rate-article">
+								<div class="stars">
+									<span class="material-symbols-outlined star active"> grade </span>
+									<span class="material-symbols-outlined star"> grade </span>
+									<span class="material-symbols-outlined star"> grade </span>
+									<span class="material-symbols-outlined star"> grade </span>
+									<span class="material-symbols-outlined star"> grade </span>
+								</div>
+								<br>
+							</div>
+							-->
+						</docu-footer>
+					</div>
+				</div>
+			</div>
+		</main>
+    </body>
+</html>
