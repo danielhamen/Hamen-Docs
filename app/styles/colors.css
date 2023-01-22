@@ -1,0 +1,7 @@
+:root {
+    --content-color: hsl(0deg, 0%, 97%);
+    --tree-color: hsl(0deg, 0%, 95%);
+    --tree-width: 20em;
+    --header-size: 4.3em;
+    --mobile-header-size: 3em;
+}
