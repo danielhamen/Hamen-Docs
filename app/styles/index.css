@@ -266,8 +266,6 @@ docs-related-topics > ul,ol {
     overflow-y: scroll;
 }
 
-.docs-tree-content > .title {}
-
 .docs-tree-titles {
     display: flex;
     flex-direction: row;
@@ -314,8 +312,6 @@ docs-related-topics > ul,ol {
     font-family: 'Sofia Sans Semi Condensed', sans-serif;
 }
 
-.docs-tcs > span,a {}
-
 .option {
     color: #406cd2;
     margin-top: 0.75em;
@@ -354,10 +350,6 @@ abbr {
     .docs-tree {
         position: absolute;
         width: 100%;
-    }
-
-    section > p:not(.no-indent)::before {
-        /* content: '\00a0\00a0\00a0\00a0'; */
     }
 
     .logo {
