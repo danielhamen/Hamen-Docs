@@ -1,4 +1,4 @@
-docu-code-block {
+docs-code-block {
     display: block;
     width: 100%;
     height: fit-content;
@@ -74,6 +74,6 @@ docu-code-block {
     color: hsl(0, 75%, 65%);
 }
 
-docu-code-block > code {
+docs-code-block > code {
     color: white;
 }

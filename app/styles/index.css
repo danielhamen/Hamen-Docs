@@ -61,7 +61,7 @@ p,a,.text,li {
     content: '' !important;
 }
 
-.docu-content {
+.docs-content {
     width: calc(100% - var(--tree-width));
     padding: 3em;
     box-sizing: border-box;
@@ -84,11 +84,11 @@ p {
     margin: 0;
 }
 
-#docu-tree-exit-icon {
+#docs-tree-exit-icon {
     user-select: none;
 }
 
-.docu-tree {
+.docs-tree {
     width: var(--tree-width);
     display: flex;
     height: 100%;
@@ -173,7 +173,7 @@ a:active {
     background: rgba(0, 0, 0, 0.4);
 }
 
-docu-hr {
+docs-hr {
     display: block;
     width: 100%;
     border-radius: 1em;
@@ -211,7 +211,7 @@ section > p.first {
     margin-top: 0;
 }
 
-docu-related-topics > p {
+docs-related-topics > p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
 }
@@ -222,19 +222,14 @@ h1, section > h1,h2,h3,h4,h5,h6 {
     font-family: 'Exo 2', serif;
 }
 
-docu-related-topics > ul,ol {
+docs-related-topics > ul,ol {
     line-height: 1.8;
     margin-top: 0;
     margin-bottom: 0;
 }
 
-.docu-related-topics-title {
+.docs-related-topics-title {
     margin: 0;
-}
-
-docu-footer {
-    width: 100%;
-    display: flex;
 }
 
 .rate-article {
@@ -258,7 +253,7 @@ docu-footer {
     font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48 !important;
 }
 
-.docu-tree-content {
+.docs-tree-content {
     width: var(--tree-width);
     height: calc(100% - var(--header-size));
     /* min-width: 18em; */
@@ -271,9 +266,9 @@ docu-footer {
     overflow-y: scroll;
 }
 
-.docu-tree-content > .title {}
+.docs-tree-content > .title {}
 
-.docu-tree-titles {
+.docs-tree-titles {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -284,29 +279,29 @@ docu-footer {
     padding-top: 2.5em;
 }
 
-.docu-tree-titles > .title {
+.docs-tree-titles > .title {
     font-family: 'Exo 2', serif;
     font-size: 1.4em;
     font-weight: 600;
 }
 
-#docu-tree-exit-icon {
+#docs-tree-exit-icon {
     height: fit-content;
     font-size: 1.3em;
     cursor: pointer;
 }
 
-.docu-tcs > .title.toggle > .chevron {
+.docs-tcs > .title.toggle > .chevron {
     font-size: 1.2em;
     transition: 0.2s;
     transform: rotate(90deg);
 }
 
-.docu-tcs > .title.toggle > .chevron.rot {
+.docs-tcs > .title.toggle > .chevron.rot {
     transform: rotate(180deg);
 }
 
-.docu-tcs {
+.docs-tcs {
     display: flex;
     flex-direction: column;
     padding: 1.5em;
@@ -315,11 +310,11 @@ docu-footer {
     box-sizing: border-box;
 }
 
-.docu-tcs > .title {
+.docs-tcs > .title {
     font-family: 'Sofia Sans Semi Condensed', sans-serif;
 }
 
-.docu-tcs > span,a {}
+.docs-tcs > span,a {}
 
 .option {
     color: #406cd2;
@@ -337,7 +332,7 @@ abbr {
     border-bottom: 1px dotted;
 }
 
-.docu-tcs > .title {
+.docs-tcs > .title {
     transition: 0.2s;
     font-weight: 600;
     cursor: pointer;
@@ -351,12 +346,12 @@ abbr {
     transition: 0.12s;
 }
 
-.docu-tcs > .title:hover {
+.docs-tcs > .title:hover {
     color: hsl(0deg, 0%, 40%);
 }
 
 @media screen and (max-width:750px) {
-    .docu-tree {
+    .docs-tree {
         position: absolute;
         width: 100%;
     }
@@ -374,7 +369,7 @@ abbr {
         line-height: 2.1;
     }
 
-    .docu-tcs > .title {
+    .docs-tcs > .title {
         line-height: 2;
     }
 
@@ -383,15 +378,15 @@ abbr {
         margin-left: 2em;
     }
 
-    .docu-tree-content {
+    .docs-tree-content {
         width: 100%;
     }
 
-    .docu-tree-content {
+    .docs-tree-content {
         display: none;
     }
 
-    .docu-tree {
+    .docs-tree {
         display: none;
     }
 
@@ -399,7 +394,7 @@ abbr {
         flex-direction: column;
     }
 
-    .docu-content {
+    .docs-content {
         width: 100%;
     }
 }
@@ -415,15 +410,15 @@ abbr {
         display: none !important;
     }
 
-    #docu-tree-exit-icon {
+    #docs-tree-exit-icon {
         display: none;
     }
 
-    .docu-tree {
+    .docs-tree {
         display: flex !important;
     }
 
-    .docu-tree-content {
+    .docs-tree-content {
         display: block !important;
     }
 }
@@ -456,21 +451,8 @@ h6 {
     font-size: 100%;
 }
 
-footer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-footer > p {
-    line-height: 2;
-}
-
 @media screen and (max-width:750px) {
-    .docu-content {
+    .docs-content {
         padding-bottom: 0;
         padding-top: 1em;
     }

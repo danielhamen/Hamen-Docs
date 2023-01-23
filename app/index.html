@@ -18,105 +18,82 @@
 		<link rel="stylesheet" href="styles/overflow.css">
 		<link rel="stylesheet" href="styles/header.css">
 		<link rel="stylesheet" href="styles/colors.css">
-		<link rel="stylesheet" href="docu-elements/docu.css">
+
+		<!-- Docs Styles: -->
+		<link rel="stylesheet" href="docs-elements/index.css">
+		<link rel="stylesheet" href="docs-elements/code.css">
+		<link rel="stylesheet" href="docs-elements/footer.css">
+
+		<!-- Docs Scripts: -->
+		<script type="text/javascript" src="docs-elements/index.js"></script>
 
 		<!-- Local Scripts: -->
 		<script type="text/javascript" src="scripts/index.js"></script>
-		<script type="text/javascript" src="docu-elements/docu.js"></script>
 
-		<title>Hamen Docu</title>
+		<title>Hamen Docs</title>
+
+		<!--  -->
+		<script type="text/javascript">
+			const treeBody = {
+				"Documentation": {
+					"Quickstart": "#",
+					"API Overview": "#",
+					"API Reference Usage": "#",
+					"Best Practice": "#",
+					"Tips and Tricks": "#",
+					"Gotchas": "#",
+					"Advanced": "#",
+					"Change Log": "#"
+				}, "Application Modules": {
+					"Context Access ( <code class='code:inline'>bpy.context</code> )": "#",
+					"Data Access ( <code class='code:inline'>bpy.data</code> )": "#",
+					"Message Bus ( <code class='code:inline'>bpy.msgbus</code> )": "#",
+					"Operators ( <code class='code:inline'>bpy.ops</code> )": "#",
+					"Types ( <code class='code:inline'>bpy.types</code> )": "#",
+					"Utilities ( <code class='code:inline'>bpy.utils</code> )": "#",
+					"Path Utilities ( <code class='code:inline'>bpy.path</code> )": "#",
+					"Application Data ( <code class='code:inline'>bpy.app</code> )": "#",
+					"Property Definitions ( <code class='code:inline'>bpy.props</code> )": "#"
+				}, "Standalone Modules": {
+					"Audio System ( <code class='code:inline'>aud</code> )": "#",
+					"OpenGL Wrapper ( <code class='code:inline'>bgl</code> )": "#",
+					"Additional Math Functions ( <code class='code:inline'>bl_math</code> )": "#",
+					"Font Drawing ( <code class='code:inline'>blf</code> )": "#",
+					"BMesh Module ( <code class='code:inline'>bmesh</code> )": "#",
+					"Extra Utilities ( <code class='code:inline'>bpy_extras</code> )": "#",
+					"Freestyle Module ( <code class='code:inline'>freestyle</code> )": "#",
+					"GPU Module ( <code class='code:inline'>gpu</code> )": "#",
+					"GPU Utilities ( <code class='code:inline'>gpu_extras</code> )": "#",
+					"ID Property Access (idprop. <code class='code:inline'>types</code> )": "#",
+					"Image Buffer ( <code class='code:inline'>imbuf</code> )": "#",
+					"Math Types & Utilities ( <code class='code:inline'>mathutils</code> )": "#",
+				}, "Indices": {
+					"Index": "#",
+					"Module Index": "#"
+				}
+			}
+		</script>
 	</head>
 	<body>
-		<header>
-			<div class="header">
-				<div class="logo"></div>
-				<div class="actions">
-					<input type="text" id="header-search" class="text hidden" placeholder="Search a Software, Company, etc">
-					<span class="material-symbols-outlined" id="header-search-icon"> search </span>
-					<span class="material-symbols-outlined" id="header-account-icon"> person </span>
-				</div>
-			</div>
-			<div class="mobile-toggle-tree">
-				<span id="mobile-toggle-tree-label" class="text">View Tree</span>
-			</div>
-		</header>
+		<header></header>
 		<main>
 			<div class="documentation">
 				<div class="go-to-top">
 					<span class="material-symbols-outlined"> expand_less </span>
 				</div>
-				<!-- Document Tree: -->
-				<div class="docu-tree">
-					<div class="docu-tree-content">
-						<div class="docu-tree-titles">
-							<span class="title">Blender 3.4.1 Python API Guide:</span>
-							<span class="material-symbols-outlined" id="docu-tree-exit-icon"> close </span>
-						</div>
-						<docu-hr style="width: 80%;margin-left: auto;margin-right: auto;"></docu-hr>
-						<div class="docu-tcs">
-							<span class="title toggle"> Documentation: <span class="material-symbols-outlined chevron"> chevron_right </span></span>
-							<a class="option" href="index.html">Quickstart</a>
-							<a class="option" href="#">API Overview</a>
-							<a class="option" href="#">API Reference Usage</a>
-							<a class="option" href="#">Best Practice</a>
-							<a class="option" href="#">Tips and Tricks</a>
-							<a class="option" href="#">Gotchas</a>
-							<a class="option" href="#">Advanced</a>
-							<a class="option" href="#">Change Log</a>
-						</div>
-						<div class="docu-tcs">
-							<span class="title toggle"> Application Modules: <span class="material-symbols-outlined chevron"> chevron_right </span></span>
-							<a class="option" href="#">Context Access ( <code class="code:inline">bpy.context</code> )</a>
-							<a class="option" href="#">Data Access ( <code class="code:inline">bpy.data</code> )</a>
-							<a class="option" href="#">Message Bus ( <code class="code:inline">bpy.msgbus</code> )</a>
-							<a class="option" href="#">Operators ( <code class="code:inline">bpy.ops</code> )</a>
-							<a class="option" href="#">Types ( <code class="code:inline">bpy.types</code> )</a>
-							<a class="option" href="#">Utilities ( <code class="code:inline">bpy.utils</code> )</a>
-							<a class="option" href="#">Path Utilities ( <code class="code:inline">bpy.path</code> )</a>
-							<a class="option" href="#">Application Data ( <code class="code:inline">bpy.app</code> )</a>
-							<a class="option" href="#">Property Definitions ( <code class="code:inline">bpy.props</code> )</a>
-						</div>
-						<div class="docu-tcs">
-							<span class="title toggle"> Standalone Modules: <span class="material-symbols-outlined chevron"> chevron_right </span></span>
-							<a class="option" href="#">Audio System ( <code class="code:inline">aud</code> )</a>
-							<a class="option" href="#">OpenGL Wrapper ( <code class="code:inline">bgl</code> )</a>
-							<a class="option" href="#">Additional Math Functions ( <code class="code:inline">bl_math</code> )</a>
-							<a class="option" href="#">Font Drawing ( <code class="code:inline">blf</code> )</a>
-							<a class="option" href="#">BMesh Module ( <code class="code:inline">bmesh</code> )</a>
-							<a class="option" href="#">Extra Utilities ( <code class="code:inline">bpy_extras</code> )</a>
-							<a class="option" href="#">Freestyle Module ( <code class="code:inline">freestyle</code> )</a>
-							<a class="option" href="#">GPU Module ( <code class="code:inline">gpu</code> )</a>
-							<a class="option" href="#">GPU Utilities ( <code class="code:inline">gpu_extras</code> )</a>
-							<a class="option" href="#">ID Property Access (idprop. <code class="code:inline">types</code> )</a>
-							<a class="option" href="#">Image Buffer ( <code class="code:inline">imbuf</code> )</a>
-							<a class="option" href="#">Math Types & Utilities ( <code class="code:inline">mathutils</code> )</a>
-						</div>
-						<div class="docu-tcs">
-							<span class="title toggle"> Indices: <span class="material-symbols-outlined chevron"> chevron_right </span></span>
-							<a class="option" href="#">Index</a>
-							<a class="option" href="#">Module Index</a>
-						</div>
+				<div class="docs-tree">
+					<div class="docs-tree-content">
+						<tree-title>Blender 3.4.1 Python API Guide</tree-title>
+						<tree-body></tree-body>
 					</div>
 				</div>
 				<!-- Content: -->
-				<div class="docu-content">
-					<div class="content-titles">
-						<h1 id="content-title" class="add-section-link"> Quickstart </h1>
-						<span class="documentation-options">
-							<a href="#" class="documentation-option">PDF</a>
-							<div class="documentation-option-separator"></div>
-							<a href="#" class="documentation-option">XML</a>
-							<div class="documentation-option-separator"></div>
-							<a href="#" class="documentation-option">Markdown</a>
-						</span>
-						<br>
-						<docu-hr></docu-hr>
-					</div>
-					<div class="content-body">
+				<div class="docs-content">
+					<content-title>Quickstart</content-title>
+					<content-body>
 						<section>
-							<p class="first no-indent">
-								This <abbr title="Application Programming Interface">API</abbr> is generally stable but some areas are still being extended and improved.
-							</p>
+							<p class="first no-indent"> This <abbr title="Application Programming Interface">API</abbr> is generally stable but
+								some areas are still being extended and improved. </p>
 							<p class="li-title">
 								<b>Blender Python API features:</b>
 							</p>
@@ -140,19 +117,16 @@
 								<li>Assign custom properties to every type.</li>
 							</ul>
 						</section>
-						<docu-hr></docu-hr>
+						<docs-hr></docs-hr>
 						<section>
 							<h2>Before Starting:</h2>
-							<p class="first">
-								This document its intended to familiarize you with Blender Python API but not to fully cover each topic.
-							</p>
-							<p class="li-title">
-								A quick list of helpful things to know before starting:
-							</p>
-
+							<p class="first"> This document its intended to familiarize you with Blender Python API but not to fully cover each
+								topic. </p>
+							<p class="li-title"> A quick list of helpful things to know before starting: </p>
 							<ul>
 								<li>Enable Developer Extra and Python Tooltips.</li>
-								<li>The Python Console is great for testing one-liners; it has autocompletion so you can inspect the API quickly.</li>
+								<li>The Python Console is great for testing one-liners; it has autocompletion so you can inspect the API
+									quickly.</li>
 								<li>Button tooltips show Python attributes and operator names (when enabled see above).</li>
 								<li>The context menu of buttons directly links to this API documentation (when enabled see above).</li>
 								<li>Many python examples can be found in the text editor's template menu.</li>
@@ -166,207 +140,183 @@
 						</section>
 						<section>
 							<h3>Running Scripts:</h3>
-							<p>
-								The two most common ways to execute Python scripts are using the built-in text editor or entering commands in the Python console. Both the Text Editor and Python Console are space types you can select from the header. Rather than manually configuring your spaces for Python development, you can use the Scripting workspace accessible from the Topbar tabs.
-							</p>
-							<p>
-								From the text editor you can open <code class="code:inline code:box">.py</code> files or paste then from the clipboard, then test using Run Script. The Python Console is typically used for typing in snippets and for testing to get immediate feedback, but can also have entire scripts pasted into it. Scripts can also run from the command line with Blender but to learn scripting in Blender this
-								isn't essential.
-							</p>
+							<p> The two most common ways to execute Python scripts are using the built-in text editor or entering commands in
+								the Python console. Both the Text Editor and Python Console are space types you can select from the header.
+								Rather than manually configuring your spaces for Python development, you can use the Scripting workspace
+								accessible from the Topbar tabs. </p>
+							<p> From the text editor you can open <code class="code:inline code:box">.py</code> files or paste then from the
+								clipboard, then test using Run Script. The Python Console is typically used for typing in snippets and for
+								testing to get immediate feedback, but can also have entire scripts pasted into it. Scripts can also run from
+								the command line with Blender but to learn scripting in Blender this isn't essential. </p>
 						</section>
-						<docu-hr></docu-hr>
+						<docs-hr></docs-hr>
 						<section>
 							<h2>Key Concepts:</h2>
 							<section>
 								<h3>Data Access:</h3>
 								<section>
 									<h4>Accessing Data-Blocks:</h4>
-
-									<p>
-										You can access Blender's data with the Python API in the same way as the animation system or user interface; this implies that any setting that can be changed via a button can also be changed with Python. Accessing data from the currently loaded blend-file is done with the module <code class="code:inline code:box">bpy.data</code>. It gives access to library data, for example:
-									</p>
-
-									<docu-code-block>
+									<p> You can access Blender's data with the Python API in the same way as the animation system or user
+										interface; this implies that any setting that can be changed via a button can also be changed with
+										Python. Accessing data from the currently loaded blend-file is done with the module <code
+											class="code:inline code:box">bpy.data</code>. It gives access to library data, for example: </p>
+									<docs-code-block>
 										<code>
-											<span class="code:lib">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												&lt;bpy_collection[3], BlendDataObjects&gt;
-											</span>
-										</code>
-									</docu-code-block>
-
-									<docu-code-block>
+																	<span class="code:lib">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>
+																		&lt;bpy_collection[3], BlendDataObjects&gt;
+																	</span>
+																</code>
+									</docs-code-block>
+									<docs-code-block>
 										<code>
-											<span class="code:lib">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">scenes</span>
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												&lt;bpy_collection[1], BlendDataScenes&gt;
-											</span>
-										</code>
-									</docu-code-block>
-
-									<docu-code-block>
+																	<span class="code:lib">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">scenes</span>
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>
+																		&lt;bpy_collection[1], BlendDataScenes&gt;
+																	</span>
+																</code>
+									</docs-code-block>
+									<docs-code-block>
 										<code>
-											<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">materials</span>
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												&lt;bpy_collection[1], BlendDataMaterials&gt;
-											</span>
-										</code>
-									</docu-code-block>
+																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">materials</span>
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>
+																		&lt;bpy_collection[1], BlendDataMaterials&gt;
+																	</span>
+																</code>
+									</docs-code-block>
 								</section>
 								<section>
 									<h4>Accessing Collections:</h4>
-									<p>
-										You will notice that an index as well as a string can be used to access members of the collection. Unlike Python dictionaries, both methods are available; however, the index of a member may change while running Blender.
-									</p>
-
-									<docu-code-block>
+									<p> You will notice that an index as well as a string can be used to access members of the collection.
+										Unlike Python dictionaries, both methods are available; however, the index of a member may change while
+										running Blender. </p>
+									<docs-code-block>
 										<code>
-											<span class="code:func">list</span>(<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>)
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												[bpy.data.objects["Cube"], bpy.data.objects["Plane"]]
-											</span>
-										</code>
-									</docu-code-block>
-
-									<docu-code-block>
+																	<span class="code:func">list</span>(<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>)
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>
+																		[bpy.data.objects["Cube"], bpy.data.objects["Plane"]]
+																	</span>
+																</code>
+									</docs-code-block>
+									<docs-code-block>
 										<code>
-											<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:str">"Cube"</span>]
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												bpy.data.objects["Cube"]
-											</span>
-										</code>
-									</docu-code-block>
-
-									<docu-code-block>
+																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:str">"Cube"</span>]
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>
+																		bpy.data.objects["Cube"]
+																	</span>
+																</code>
+									</docs-code-block>
+									<docs-code-block>
 										<code>
-											<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												bpy.data.objects["Cube"]
-											</span>
-										</code>
-									</docu-code-block>
+																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>
+																		bpy.data.objects["Cube"]
+																	</span>
+																</code>
+									</docs-code-block>
 								</section>
 								<section>
 									<h4>Accessing Attributes</h4>
-									<p>
-										Once you have a data-block, such as a material, object, collection, etc., its attributes can be accessed much like you would change a setting using the graphical interface. In fact, the tooltip for each button also displays the Python attribute which can help in finding what settings to change in a script.
-									</p>
-
-									<docu-code-block>
+									<p> Once you have a data-block, such as a material, object, collection, etc., its attributes can be accessed
+										much like you would change a setting using the graphical interface. In fact, the tooltip for each button
+										also displays the Python attribute which can help in finding what settings to change in a script. </p>
+									<docs-code-block>
 										<code>
-											<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												'Camera'
-											</span>
-										</code>
-									</docu-code-block>
-
-									<docu-code-block>
+																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>
+																		'Camera'
+																	</span>
+																</code>
+									</docs-code-block>
+									<docs-code-block>
 										<code>
-											<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												bpy.data.scenes['Scene']
-											</span>
-										</code>
-									</docu-code-block>
-
-									<docu-code-block>
+																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>
+																		bpy.data.scenes['Scene']
+																	</span>
+																</code>
+									</docs-code-block>
+									<docs-code-block>
 										<code>
-											<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												bpy.data.materials['MyMaterial']
-											</span>
-										</code>
-									</docu-code-block>
-
-									<p>
-										For testing what data to access it's useful to use the Python Console, which is its own space type. This supports auto-complete, giving you a fast way to explore the data in your file.
-									</p>
-
-									<p>
-										Example of a data path that can be quickly found via the console:
-									</p>
-
-									<docu-code-block>
+																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>
+																		bpy.data.materials['MyMaterial']
+																	</span>
+																</code>
+									</docs-code-block>
+									<p> For testing what data to access it's useful to use the Python Console, which is its own space type. This
+										supports auto-complete, giving you a fast way to explore the data in your file. </p>
+									<p> Example of a data path that can be quickly found via the console: </p>
+									<docs-code-block>
 										<code>
-											<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												bpy.data.materials['MyMaterial']
-											</span>
-										</code>
-									</docu-code-block>
+																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>
+																		bpy.data.materials['MyMaterial']
+																	</span>
+																</code>
+									</docs-code-block>
 								</section>
 								<section>
 									<h4>Data Creation/Removal:</h4>
-
-									<p>
-										When you are familiar with other Python APIs you may be surprised that new data-blocks in the bpy API cannot be created by calling the class:
-									</p>
-
-									<docu-code-block>
+									<p> When you are familiar with other Python APIs you may be surprised that new data-blocks in the bpy API
+										cannot be created by calling the class: </p>
+									<docs-code-block>
 										<code>
-											<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">scenes</span>[<span class="code:int">0</span>].<span class="code:cls">render</span>.<span class="code:var">resolution_percentage</span>
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>100
-											</span>
-											<br>
-											<br>
-											<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:str">"Torus"</span>].<span class="code:cls">data</span>.<span class="code:cls">vertices</span>[<span class="code:int">0</span>].<span class="code:cls">co</span>.<span class="code:var">x</span>
-											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>1.0
-											</span>
-										</code>
-									</docu-code-block>
-
-									<p>
-										This is an intentional part of the API design. The Blender Python API can't create Blender data that exists outside the main Blender database (accessed through <code class="code:inline code:box">bpy.data</code>), because this data is managed by Blender (save, load, undo, append, etc).
-									</p>
-
-									<p>
-										Data is added and removed via methods on the collections in <code class="code:inline code:box">bpy.data</code>, eg:
-									</p>
-
-									<docu-code-block>
+																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">scenes</span>[<span class="code:int">0</span>].<span class="code:cls">render</span>.<span class="code:cls">resolution_percentage</span>
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>100
+																	</span>
+																	<br>
+																	<br>
+																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:str">"Torus"</span>].<span class="code:cls">data</span>.<span class="code:cls">vertices</span>[<span class="code:int">0</span>].<span class="code:cls">co</span>.<span class="code:cls">x</span>
+																	<br>
+																	<span class="code:output">
+																		<span class="code:terminal"></span>1.0
+																	</span>
+																</code>
+									</docs-code-block>
+									<p> This is an intentional part of the API design. The Blender Python API can't create Blender data that
+										exists outside the main Blender database (accessed through <code
+											class="code:inline code:box">bpy.data</code>), because this data is managed by Blender (save, load,
+										undo, append, etc). </p>
+									<p> Data is added and removed via methods on the collections in <code
+											class="code:inline code:box">bpy.data</code>, eg: </p>
+									<docs-code-block>
 										<code>
-											<span class="code:var">mesh</span> = <span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">meshes</span>.<span class="code:func">new</span>(<span class="code:var">name</span>=<span class="code:str">"MyMesh"</span>)
-										</code>
-									</docu-code-block>
-
-									<docu-code-block>
+																	<span class="code:var">mesh</span> = <span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">meshes</span>.<span class="code:func">new</span>(<span class="code:var">name</span>=<span class="code:str">"MyMesh"</span>)
+																</code>
+									</docs-code-block>
+									<docs-code-block>
 										<code>
-											<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">meshes</span>.<span class="code:func">remove</span>(<span class="code:var">mesh</span>)
-										</code>
-									</docu-code-block>
+																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">meshes</span>.<span class="code:func">remove</span>(<span class="code:var">mesh</span>)
+																</code>
+									</docs-code-block>
 								</section>
 							</section>
 						</section>
-						<docu-hr></docu-hr>
-						<docu-related-topics>
-							<h2 id="docu-related-topics-title">
-								<b>Related Topics:</b>
-							</h2>
+						<docs-hr></docs-hr>
+						<docs-related-topics>
 							<ul>
 								<li><a href="#">Lambda execution role</a></li>
 								<li><a href="#">Identity-based IAM policies for Lambda</a></li>
@@ -375,14 +325,9 @@
 								<li><a href="#">Resources and conditions for Lambda actions</a></li>
 								<li><a href="#">Using permissions boundaries for AWS Lambda applications</a></li>
 							</ul>
-						</docu-related-topics>
-						<footer>
-							<docu-hr></docu-hr>
-							<p>© Copyright Hamen Docu</p>
-							<p>Latest Revision ID: <a href="#">2syap8l9xk34</a></p>
-							<docu-hr></docu-hr>
-						</footer>
-					</div>
+						</docs-related-topics>
+						<docs-footer id="2syap8l9xk34"></docs-footer>
+					</content-body>
 				</div>
 			</div>
 		</main>

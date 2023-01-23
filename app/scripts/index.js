@@ -1,8 +1,15 @@
 window.addEventListener("load", () => {
+    // Make the header:
+    document.querySelector("header").innerHTML = `<div class="header"><div class="logo"></div><div class="actions"><input type="text" id="header-search" class="text hidden" placeholder="Search a Software, Company, etc"><span class="material-symbols-outlined" id="header-search-icon"> search </span><span class="material-symbols-outlined" id="header-account-icon"> person </span></div></div><div class="mobile-toggle-tree"><span id="mobile-toggle-tree-label" class="text">View Tree</span></div>`;
+
+    // Make footer:
+    let footer = document.querySelector("docs-footer");
+    footer.innerHTML = `<docs-hr></docs-hr><p>© Copyright Hamen Docs</p><p>Latest Revision ID: <a href="#">${footer.getAttribute('id')}</a></p><docs-hr></docs-hr>`
+
     // 
-    document.querySelector("#docu-tree-exit-icon").addEventListener("click", function () {
-        document.querySelector(".docu-tree").style.display = "none";
-        document.querySelector(".docu-tree-content").style.display = "none";
+    document.querySelector("#docs-tree-exit-icon").addEventListener("click", function () {
+        document.querySelector(".docs-tree").style.display = "none";
+        document.querySelector(".docs-tree-content").style.display = "none";
         document.querySelector("body").style.overflow = "scroll";
         document.querySelector(".mobile-toggle-tree").style.display = "flex";
         document.querySelector("main").style.top = "calc(var(--header-size) + var(--mobile-header-size))";
@@ -28,22 +35,39 @@ window.addEventListener("load", () => {
         link.innerHTML += `<span class="material-symbols-outlined link-section"> link </span>`;
     });
 
-    // 
+    // Hide/show tree item when the user clicks its header:
     Array.from(document.querySelectorAll(".title.toggle")).forEach(chev => {
         let chev_ = chev.getElementsByClassName("chevron")[0];
-        chev.addEventListener("click", function () {
+        chev.addEventListener("click", function (e) {
             chev_.classList.toggle("rot");
             let options = chev.parentElement.getElementsByClassName("option");
             for (let i = 0; i < options.length; i++) {
                 options[i].classList.toggle("display-none");
+            }
+
+            if (e.shiftKey) {
+                let add = options[0].classList.contains("display-none");
+                Array.from(document.querySelectorAll(".docs-tcs")).forEach(tcs => {
+                    if (add) {
+                        tcs.getElementsByClassName("title")[0].getElementsByClassName("chevron")[0].classList.add("rot");
+                    } else {
+                        tcs.getElementsByClassName("title")[0].getElementsByClassName("chevron")[0].classList.remove("rot");
+                    }
+
+                    if (add) {
+                        Array.from(tcs.getElementsByClassName("option")).forEach(option => { option.classList.add("display-none"); })
+                    } else {
+                        Array.from(tcs.getElementsByClassName("option")).forEach(option => { option.classList.remove("display-none"); })
+                    }
+                })
             }
         })
     })
 
     // 
     document.querySelector(".mobile-toggle-tree").addEventListener("click", function() {
-        document.querySelector(".docu-tree").style.display = "block";
-        document.querySelector(".docu-tree-content").style.display = "block";
+        document.querySelector(".docs-tree").style.display = "block";
+        document.querySelector(".docs-tree-content").style.display = "block";
         document.querySelector(".mobile-toggle-tree").style.display = "none";
         document.querySelector("main").style.top = "var(--header-size)";
         document.querySelector("body").style.overflow = "hidden";
