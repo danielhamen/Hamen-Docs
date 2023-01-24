@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<docs-body>
+    <docs-title>Quickstart</docs-title>
+    <docs-section>
+        <docs-p>
+            This (API)[INFO:"Application Programming Interface"] is generally stable but some areas are still being extended and improved.
+        </docs-p>
+        <docs-ul>
+            <docs-lt>Blender Python API features:</docs-lt>
+            <docs-li>Edit any data the user interface can (Scenes, Meshes, Particles etc.).</docs-li>
+        </docs-ul>
+    </docs-section>
+</docs-body>
