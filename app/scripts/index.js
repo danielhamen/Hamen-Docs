@@ -1,4 +1,58 @@
+function makeBody() {
+    const body = `#Quickstart
+
+This API is generally stable but some areas are still being extended and improved.
+
+LIST:
+TITLE:Blender Python API features::TITLE
+Edit any data the user interface can (Scenes, Meshes, Particles etc.).
+Modify user preferences, keymaps and themes.
+Run tools with own settings.
+Create user interface elements such as menus, headers and panels.
+Create new tools.
+Create interactive tools.
+Create new rendering engines that integrate with Blender.
+Subscribe to changes to data and it's properties.
+Define new settings in existing Blender data.
+LIST:
+Other items are:
+\`scripts/startup/bl_ui for the user interface.\`
+\`scripts / startup / bl_operators for operators.\`
+:LIST
+Draw in the 3D Viewport using Python.
+:LIST
+
+CODE:
+LANG:PYTHON
+
+bpy.data.objects
+>>> <bpy_collection[3], BlendDataObjects>
+
+:CODE
+
+HR::HR`;
+
+    let HTML = document.createElement("div");
+
+    for (let i = 0; i < body.split("\n").length; i++) {
+        const line = body.split("\n")[i].trim();
+
+        // Match headings:
+        let headingMatch = line.match(/(^#{1,6})\s*(.*)/);
+        if (headingMatch) {
+            // Get the heading type (eg. H1, H2, ...):
+            let headingType = headingMatch[1].length;
+            let headingText = headingMatch[2];
+
+            console.log(`<h${headingType}>${headingText}</h${headingType}>`);
+        }
+    }
+}
+
 window.addEventListener("load", () => {
+    // Make the body:
+    makeBody();
+
     // Make the header:
     document.querySelector("header").innerHTML = `<div class="header"><div class="logo"></div><div class="actions"><input type="text" id="header-search" class="text hidden" placeholder="Search a Software, Company, etc"><span class="material-symbols-outlined" id="header-search-icon"> search </span><span class="material-symbols-outlined" id="header-account-icon"> person </span></div></div><div class="mobile-toggle-tree"><span id="mobile-toggle-tree-label" class="text">View Tree</span></div>`;
 

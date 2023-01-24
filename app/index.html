@@ -162,13 +162,13 @@
 											class="code:inline code:box">bpy.data</code>. It gives access to library data, for example: </p>
 									<docs-code-block>
 										<code>
-																	<span class="code:lib">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>
-																		&lt;bpy_collection[3], BlendDataObjects&gt;
-																	</span>
-																</code>
+											<span class="code:lib">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>
+											<br>
+											<span class="code:output">
+												<span class="code:terminal"></span>
+												&lt;bpy_collection[3], BlendDataObjects&gt;
+											</span>
+										</code>
 									</docs-code-block>
 									<docs-code-block>
 										<code>
@@ -266,14 +266,11 @@
 										supports auto-complete, giving you a fast way to explore the data in your file. </p>
 									<p> Example of a data path that can be quickly found via the console: </p>
 									<docs-code-block>
-										<code>
-																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>
-																		bpy.data.materials['MyMaterial']
-																	</span>
-																</code>
+										<code class="docs-code" lang="python">
+											bpy.data.objects[0]
+											<br>
+											>>> bpy.data.materials['MyMaterial']
+										</code>
 									</docs-code-block>
 								</section>
 								<section>
@@ -281,36 +278,35 @@
 									<p> When you are familiar with other Python APIs you may be surprised that new data-blocks in the bpy API
 										cannot be created by calling the class: </p>
 									<docs-code-block>
-										<code>
-																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">scenes</span>[<span class="code:int">0</span>].<span class="code:cls">render</span>.<span class="code:cls">resolution_percentage</span>
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>100
-																	</span>
-																	<br>
-																	<br>
-																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:str">"Torus"</span>].<span class="code:cls">data</span>.<span class="code:cls">vertices</span>[<span class="code:int">0</span>].<span class="code:cls">co</span>.<span class="code:cls">x</span>
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>1.0
-																	</span>
-																</code>
+										<code class="docs-code" lang="python">
+											bpy.data.scenes[0].render.resolution_percentage
+											<br>
+											>>> 100
+											<br>
+											<br>
+											bpy.data.objects["Torus"].data.vertices[-0.7.4].co(name = "").x
+											<br>
+											>>> 1.0
+										</code>
 									</docs-code-block>
-									<p> This is an intentional part of the API design. The Blender Python API can't create Blender data that
-										exists outside the main Blender database (accessed through <code
-											class="code:inline code:box">bpy.data</code>), because this data is managed by Blender (save, load,
-										undo, append, etc). </p>
-									<p> Data is added and removed via methods on the collections in <code
-											class="code:inline code:box">bpy.data</code>, eg: </p>
+									<p>
+										This is an intentional part of the API design. The Blender Python API can't create Blender data that
+										exists outside the main Blender database (accessed through <code class="code:inline code:box">bpy.data</code>), because this data is managed by Blender (save, load, undo, append, etc).
+									</p>
+									<p>
+										Data is added and removed via methods on the collections in
+										<code class="code:inline code:box">bpy.data</code>
+										, eg:
+									</p>
 									<docs-code-block>
-										<code>
-																	<span class="code:var">mesh</span> = <span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">meshes</span>.<span class="code:func">new</span>(<span class="code:var">name</span>=<span class="code:str">"MyMesh"</span>)
-																</code>
+										<code class="docs-code" lang="python">
+											mesh = bpy.data.meshes.new( name = "MyMesh" )
+										</code>
 									</docs-code-block>
 									<docs-code-block>
-										<code>
-																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">meshes</span>.<span class="code:func">remove</span>(<span class="code:var">mesh</span>)
-																</code>
+										<code class="docs-code" lang="python" vars="mesh">
+											bpy.data.meshes.remove( mesh )
+										</code>
 									</docs-code-block>
 								</section>
 							</section>
