@@ -6,7 +6,7 @@ const DocsElements = {
         let contentTitle = document.querySelector("content-title");
         let contentTitleWrapper = document.createElement("div");
         contentTitleWrapper.classList.add("content-titles");
-        contentTitleWrapper.innerHTML = `<h1 id="content-title" class="add-section-link"> ${contentTitle.innerHTML} </h1><span class="documentation-options"><a href="#" class="documentation-option">PDF</a><div class="documentation-option-separator"></div><a href="#" class="documentation-option">XML</a><div class="documentation-option-separator"></div><a href="#" class="documentation-option">Markdown</a></span><br><docs-hr></docs-hr>`;
+        contentTitleWrapper.innerHTML = `<h1 id="content-title"> ${contentTitle.innerHTML} </h1><span class="documentation-options"><a href="#" class="documentation-option">PDF</a><div class="documentation-option-separator"></div><a href="#" class="documentation-option">XML</a><div class="documentation-option-separator"></div><a href="#" class="documentation-option">Markdown</a></span><br><docs-hr></docs-hr>`;
         contentTitle.parentElement.replaceChild(contentTitleWrapper, contentTitle);
     }, makeContentBody() {
         let contentBody = document.querySelector("content-body");
@@ -53,10 +53,16 @@ const DocsElements = {
                         let codeWrapper = document.createElement("span");
                         codeWrapper.classList.add("code:output");
 
-                        // Get line text:
-                        let lineText = line.slice(4);
+                        // Create terminal span:
+                        let terminal = document.createElement("span");
+                        terminal.classList.add("code:terminal");
 
-                        codeWrapper.innerHTML += `<span class="code:terminal"></span>${lineText}`;
+                        // Create line text:
+                        let lineText = document.createElement("span");
+                        lineText.innerText = line.slice(4);
+
+                        codeWrapper.appendChild(terminal);
+                        codeWrapper.appendChild(lineText);
 
                         wrapper.appendChild(codeWrapper);
                     } else {
@@ -163,8 +169,7 @@ const DocsElements = {
                     hidden[0].remove();
                 }
 
-                // Change variables:
-                let vars = Array.from(docsCode.getElementsByClassName("code:cls"));
+                // Get user's variables:
                 let userVars = docsCode.getAttribute("vars");
                 if (!userVars) {
                     userVars = [];
@@ -172,31 +177,53 @@ const DocsElements = {
                     userVars = userVars.split(",");
                 }
 
-                // for (let i = 0; i < userVars.length; i++) {
-                //     const userVar = userVars[i];
-                //     for (let i_ = 0; i_ < vars.length; i_++) {
-                //         const var_ = vars.slice(i_, i_ + userVar.length);
-                //         let varName = "";
-                //         for (let i__ = 0; i__ < var_.length; i__++) {
-                //             varName += var_[i__].innerHTML;
-                //         }
-
-                //         if (userVars.indexOf(varName) !== -1) {
-                //             for (let x = 0; x < var_.length; x++) {
-                //                 const c = var_[x];
-                //                 c.classList.remove("code:cls");
-                //                 c.classList.add("code:var");
-                //             }
-                //             break;
-                //         }
-                //     }
-                // }
+                // Highlight variables:
+                let children = docsCode.children;
+                let classes = [[]];
+                for (let i_ = 0; i_ < children.length; i_++) {
+                    const child = children[i_];
+                    if (child.classList.contains("code:cls")) {
+                        classes[classes.length - 1].push(child);
+                    } else {
+                        classes.push([]);
+                    }
+                }; for (let i = 0; i < userVars.length; i++) {
+                    const userVar = userVars[i];
+                    for (let i_ = 0; i_ < classes.length; i_++) {
+                        const class_ = classes[i_];
+                        if (class_.length !== 0) {
+                            let classValues = class_.map(span => span.innerHTML).join("");
+                            if (classValues === userVar) {
+                                class_.forEach(span => {
+                                    span.classList.remove("code:cls");
+                                    span.classList.add("code:var");
+                                })
+                            }
+                        }
+                    }
+                }
             }
 
             // Unknown Formatting:
             else {
                 throw "Error: No stated formatting type";
             }
+        })
+    }, addCodeBlockCopyIcon() {
+        // Add to DOM:
+        Array.from(document.querySelectorAll("docs-code-block")).forEach(box => {
+            box.innerHTML = `<div class="code:copy-code-block"><span class="material-symbols-outlined"> content_copy </span></div>` + box.innerHTML;
+        })
+
+        // Add click event listener to 'Copy Code Block' tiles:
+        Array.from(document.getElementsByClassName("code:copy-code-block")).forEach(codeBlock => {
+            codeBlock.addEventListener("click", function() {
+                HamenAPI.logMessage("Copied to Clipboard!");
+
+                // Get the code:
+                let code = codeBlock.parentElement.getElementsByTagName("code")[0].innerText.slice(0, -1);
+                navigator.clipboard.writeText(code);
+            })
         })
     }
 }
@@ -208,4 +235,5 @@ window.addEventListener("load", () => {
     DocsElements.makeContentBody();
     DocsElements.relatedTopics();
     DocsElements.makeDocsCode();
+    DocsElements.addCodeBlockCopyIcon();
 })

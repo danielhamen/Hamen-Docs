@@ -84,6 +84,7 @@ docs-code-block > code {
 
 .docs-code {
     overflow-x: auto;
+    white-space: nowrap;
 }
 
 .docs-code::-webkit-scrollbar {
@@ -92,4 +93,56 @@ docs-code-block > code {
 
 .docs-code::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.0);
+}
+
+.code\:copy-code-block {
+    width: 32px;
+    height: 32px;
+    border-radius: 0.6em;
+    background: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    translate: 0% -0.35em;
+    right: 3.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.12s;
+    opacity: 0;
+}
+
+.code\:copy-code-block:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.code\:copy-code-block:active {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.code\:copy-code-block > span {
+    font-size: 1.2em;
+    transition: 0.2s;
+    color: hsl(0deg, 0%, 80%);
+    height: fit-content;
+}
+
+.code\:copy-code-block:hover > span {
+    color: hsl(0deg, 0%, 85%);
+}
+
+.code\:copy-code-block:active > span {
+    color: hsl(0deg, 0%, 70%);
+}
+
+docs-code-block:hover > .code\:copy-code-block {
+    opacity: 1;
+}
+
+.code\:copy-code-block-label {
+    position: relative;
+    left: -1.8em;
 }

@@ -84,11 +84,6 @@ window.addEventListener("load", () => {
         }
     })
 
-    // Add the 'link section' icons:
-    Array.from(document.querySelectorAll(".add-section-link")).forEach(link => {
-        link.innerHTML += `<span class="material-symbols-outlined link-section"> link </span>`;
-    });
-
     // Hide/show tree item when the user clicks its header:
     Array.from(document.querySelectorAll(".title.toggle")).forEach(chev => {
         let chev_ = chev.getElementsByClassName("chevron")[0];
@@ -116,6 +111,23 @@ window.addEventListener("load", () => {
                 })
             }
         })
+    })
+
+    // Add 'Copy Hyperlink' icon to all headings:
+    let headings = Array.from(document.querySelectorAll("h1,h2,h3,h4,h5,h6"));
+    headings.forEach(heading => {
+        let headingID = HamenAPI.generateID(6);
+
+        let linkSpan = document.createElement("span");
+        linkSpan.classList.add("material-symbols-outlined");
+        linkSpan.classList.add("link-section");
+        linkSpan.innerHTML = "link";
+        linkSpan.id = headingID;
+        linkSpan.addEventListener("click", function() {
+            HamenAPI.logMessage("Heading link copied to clipboard!");
+        })
+
+        heading.appendChild(linkSpan);
     })
 
     // 

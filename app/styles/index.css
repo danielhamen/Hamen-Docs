@@ -106,16 +106,18 @@ p {
     justify-content: flex-start;
 }
 
+a > .code\:inline {
+    color: #f36d6d;
+}
+
 .link-section {
     cursor: pointer;
     user-select: none;
     padding-left: 0.3em;
     font-size: 0.8em !important;
-    padding-top: 0.45em;
-}
-
-a > .code\:inline {
-    color: #f36d6d;
+    rotate: 90deg;
+    padding-bottom: 0.3em;
+    display: none;
 }
 
 .link-section:hover {

@@ -13,6 +13,9 @@
 		<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
+		<!-- HamenAPI: -->
+		<script type="text/javascript" src="HamenAPI/HamenAPI.js"></script>
+
 		<!-- Local Styles: -->
 		<link rel="stylesheet" href="styles/index.css">
 		<link rel="stylesheet" href="styles/overflow.css">
@@ -23,6 +26,7 @@
 		<link rel="stylesheet" href="docs-elements/index.css">
 		<link rel="stylesheet" href="docs-elements/code.css">
 		<link rel="stylesheet" href="docs-elements/footer.css">
+		<link rel="stylesheet" href="docs-elements/log.css">
 
 		<!-- Docs Scripts: -->
 		<script type="text/javascript" src="docs-elements/index.js"></script>
@@ -161,34 +165,25 @@
 										Python. Accessing data from the currently loaded blend-file is done with the module <code
 											class="code:inline code:box">bpy.data</code>. It gives access to library data, for example: </p>
 									<docs-code-block>
-										<code>
-											<span class="code:lib">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>
+										<code class="docs-code" lang="python">
+											bpy.data.objects
 											<br>
-											<span class="code:output">
-												<span class="code:terminal"></span>
-												&lt;bpy_collection[3], BlendDataObjects&gt;
-											</span>
+											>>> &lt;bpy_collection[3], BlendDataObjects&gt;
 										</code>
 									</docs-code-block>
 									<docs-code-block>
-										<code>
-																	<span class="code:lib">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">scenes</span>
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>
-																		&lt;bpy_collection[1], BlendDataScenes&gt;
-																	</span>
-																</code>
+										<code class="docs-code" lang="python">
+											bpy.data.scenes
+											<br>
+											>>> &lt;bpy_collection[1], BlendDataScenes&gt;
+										</code>
 									</docs-code-block>
 									<docs-code-block>
-										<code>
-																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">materials</span>
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>
-																		&lt;bpy_collection[1], BlendDataMaterials&gt;
-																	</span>
-																</code>
+										<code class="docs-code" lang="python">
+											bpy.data.materials
+											<br>
+											>>> &lt;bpy_collection[1], BlendDataMaterials&gt;
+										</code>
 									</docs-code-block>
 								</section>
 								<section>
@@ -197,34 +192,25 @@
 										Unlike Python dictionaries, both methods are available; however, the index of a member may change while
 										running Blender. </p>
 									<docs-code-block>
-										<code>
-																	<span class="code:func">list</span>(<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>)
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>
-																		[bpy.data.objects["Cube"], bpy.data.objects["Plane"]]
-																	</span>
-																</code>
+										<code class="docs-code" lang="python">
+											list(bpy.data.objects)
+											<br>
+											>>> [bpy.data.objects["Cube"], bpy.data.objects["Plane"]]
+										</code>
 									</docs-code-block>
 									<docs-code-block>
-										<code>
-																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:str">"Cube"</span>]
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>
-																		bpy.data.objects["Cube"]
-																	</span>
-																</code>
+										<code class="docs-code" lang="python">
+											bpy.data.objects["Cube"]
+											<br>
+											>>> bpy.data.objects["Cube"]
+										</code>
 									</docs-code-block>
 									<docs-code-block>
-										<code>
-																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>
-																		bpy.data.objects["Cube"]
-																	</span>
-																</code>
+										<code class="docs-code" lang="python">
+											bpy.data.objects[0]
+											<br>
+											>>> bpy.data.objects["Cube"]
+										</code>
 									</docs-code-block>
 								</section>
 								<section>
@@ -233,34 +219,25 @@
 										much like you would change a setting using the graphical interface. In fact, the tooltip for each button
 										also displays the Python attribute which can help in finding what settings to change in a script. </p>
 									<docs-code-block>
-										<code>
-																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>
-																		'Camera'
-																	</span>
-																</code>
+										<code class="docs-code" lang="python">
+											bpy.data.objects[0]
+											<br>
+											>>> 'Camera'
+										</code>
 									</docs-code-block>
 									<docs-code-block>
-										<code>
-																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>
-																		bpy.data.scenes['Scene']
-																	</span>
-																</code>
+										<code class="docs-code" lang="python">
+											bpy.data.objects[0]
+											<br>
+											>>> bpy.data.scenes['Scene']
+										</code>
 									</docs-code-block>
 									<docs-code-block>
-										<code>
-																	<span class="code:cls">bpy</span>.<span class="code:cls">data</span>.<span class="code:cls">objects</span>[<span class="code:int">0</span>]
-																	<br>
-																	<span class="code:output">
-																		<span class="code:terminal"></span>
-																		bpy.data.materials['MyMaterial']
-																	</span>
-																</code>
+										<code class="docs-code" lang="python">
+											bpy.data.objects[0]
+											<br>
+											>>> bpy.data.materials['MyMaterial']
+										</code>
 									</docs-code-block>
 									<p> For testing what data to access it's useful to use the Python Console, which is its own space type. This
 										supports auto-complete, giving you a fast way to explore the data in your file. </p>
