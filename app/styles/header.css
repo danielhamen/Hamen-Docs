@@ -1,3 +1,9 @@
+/* 
+
+    THIS FILE CONTAINS ALL STYLES FOR THE HEADER
+
+*/
+
 header {
     width: 100vw;
     height: fit-content;
@@ -22,10 +28,15 @@ header {
 }
 
 .header > .logo {
-    width: 18em;
+    /* width: 18em; */
     height: 3em;
     margin-left: calc(calc(var(--header-size) - 3em) / 2);
-    background: black;
+    cursor: pointer;
+    box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.header > .logo.media {
+    display: none;
 }
 
 .header > .actions {
@@ -87,5 +98,13 @@ header {
 @media screen and (max-width:750px) {
     .mobile-toggle-tree {
         display: flex;
+    }
+
+    .header > .logo {
+        display: none;
+    }
+
+    .header > .logo.media {
+        display: block;
     }
 }

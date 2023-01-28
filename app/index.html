@@ -13,8 +13,244 @@
 		<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
-		<!-- HamenAPI: -->
+		<!-- DocsAPI: -->
+		<script type="text/javascript" src="DocsAPI/index.js"></script>
+		<link rel="stylesheet" href="DocsAPI/index.css">
 		<script type="text/javascript" src="HamenAPI/HamenAPI.js"></script>
+
+		<!-- Select Tree Body: -->
+		<script type="text/javascript">
+			const docsElements = {
+				footer(revisionID) {
+					let footerElement = new ArticleElement("div", "", { "id": revisionID, "class": "docs:footer" });
+					return footerElement;
+				}, horizontalRule() {
+					let breakElement = new ArticleElement("div", attributes={"class": "docs:hr"});
+					return breakElement;
+				}, paragraph(content) {
+					let pTag = new ArticleElement("p", content, {"class": "docs:p"});
+					return pTag;
+				}, unorderedList(items = [], listTitle = null, options = {"colonSuffix": true}) {
+					let list = document.createElement("ul");
+
+					// Add list title:
+					if (listTitle) {
+						let suffix = "";
+						if (options["colonSuffix"]) {
+							suffix = ":";
+						}; list.innerHTML += `<p class="docs:li-title">${listTitle}${suffix}</p>`;
+					}
+
+					// Add list items:
+					let listItems = "";
+					items.forEach(item => {
+						if (typeof(item) === "string" || (typeof(item) === "object" && item.tagName === "span")) {
+							let li = document.createElement("li");
+							li.innerHTML = item;
+							listItems += li.outerHTML;
+						} else {
+							listItems += item;
+						}
+					}); list.innerHTML += listItems;
+
+					// Create an `ArticleElement` from the Unordered List (`list`):
+					let listElement = new ArticleElement("ul", list.innerHTML);
+
+					return listElement;
+				}, titleHint(label, hint) {
+					let hintSpan = new ArticleElement("abbr", label, {"title": hint});
+					return hintSpan;
+				}, break(size = 0.5) {
+					return new ArticleElement("div", "", {"class": "docs:br", "style": `height: ${size}em;`});
+				}, inlineCode(code) {
+					return new ArticleElement("code", code, {"class": "code:inline code:box"});
+				}, inlineText(text, options = {}) {
+					return new ArticleElement("span", text, options);
+				}, listItem(text, listStyle = "unset") {
+					return new ArticleElement("li", text, { "style": "list-style: " + listStyle + ";" })
+				}, anchorText(text, href, target = "_self") {
+					return new ArticleElement("a", text, { "href": href, "target": target });
+				}
+			}
+
+			class ArticleElement {
+				constructor(tagName, innerHTML, attributes) {
+					this.tagName = tagName;
+					this.innerHTML = innerHTML;
+
+					// Get attribute
+					if (!attributes) {
+						attributes = {};
+					} this.attributes = attributes;
+				}; toString() {
+					let attrs = [];
+					Array.from(Object.keys(this.attributes)).forEach(key => {
+						attrs.push(`${key}="${this.attributes[key]}"`);
+					})
+					attrs = attrs.join(" ");
+					if (attrs.length !== 0) {
+						attrs = " " + attrs;
+					}
+
+					return `<${this.tagName}${attrs}>${this.innerHTML}</${this.tagName}>`;
+				}; setStyle(property, value) {
+					let style = this.attributes["style"];
+					if (!style) {
+						this.attributes["style"] = `${property}: ${value};`;
+					} else {
+						this.attributes["style"] += `${property}: ${value};`;
+					}
+				}; removeSpaceBefore() {
+					if (!this.attributes["style"]) {
+						this.attributes["style"] = "";
+					}
+
+					this.attributes["style"] += "margin-top: 0 !important;";
+				}; removeSpaceAfter() {
+					if (!this.attributes["style"]) {
+						this.attributes["style"] = "";
+					}
+
+					this.attributes["style"] += "margin-bottom: 0 !important;";
+				}; classList = {
+					add(className) {
+						// If the "class" attribute doesn't exist yet, add it, then push `className`:
+						// this.attributes["class"] ? this.attributes["class"].push(className) : this.attributes["class"] = [className];
+						if (!this.attributes) {
+							this.attributes = {"class": className};
+							// console.log(this.attributes);
+						} else {
+							let oldClasses = this.attributes["class"];
+							if (!oldClasses) {
+								oldClasses = "";
+							} this.attributes = {"class": oldClasses + " " + className };
+						}
+					}, remove(className) {
+						if (this.attributes["class"] && this.attributes.indexOf(className)) {
+							this.attributes.splice(this.attributes.indexOf(className));
+						}
+					}, toggle(className) {
+						// 
+					}
+				};
+			}
+
+			class ArticleSection {
+				constructor(sectionTitle) {
+					this.sectionTitle = sectionTitle;
+					this.sectionBody = [];
+
+					if (sectionTitle) {
+						this.sectionBody = [`<h2>${sectionTitle}</h2>`];
+					}
+				}; outerHTML() {
+					let section = document.createElement("section");
+					section.innerHTML = this.sectionBody.join("\n");
+					return section.outerHTML;
+				}; appendChild(element) {
+					this.sectionBody.push(element);
+				}; appendBreak() {
+					this.sectionBody.push("<br>");
+				}; appendHorizontalRule() {
+					this.sectionBody.push("<div class=\"docs:hr\"></div>");
+				}
+			}
+
+			class ArticleBody {
+				constructor(title, selectedTreeItem) {
+					this.selectedTreeItem = selectedTreeItem;
+					this.title = title;
+
+					// Global:
+					this.layout = {
+						newSection(sectionTitle) {
+							let sec = new ArticleSection(sectionTitle);
+							return sec;
+						}
+					};
+
+					this.footer = null;
+					this.bodyContent = [];
+				}; appendChild(section) {
+					this.bodyContent.push(section);
+				}; setFooter(footerElement) {
+					this.footer = footerElement;
+				}; outerHTML() {
+					let outerHTML_ = [];
+					this.bodyContent.forEach(section => {
+						outerHTML_.push(section.outerHTML());
+					})
+
+					let HTML = `<content-title>${this.title}</content-title>` + "<content-body>" + outerHTML_.join(`<div class="docs:hr"></div>`) + "</content-body>";
+
+					// Add footer:
+					HTML += this.footer;
+
+					return HTML;
+				}
+			}
+
+			window.addEventListener("load", function() {
+				const body = new ArticleBody("Quickstart", "quickstart");
+				body.draw = function() {
+					let layout = this.layout;
+
+					// Intro Section:
+					let section = layout.newSection();
+					let API = docsElements.titleHint("API", "Application Programming Interface");
+					[
+						docsElements.paragraph("This " + API + " is generally stable but some areas are still being extended and improved."),
+						docsElements.unorderedList([
+							"Edit any data the user interface can (Scenes, Meshes, Particles etc.).",
+							"Modify user preferences, keymaps and themes.",
+							"Run tools with own settings.",
+							"Create user interface elements such as menus, headers and panels.",
+							"Create new tools.",
+							"Create interactive tools.",
+							"Create new rendering engines that integrate with Blender.",
+							"Subscribe to changes to data and it’s properties.",
+							"Define new settings in existing Blender data.",
+							"Draw in the 3D Viewport using Python."
+						], "Blender Python API features"),
+						docsElements.break(),
+						docsElements.unorderedList([
+							"Create new space types.",
+							"Assign custom properties to every type."
+						], "(Still) missing features")
+					].forEach(element => {
+						section.appendChild(element);
+					}); body.appendChild(section);
+
+					// 'Before Starting' Section:
+					section = layout.newSection("Before Starting");
+					[
+						docsElements.paragraph("This document its intended to familiarize you with Blender Python API but not to fully cover each topic."),
+						docsElements.unorderedList([
+							"Enable Developer Extra and Python Tooltips.",
+							"The Python Console is great for testing one-liners; it has autocompletion so you can inspect the API quickly.",
+							"Button tooltips show Python attributes and operator names (when enabled see above).",
+							"The context menu of buttons directly links to this API documentation (when enabled see above).",
+							"Many python examples can be found in the text editor's template menu.",
+							"To examine further scripts distributed with Blender, see:",
+							docsElements.unorderedList([
+								docsElements.inlineCode("scripts/startup/bl_ui") + " for the user interface.",
+								docsElements.inlineCode("scripts/startup/bl_operators") + " for operators."
+							]),
+							docsElements.break(1),
+							docsElements.listItem("Exact location depends on platform; see " + docsElements.anchorText("directory layout docs", "#") + ".", "none")
+						], "A quick list of helpful things to know before starting")
+					].forEach(element => {
+						section.appendChild(element);
+					}); body.appendChild(section);
+
+					// Footer:
+					let footer = docsElements.footer("2syap8l9xk34");
+					body.setFooter(footer);
+				}; body.draw();
+
+				document.querySelector(".docs-content").innerHTML = body.outerHTML();
+			})
+		</script>
 
 		<!-- Local Styles: -->
 		<link rel="stylesheet" href="styles/index.css">
@@ -23,63 +259,44 @@
 		<link rel="stylesheet" href="styles/colors.css">
 
 		<!-- Docs Styles: -->
-		<link rel="stylesheet" href="docs-elements/index.css">
-		<link rel="stylesheet" href="docs-elements/code.css">
-		<link rel="stylesheet" href="docs-elements/footer.css">
-		<link rel="stylesheet" href="docs-elements/log.css">
+		<link rel="stylesheet" href="styles/docs-elements/index.css">
+		<link rel="stylesheet" href="styles/docs-elements/code.css">
+		<link rel="stylesheet" href="styles/docs-elements/log.css">
+
+		<link rel="icon" href="images/favicon.ico">
 
 		<!-- Docs Scripts: -->
-		<script type="text/javascript" src="docs-elements/index.js"></script>
-
-		<!-- Local Scripts: -->
-		<script type="text/javascript" src="scripts/index.js"></script>
+		<script type="text/javascript" src="scripts/docs-elements/index.js"></script>
 
 		<title>Hamen Docs</title>
 
-		<!--  -->
+		<!-- Tree Body: -->
+		<script type="text/javascript" src="database/blender-python-tutorial/index.js"></script>
+
+		<script type="text/javascript" src="scripts/index.js"></script>
+
+		<!-- Select Tree Item: -->
 		<script type="text/javascript">
-			const treeBody = {
-				"Documentation": {
-					"Quickstart": "#",
-					"API Overview": "#",
-					"API Reference Usage": "#",
-					"Best Practice": "#",
-					"Tips and Tricks": "#",
-					"Gotchas": "#",
-					"Advanced": "#",
-					"Change Log": "#"
-				}, "Application Modules": {
-					"Context Access ( <code class='code:inline'>bpy.context</code> )": "#",
-					"Data Access ( <code class='code:inline'>bpy.data</code> )": "#",
-					"Message Bus ( <code class='code:inline'>bpy.msgbus</code> )": "#",
-					"Operators ( <code class='code:inline'>bpy.ops</code> )": "#",
-					"Types ( <code class='code:inline'>bpy.types</code> )": "#",
-					"Utilities ( <code class='code:inline'>bpy.utils</code> )": "#",
-					"Path Utilities ( <code class='code:inline'>bpy.path</code> )": "#",
-					"Application Data ( <code class='code:inline'>bpy.app</code> )": "#",
-					"Property Definitions ( <code class='code:inline'>bpy.props</code> )": "#"
-				}, "Standalone Modules": {
-					"Audio System ( <code class='code:inline'>aud</code> )": "#",
-					"OpenGL Wrapper ( <code class='code:inline'>bgl</code> )": "#",
-					"Additional Math Functions ( <code class='code:inline'>bl_math</code> )": "#",
-					"Font Drawing ( <code class='code:inline'>blf</code> )": "#",
-					"BMesh Module ( <code class='code:inline'>bmesh</code> )": "#",
-					"Extra Utilities ( <code class='code:inline'>bpy_extras</code> )": "#",
-					"Freestyle Module ( <code class='code:inline'>freestyle</code> )": "#",
-					"GPU Module ( <code class='code:inline'>gpu</code> )": "#",
-					"GPU Utilities ( <code class='code:inline'>gpu_extras</code> )": "#",
-					"ID Property Access (idprop. <code class='code:inline'>types</code> )": "#",
-					"Image Buffer ( <code class='code:inline'>imbuf</code> )": "#",
-					"Math Types & Utilities ( <code class='code:inline'>mathutils</code> )": "#",
-				}, "Indices": {
-					"Index": "#",
-					"Module Index": "#"
-				}
-			}
+			window.addEventListener("load", function() {
+				document.querySelector("#quickstart").classList.add("selected");
+			})
 		</script>
 	</head>
 	<body>
-		<header></header>
+		<header>
+			<div class="header">
+				<img src="images/hamen-docs-logo.png" class="logo">
+				<img src="images/hamen-docs-icon.png" class="logo media">
+				<div class="actions">
+					<input type="text" id="header-search" class="text hidden" placeholder="Search a Software, Company, etc">
+					<span class="material-symbols-outlined" id="header-search-icon"> search </span>
+					<span class="material-symbols-outlined" id="header-account-icon"> person </span>
+				</div>
+			</div>
+			<div class="mobile-toggle-tree">
+				<span id="mobile-toggle-tree-label" class="text">View Tree</span>
+			</div>
+		</header>
 		<main>
 			<div class="documentation">
 				<div class="go-to-top">
@@ -93,7 +310,7 @@
 				</div>
 				<!-- Content: -->
 				<div class="docs-content">
-					<content-title>Quickstart</content-title>
+					<!-- <content-title>Quickstart</content-title>
 					<content-body>
 						<section>
 							<p class="first no-indent"> This <abbr title="Application Programming Interface">API</abbr> is generally stable but
@@ -299,8 +516,7 @@
 								<li><a href="#">Using permissions boundaries for AWS Lambda applications</a></li>
 							</ul>
 						</docs-related-topics>
-						<docs-footer id="2syap8l9xk34"></docs-footer>
-					</content-body>
+					</content-body> -->
 				</div>
 			</div>
 		</main>

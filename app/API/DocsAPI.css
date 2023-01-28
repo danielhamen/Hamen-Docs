@@ -1,0 +1,38 @@
+.docs\:li-title {
+    margin-bottom: 0.5em;
+    margin-left: -40px;
+    font-weight: bold;
+}
+
+.docs\:hr {
+    display: block;
+    width: 100%;
+    border-radius: 1em;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.08);
+    margin-top: 1em;
+    margin-bottom: 1em;
+    min-height: 2px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: hsl(0deg, 0%, 20%);
+    font-family: 'Exo 2', serif;
+}
+
+.docs\:footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* margin-top: 1em; */
+    margin-bottom: 1em;
+}
+
+.docs\:footer > p {
+    line-height: 2;
+}
+
+.docs\:br {
+    display: block;
+}

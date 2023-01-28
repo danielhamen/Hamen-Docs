@@ -1,12 +1,12 @@
 const DocsElements = {
     makeTreeTitle() {
         let treeTitle = document.querySelector("tree-title");
-        treeTitle.innerHTML = `<div class="docs-tree-titles"><span class="title">${treeTitle.innerHTML}:</span><span class="material-symbols-outlined" id="docs-tree-exit-icon"> close </span></div><docs-hr style="width: 80%;margin-left: auto;margin-right: auto;"></docs-hr>`
+        treeTitle.innerHTML = `<div class="docs-tree-titles"><span class="title">${treeTitle.innerHTML}:</span><span class="material-symbols-outlined" id="docs-tree-exit-icon"> close </span></div><div class="docs:hr" style="width: 80%;margin-left: auto;margin-right: auto;"></div>`
     }, makeContentTitle() {
         let contentTitle = document.querySelector("content-title");
         let contentTitleWrapper = document.createElement("div");
         contentTitleWrapper.classList.add("content-titles");
-        contentTitleWrapper.innerHTML = `<h1 id="content-title"> ${contentTitle.innerHTML} </h1><span class="documentation-options"><a href="#" class="documentation-option">PDF</a><div class="documentation-option-separator"></div><a href="#" class="documentation-option">XML</a><div class="documentation-option-separator"></div><a href="#" class="documentation-option">Markdown</a></span><br><docs-hr></docs-hr>`;
+        contentTitleWrapper.innerHTML = `<h1 id="content-title"> ${contentTitle.innerHTML} </h1><span class="documentation-options"><a href="#" class="documentation-option">PDF</a><div class="documentation-option-separator"></div><a href="#" class="documentation-option">XML</a><div class="documentation-option-separator"></div><a href="#" class="documentation-option">Markdown</a></span><br><div class="docs:hr"></div>`;
         contentTitle.parentElement.replaceChild(contentTitleWrapper, contentTitle);
     }, makeContentBody() {
         let contentBody = document.querySelector("content-body");
@@ -25,7 +25,7 @@ const DocsElements = {
             tcs.innerHTML += `<span class="title toggle"> ${key}: <span class="material-symbols-outlined chevron"> chevron_right </span></span>`;
             let items = treeBody[key];
             Object.keys(items).forEach(item => {
-                tcs.innerHTML += `<a class="option" href="${items[item]}">${item}</a>`;
+                tcs.innerHTML += `<a class="option" href="${items[item]["href"]}" id="${items[item]["id"]}">${item}</a>`;
             }); wrapper.appendChild(tcs);
         }); document.querySelector("tree-body").appendChild(wrapper);
     }, makeDocsCode() {
@@ -225,15 +225,21 @@ const DocsElements = {
                 navigator.clipboard.writeText(code);
             })
         })
+    }, makeFooter() {
+        // Make footer:
+        let footer = document.getElementsByClassName("docs:footer")[0];
+        footer.innerHTML = `<div class="docs:hr"></div><p>© Copyright Hamen Docs</p><p>Latest Revision ID: <a href="#">${footer.getAttribute('id')}</a></p><div class="docs:hr"></div>`
     }
 }
 
 window.addEventListener("load", () => {
-    DocsElements.makeTreeBody();
-    DocsElements.makeTreeTitle();
     DocsElements.makeContentTitle();
-    DocsElements.makeContentBody();
-    DocsElements.relatedTopics();
-    DocsElements.makeDocsCode();
-    DocsElements.addCodeBlockCopyIcon();
+    try {DocsElements.makeTreeBody(); } catch (error) {};
+    try {DocsElements.makeTreeTitle(); } catch (error) {};
+    try {DocsElements.makeContentTitle(); } catch (error) {};
+    try {DocsElements.makeContentBody(); } catch (error) {};
+    try {DocsElements.relatedTopics(); } catch (error) {};
+    try {DocsElements.makeDocsCode(); } catch (error) {};
+    try {DocsElements.addCodeBlockCopyIcon(); } catch (error) {};
+    try {DocsElements.makeFooter(); } catch (error) {};
 })

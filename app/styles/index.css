@@ -175,17 +175,6 @@ a:active {
     background: rgba(0, 0, 0, 0.4);
 }
 
-docs-hr {
-    display: block;
-    width: 100%;
-    border-radius: 1em;
-    height: 2px;
-    background: rgba(0, 0, 0, 0.08);
-    margin-top: 1em;
-    margin-bottom: 1em;
-    min-height: 2px;
-}
-
 .option > .code\:inline {
     font-size: 1.1em;
 }
@@ -216,12 +205,6 @@ section > p.first {
 docs-related-topics > p {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-}
-
-h1, section > h1,h2,h3,h4,h5,h6 {
-    /* margin-top: 0; */
-    color: hsl(0deg, 0%, 20%);
-    font-family: 'Exo 2', serif;
 }
 
 docs-related-topics > ul,ol {
@@ -321,6 +304,18 @@ docs-related-topics > ul,ol {
     box-sizing: border-box;
     padding-left: 1.5em;
     font-size: 0.95em;
+    display: flex;
+    align-items: center;
+}
+
+.option.selected::before {
+    content: '▸';
+    margin-right: 4px;
+    font-weight: 300 !important;
+}
+
+.option.display-none {
+    display: none !important;
 }
 
 abbr {
@@ -352,11 +347,6 @@ abbr {
     .docs-tree {
         position: absolute;
         width: 100%;
-    }
-
-    .logo {
-        width: 3em !important;
-        min-width: 3em !important;
     }
 
     .option {
