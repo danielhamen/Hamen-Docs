@@ -1,16 +1,23 @@
 window.addEventListener("load", () => {
     // Make the header:
-    // document.querySelector("header").innerHTML = `<div class="header"><div class="logo"></div><div class="actions"><input type="text" id="header-search" class="text hidden" placeholder="Search a Software, Company, etc"><span class="material-symbols-outlined" id="header-search-icon"> search </span><span class="material-symbols-outlined" id="header-account-icon"> person </span></div></div><div class="mobile-toggle-tree"><span id="mobile-toggle-tree-label" class="text">View Tree</span></div>`;
+    let header = document.querySelector("header");
+    let headerHTML = `<div class="header"><!-- <img src="${header.getAttribute("step")}images/hamen-docs-logo.png" class="logo"><img src="${header.getAttribute("step")}images/hamen-docs-icon.png" class="logo media"> --><div class="actions"><input type="text" id="header-search" class="text hidden" placeholder="Search a Software, Company, etc"><span class="material-symbols-outlined" id="header-search-icon"> search </span><span class="material-symbols-outlined" id="header-account-icon"> person </span></div></div>`;
+    if (header.getAttribute("tutorial")) {
+        headerHTML += `<div class="mobile-toggle-tree"><span id="mobile-toggle-tree-label" class="text">View Tree</span></div>`;
+    }
+    header.innerHTML = headerHTML;
 
     // 
-    document.querySelector("#docs-tree-exit-icon").addEventListener("click", function () {
-        document.querySelector(".docs-tree").style.display = "none";
-        document.querySelector(".docs-tree-content").style.display = "none";
-        document.querySelector("body").style.overflow = "scroll";
-        document.querySelector(".mobile-toggle-tree").style.display = "flex";
-        document.querySelector("main").style.top = "calc(var(--header-size) + var(--mobile-header-size))";
-        document.querySelector("body").style.overflow = "scroll";
-    })
+    try {
+        document.querySelector("#docs-tree-exit-icon").addEventListener("click", function () {
+            document.querySelector(".docs-tree").style.display = "none";
+            document.querySelector(".docs-tree-content").style.display = "none";
+            document.querySelector("body").style.overflow = "scroll";
+            document.querySelector(".mobile-toggle-tree").style.display = "flex";
+            document.querySelector("main").style.top = "calc(var(--header-size) + var(--mobile-header-size))";
+            document.querySelector("body").style.overflow = "scroll";
+        })
+    } catch (error) {}
 
     // Show 'header search input' when the user clicks the 'search' icon:
     document.querySelector("#header-search-icon").addEventListener("click", function () {
@@ -77,11 +84,13 @@ window.addEventListener("load", () => {
     })
 
     // 
-    document.querySelector(".mobile-toggle-tree").addEventListener("click", function () {
-        document.querySelector(".docs-tree").style.display = "block";
-        document.querySelector(".docs-tree-content").style.display = "block";
-        document.querySelector(".mobile-toggle-tree").style.display = "none";
-        document.querySelector("main").style.top = "var(--header-size)";
-        document.querySelector("body").style.overflow = "hidden";
-    })
+    try {
+        document.querySelector(".mobile-toggle-tree").addEventListener("click", function () {
+            document.querySelector(".docs-tree").style.display = "block";
+            document.querySelector(".docs-tree-content").style.display = "block";
+            document.querySelector(".mobile-toggle-tree").style.display = "none";
+            document.querySelector("main").style.top = "var(--header-size)";
+            document.querySelector("body").style.overflow = "hidden";
+        })
+    } catch (error) {}
 })

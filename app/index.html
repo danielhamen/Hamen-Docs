@@ -6,519 +6,129 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Noto+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
+            rel="stylesheet">
 
 		<!-- Google Icons: -->
 		<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sofia+Sans+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
-		<!-- DocsAPI: -->
-		<script type="text/javascript" src="DocsAPI/index.js"></script>
-		<link rel="stylesheet" href="DocsAPI/index.css">
-		<script type="text/javascript" src="HamenAPI/HamenAPI.js"></script>
+		<!--  -->
+		<script type="text/javascript" src="API/DocsAPI.js"></script>
+		<script type="text/javascript" src="API/HamenAPI.js"></script>
+		<script type="text/javascript" src="scripts/index.js"></script>
+		<script type="text/javascript" src="scripts/homepage.js"></script>
 
-		<!-- Select Tree Body: -->
-		<script type="text/javascript">
-			const docsElements = {
-				footer(revisionID) {
-					let footerElement = new ArticleElement("div", "", { "id": revisionID, "class": "docs:footer" });
-					return footerElement;
-				}, horizontalRule() {
-					let breakElement = new ArticleElement("div", attributes={"class": "docs:hr"});
-					return breakElement;
-				}, paragraph(content) {
-					let pTag = new ArticleElement("p", content, {"class": "docs:p"});
-					return pTag;
-				}, unorderedList(items = [], listTitle = null, options = {"colonSuffix": true}) {
-					let list = document.createElement("ul");
+		<!--  -->
+		<link rel="stylesheet" href="style/index.css">
+		<link rel="stylesheet" href="style/homepage.css">
+		<link rel="stylesheet" href="style/colors.css">
+		<link rel="stylesheet" href="API/DocsAPI.css">
+		<link rel="stylesheet" href="API/HamenAPI.css">
 
-					// Add list title:
-					if (listTitle) {
-						let suffix = "";
-						if (options["colonSuffix"]) {
-							suffix = ":";
-						}; list.innerHTML += `<p class="docs:li-title">${listTitle}${suffix}</p>`;
-					}
-
-					// Add list items:
-					let listItems = "";
-					items.forEach(item => {
-						if (typeof(item) === "string" || (typeof(item) === "object" && item.tagName === "span")) {
-							let li = document.createElement("li");
-							li.innerHTML = item;
-							listItems += li.outerHTML;
-						} else {
-							listItems += item;
-						}
-					}); list.innerHTML += listItems;
-
-					// Create an `ArticleElement` from the Unordered List (`list`):
-					let listElement = new ArticleElement("ul", list.innerHTML);
-
-					return listElement;
-				}, titleHint(label, hint) {
-					let hintSpan = new ArticleElement("abbr", label, {"title": hint});
-					return hintSpan;
-				}, break(size = 0.5) {
-					return new ArticleElement("div", "", {"class": "docs:br", "style": `height: ${size}em;`});
-				}, inlineCode(code) {
-					return new ArticleElement("code", code, {"class": "code:inline code:box"});
-				}, inlineText(text, options = {}) {
-					return new ArticleElement("span", text, options);
-				}, listItem(text, listStyle = "unset") {
-					return new ArticleElement("li", text, { "style": "list-style: " + listStyle + ";" })
-				}, anchorText(text, href, target = "_self") {
-					return new ArticleElement("a", text, { "href": href, "target": target });
-				}
-			}
-
-			class ArticleElement {
-				constructor(tagName, innerHTML, attributes) {
-					this.tagName = tagName;
-					this.innerHTML = innerHTML;
-
-					// Get attribute
-					if (!attributes) {
-						attributes = {};
-					} this.attributes = attributes;
-				}; toString() {
-					let attrs = [];
-					Array.from(Object.keys(this.attributes)).forEach(key => {
-						attrs.push(`${key}="${this.attributes[key]}"`);
-					})
-					attrs = attrs.join(" ");
-					if (attrs.length !== 0) {
-						attrs = " " + attrs;
-					}
-
-					return `<${this.tagName}${attrs}>${this.innerHTML}</${this.tagName}>`;
-				}; setStyle(property, value) {
-					let style = this.attributes["style"];
-					if (!style) {
-						this.attributes["style"] = `${property}: ${value};`;
-					} else {
-						this.attributes["style"] += `${property}: ${value};`;
-					}
-				}; removeSpaceBefore() {
-					if (!this.attributes["style"]) {
-						this.attributes["style"] = "";
-					}
-
-					this.attributes["style"] += "margin-top: 0 !important;";
-				}; removeSpaceAfter() {
-					if (!this.attributes["style"]) {
-						this.attributes["style"] = "";
-					}
-
-					this.attributes["style"] += "margin-bottom: 0 !important;";
-				}; classList = {
-					add(className) {
-						// If the "class" attribute doesn't exist yet, add it, then push `className`:
-						// this.attributes["class"] ? this.attributes["class"].push(className) : this.attributes["class"] = [className];
-						if (!this.attributes) {
-							this.attributes = {"class": className};
-							// console.log(this.attributes);
-						} else {
-							let oldClasses = this.attributes["class"];
-							if (!oldClasses) {
-								oldClasses = "";
-							} this.attributes = {"class": oldClasses + " " + className };
-						}
-					}, remove(className) {
-						if (this.attributes["class"] && this.attributes.indexOf(className)) {
-							this.attributes.splice(this.attributes.indexOf(className));
-						}
-					}, toggle(className) {
-						// 
-					}
-				};
-			}
-
-			class ArticleSection {
-				constructor(sectionTitle) {
-					this.sectionTitle = sectionTitle;
-					this.sectionBody = [];
-
-					if (sectionTitle) {
-						this.sectionBody = [`<h2>${sectionTitle}</h2>`];
-					}
-				}; outerHTML() {
-					let section = document.createElement("section");
-					section.innerHTML = this.sectionBody.join("\n");
-					return section.outerHTML;
-				}; appendChild(element) {
-					this.sectionBody.push(element);
-				}; appendBreak() {
-					this.sectionBody.push("<br>");
-				}; appendHorizontalRule() {
-					this.sectionBody.push("<div class=\"docs:hr\"></div>");
-				}
-			}
-
-			class ArticleBody {
-				constructor(title, selectedTreeItem) {
-					this.selectedTreeItem = selectedTreeItem;
-					this.title = title;
-
-					// Global:
-					this.layout = {
-						newSection(sectionTitle) {
-							let sec = new ArticleSection(sectionTitle);
-							return sec;
-						}
-					};
-
-					this.footer = null;
-					this.bodyContent = [];
-				}; appendChild(section) {
-					this.bodyContent.push(section);
-				}; setFooter(footerElement) {
-					this.footer = footerElement;
-				}; outerHTML() {
-					let outerHTML_ = [];
-					this.bodyContent.forEach(section => {
-						outerHTML_.push(section.outerHTML());
-					})
-
-					let HTML = `<content-title>${this.title}</content-title>` + "<content-body>" + outerHTML_.join(`<div class="docs:hr"></div>`) + "</content-body>";
-
-					// Add footer:
-					HTML += this.footer;
-
-					return HTML;
-				}
-			}
-
-			window.addEventListener("load", function() {
-				const body = new ArticleBody("Quickstart", "quickstart");
-				body.draw = function() {
-					let layout = this.layout;
-
-					// Intro Section:
-					let section = layout.newSection();
-					let API = docsElements.titleHint("API", "Application Programming Interface");
-					[
-						docsElements.paragraph("This " + API + " is generally stable but some areas are still being extended and improved."),
-						docsElements.unorderedList([
-							"Edit any data the user interface can (Scenes, Meshes, Particles etc.).",
-							"Modify user preferences, keymaps and themes.",
-							"Run tools with own settings.",
-							"Create user interface elements such as menus, headers and panels.",
-							"Create new tools.",
-							"Create interactive tools.",
-							"Create new rendering engines that integrate with Blender.",
-							"Subscribe to changes to data and it’s properties.",
-							"Define new settings in existing Blender data.",
-							"Draw in the 3D Viewport using Python."
-						], "Blender Python API features"),
-						docsElements.break(),
-						docsElements.unorderedList([
-							"Create new space types.",
-							"Assign custom properties to every type."
-						], "(Still) missing features")
-					].forEach(element => {
-						section.appendChild(element);
-					}); body.appendChild(section);
-
-					// 'Before Starting' Section:
-					section = layout.newSection("Before Starting");
-					[
-						docsElements.paragraph("This document its intended to familiarize you with Blender Python API but not to fully cover each topic."),
-						docsElements.unorderedList([
-							"Enable Developer Extra and Python Tooltips.",
-							"The Python Console is great for testing one-liners; it has autocompletion so you can inspect the API quickly.",
-							"Button tooltips show Python attributes and operator names (when enabled see above).",
-							"The context menu of buttons directly links to this API documentation (when enabled see above).",
-							"Many python examples can be found in the text editor's template menu.",
-							"To examine further scripts distributed with Blender, see:",
-							docsElements.unorderedList([
-								docsElements.inlineCode("scripts/startup/bl_ui") + " for the user interface.",
-								docsElements.inlineCode("scripts/startup/bl_operators") + " for operators."
-							]),
-							docsElements.break(1),
-							docsElements.listItem("Exact location depends on platform; see " + docsElements.anchorText("directory layout docs", "#") + ".", "none")
-						], "A quick list of helpful things to know before starting")
-					].forEach(element => {
-						section.appendChild(element);
-					}); body.appendChild(section);
-
-					// Footer:
-					let footer = docsElements.footer("2syap8l9xk34");
-					body.setFooter(footer);
-				}; body.draw();
-
-				document.querySelector(".docs-content").innerHTML = body.outerHTML();
-			})
-		</script>
-
-		<!-- Local Styles: -->
-		<link rel="stylesheet" href="styles/index.css">
-		<link rel="stylesheet" href="styles/overflow.css">
-		<link rel="stylesheet" href="styles/header.css">
-		<link rel="stylesheet" href="styles/colors.css">
-
-		<!-- Docs Styles: -->
-		<link rel="stylesheet" href="styles/docs-elements/index.css">
-		<link rel="stylesheet" href="styles/docs-elements/code.css">
-		<link rel="stylesheet" href="styles/docs-elements/log.css">
-
+		<!-- Favicon: -->
 		<link rel="icon" href="images/favicon.ico">
 
-		<!-- Docs Scripts: -->
-		<script type="text/javascript" src="scripts/docs-elements/index.js"></script>
-
 		<title>Hamen Docs</title>
-
-		<!-- Tree Body: -->
-		<script type="text/javascript" src="database/blender-python-tutorial/index.js"></script>
-
-		<script type="text/javascript" src="scripts/index.js"></script>
-
-		<!-- Select Tree Item: -->
-		<script type="text/javascript">
-			window.addEventListener("load", function() {
-				document.querySelector("#quickstart").classList.add("selected");
-			})
-		</script>
 	</head>
 	<body>
-		<header>
-			<div class="header">
-				<img src="images/hamen-docs-logo.png" class="logo">
-				<img src="images/hamen-docs-icon.png" class="logo media">
-				<div class="actions">
-					<input type="text" id="header-search" class="text hidden" placeholder="Search a Software, Company, etc">
-					<span class="material-symbols-outlined" id="header-search-icon"> search </span>
-					<span class="material-symbols-outlined" id="header-account-icon"> person </span>
-				</div>
-			</div>
-			<div class="mobile-toggle-tree">
-				<span id="mobile-toggle-tree-label" class="text">View Tree</span>
-			</div>
-		</header>
+		<header step=""></header>
 		<main>
-			<div class="documentation">
-				<div class="go-to-top">
-					<span class="material-symbols-outlined"> expand_less </span>
-				</div>
-				<div class="docs-tree">
-					<div class="docs-tree-content">
-						<tree-title>Blender 3.4.1 Python API Guide</tree-title>
-						<tree-body></tree-body>
-					</div>
-				</div>
-				<!-- Content: -->
-				<div class="docs-content">
-					<!-- <content-title>Quickstart</content-title>
-					<content-body>
-						<section>
-							<p class="first no-indent"> This <abbr title="Application Programming Interface">API</abbr> is generally stable but
-								some areas are still being extended and improved. </p>
-							<p class="li-title">
-								<b>Blender Python API features:</b>
-							</p>
-							<ul>
-								<li>Edit any data the user interface can (Scenes, Meshes, Particles etc.).</li>
-								<li>Modify user preferences, keymaps and themes.</li>
-								<li>Run tools with own settings.</li>
-								<li>Create user interface elements such as menus, headers and panels.</li>
-								<li>Create new tools.</li>
-								<li>Create interactive tools.</li>
-								<li>Create new rendering engines that integrate with Blender.</li>
-								<li>Subscribe to changes to data and it's properties.</li>
-								<li>Define new settings in existing Blender data.</li>
-								<li>Draw in the 3D Viewport using Python.</li>
-							</ul>
-							<p class="li-title">
-								<b>(Still) missing features:</b>
-							</p>
-							<ul>
-								<li>Create new space types.</li>
-								<li>Assign custom properties to every type.</li>
-							</ul>
-						</section>
-						<docs-hr></docs-hr>
-						<section>
-							<h2>Before Starting:</h2>
-							<p class="first"> This document its intended to familiarize you with Blender Python API but not to fully cover each
-								topic. </p>
-							<p class="li-title"> A quick list of helpful things to know before starting: </p>
-							<ul>
-								<li>Enable Developer Extra and Python Tooltips.</li>
-								<li>The Python Console is great for testing one-liners; it has autocompletion so you can inspect the API
-									quickly.</li>
-								<li>Button tooltips show Python attributes and operator names (when enabled see above).</li>
-								<li>The context menu of buttons directly links to this API documentation (when enabled see above).</li>
-								<li>Many python examples can be found in the text editor's template menu.</li>
-								<li>To examine further scripts distributed with Blender, see:</li>
-								<ul>
-									<li><code class="code:inline code:box">scripts/startup/bl_ui</code> for the user interface.</li>
-									<li><code class="code:inline code:box">scripts/startup/bl_operators</code> for operators.</li>
-								</ul>
-								<li class="no-bull-li">Exact location depends on platform, see: directory layout docs.</li>
-							</ul>
-						</section>
-						<section>
-							<h3>Running Scripts:</h3>
-							<p> The two most common ways to execute Python scripts are using the built-in text editor or entering commands in
-								the Python console. Both the Text Editor and Python Console are space types you can select from the header.
-								Rather than manually configuring your spaces for Python development, you can use the Scripting workspace
-								accessible from the Topbar tabs. </p>
-							<p> From the text editor you can open <code class="code:inline code:box">.py</code> files or paste then from the
-								clipboard, then test using Run Script. The Python Console is typically used for typing in snippets and for
-								testing to get immediate feedback, but can also have entire scripts pasted into it. Scripts can also run from
-								the command line with Blender but to learn scripting in Blender this isn't essential. </p>
-						</section>
-						<docs-hr></docs-hr>
-						<section>
-							<h2>Key Concepts:</h2>
-							<section>
-								<h3>Data Access:</h3>
-								<section>
-									<h4>Accessing Data-Blocks:</h4>
-									<p> You can access Blender's data with the Python API in the same way as the animation system or user
-										interface; this implies that any setting that can be changed via a button can also be changed with
-										Python. Accessing data from the currently loaded blend-file is done with the module <code
-											class="code:inline code:box">bpy.data</code>. It gives access to library data, for example: </p>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											bpy.data.objects
-											<br>
-											>>> &lt;bpy_collection[3], BlendDataObjects&gt;
-										</code>
-									</docs-code-block>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											bpy.data.scenes
-											<br>
-											>>> &lt;bpy_collection[1], BlendDataScenes&gt;
-										</code>
-									</docs-code-block>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											bpy.data.materials
-											<br>
-											>>> &lt;bpy_collection[1], BlendDataMaterials&gt;
-										</code>
-									</docs-code-block>
-								</section>
-								<section>
-									<h4>Accessing Collections:</h4>
-									<p> You will notice that an index as well as a string can be used to access members of the collection.
-										Unlike Python dictionaries, both methods are available; however, the index of a member may change while
-										running Blender. </p>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											list(bpy.data.objects)
-											<br>
-											>>> [bpy.data.objects["Cube"], bpy.data.objects["Plane"]]
-										</code>
-									</docs-code-block>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											bpy.data.objects["Cube"]
-											<br>
-											>>> bpy.data.objects["Cube"]
-										</code>
-									</docs-code-block>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											bpy.data.objects[0]
-											<br>
-											>>> bpy.data.objects["Cube"]
-										</code>
-									</docs-code-block>
-								</section>
-								<section>
-									<h4>Accessing Attributes</h4>
-									<p> Once you have a data-block, such as a material, object, collection, etc., its attributes can be accessed
-										much like you would change a setting using the graphical interface. In fact, the tooltip for each button
-										also displays the Python attribute which can help in finding what settings to change in a script. </p>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											bpy.data.objects[0]
-											<br>
-											>>> 'Camera'
-										</code>
-									</docs-code-block>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											bpy.data.objects[0]
-											<br>
-											>>> bpy.data.scenes['Scene']
-										</code>
-									</docs-code-block>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											bpy.data.objects[0]
-											<br>
-											>>> bpy.data.materials['MyMaterial']
-										</code>
-									</docs-code-block>
-									<p> For testing what data to access it's useful to use the Python Console, which is its own space type. This
-										supports auto-complete, giving you a fast way to explore the data in your file. </p>
-									<p> Example of a data path that can be quickly found via the console: </p>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											bpy.data.objects[0]
-											<br>
-											>>> bpy.data.materials['MyMaterial']
-										</code>
-									</docs-code-block>
-								</section>
-								<section>
-									<h4>Data Creation/Removal:</h4>
-									<p> When you are familiar with other Python APIs you may be surprised that new data-blocks in the bpy API
-										cannot be created by calling the class: </p>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											bpy.data.scenes[0].render.resolution_percentage
-											<br>
-											>>> 100
-											<br>
-											<br>
-											bpy.data.objects["Torus"].data.vertices[-0.7.4].co(name = "").x
-											<br>
-											>>> 1.0
-										</code>
-									</docs-code-block>
-									<p>
-										This is an intentional part of the API design. The Blender Python API can't create Blender data that
-										exists outside the main Blender database (accessed through <code class="code:inline code:box">bpy.data</code>), because this data is managed by Blender (save, load, undo, append, etc).
-									</p>
-									<p>
-										Data is added and removed via methods on the collections in
-										<code class="code:inline code:box">bpy.data</code>
-										, eg:
-									</p>
-									<docs-code-block>
-										<code class="docs-code" lang="python">
-											mesh = bpy.data.meshes.new( name = "MyMesh" )
-										</code>
-									</docs-code-block>
-									<docs-code-block>
-										<code class="docs-code" lang="python" vars="mesh">
-											bpy.data.meshes.remove( mesh )
-										</code>
-									</docs-code-block>
-								</section>
-							</section>
-						</section>
-						<docs-hr></docs-hr>
-						<docs-related-topics>
-							<ul>
-								<li><a href="#">Lambda execution role</a></li>
-								<li><a href="#">Identity-based IAM policies for Lambda</a></li>
-								<li><a href="#">Attribute-based access control for Lambda</a></li>
-								<li><a href="#">Using resource-based policies for Lambda</a></li>
-								<li><a href="#">Resources and conditions for Lambda actions</a></li>
-								<li><a href="#">Using permissions boundaries for AWS Lambda applications</a></li>
-							</ul>
-						</docs-related-topics>
-					</content-body> -->
-				</div>
-			</div>
+            <div class="home-page">
+                <div class="first-section">
+                    <div class="tiles">
+                        <div class="tile hamen">
+                            <span>Hamen</span>
+                        </div>
+                        <div class="tile docs">
+                            <span>Docs</span>
+                        </div>
+                    </div>
+                    <div class="paths">
+                        <svg xmlns="http://www.w3.org/2000/svg" id="path-1" xmlns:xlink="http://www.w3.org/1999/xlink" width="1341.644" height="1074.321"
+                            viewBox="0 0 1341.644 1074.321">
+                            <defs>
+                                <filter id="Path_3" x="0" y="0" width="1341.644" height="1074.321" filterUnits="userSpaceOnUse">
+                                    <feOffset dx="40" dy="-40" input="SourceAlpha" />
+                                    <feGaussianBlur stdDeviation="49.5" result="blur" />
+                                    <feFlood flood-opacity="0.141" />
+                                    <feComposite operator="in" in2="blur" />
+                                    <feComposite in="SourceGraphic" />
+                                </filter>
+                            </defs>
+                            <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_3)">
+                                <path id="Path_3-2" data-name="Path 3"
+                                    d="M1399.5,53.25s1.417,144.213,238.906,285.639,715.135,306.867,725.809,488.32"
+                                    transform="translate(-1251 136.26)" fill="none" stroke="#b1d5f9" stroke-width="80" />
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="path-2" xmlns:xlink="http://www.w3.org/1999/xlink" width="1807.003" height="1529.983" viewBox="0 0 1807.003 1529.983">
+                            <defs>
+                                <filter id="Path_4" x="0" y="0" width="1807.003" height="1529.983" filterUnits="userSpaceOnUse">
+                                <feOffset dx="40" dy="-40" input="SourceAlpha"/>
+                                <feGaussianBlur stdDeviation="49.5" result="blur"/>
+                                <feFlood flood-opacity="0.141"/>
+                                <feComposite operator="in" in2="blur"/>
+                                <feComposite in="SourceGraphic"/>
+                                </filter>
+                            </defs>
+                            <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_4)">
+                                <path id="Path_4-2" data-name="Path 4" d="M1036.708-245.436S1274.2,250.889,1722.49,445.683s631.051,200.073,641.724,381.526" transform="matrix(0.99, -0.1, 0.1, 0.99, -859.18, 701.06)" fill="none" stroke="#c1cef8" stroke-width="80"/>
+                            </g>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="path-3" xmlns:xlink="http://www.w3.org/1999/xlink" width="2242.079" height="2012.927" viewBox="0 0 2242.079 2012.927">
+                            <defs>
+                                <filter id="Path_5" x="0" y="0" width="2242.079" height="2012.927" filterUnits="userSpaceOnUse">
+                                    <feOffset dx="40" dy="-40" input="SourceAlpha" />
+                                    <feGaussianBlur stdDeviation="49.5" result="blur" />
+                                    <feFlood flood-opacity="0.141" />
+                                    <feComposite operator="in" in2="blur" />
+                                    <feComposite in="SourceGraphic" />
+                                </filter>
+                            </defs>
+                            <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_5)">
+                                <path id="Path_5-2" data-name="Path 5"
+                                    d="M1040.713-570.929S1274.826,286.325,1723.12,481.119s581.047,49.864,936.636,277.1"
+                                    transform="translate(-737.14 1358.22) rotate(-13)" fill="none" stroke="#c8c2f1" stroke-width="80" />
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="search-input">
+                        <i id="search-input-icon"><span class="material-symbols-outlined"> search </span></i>
+                        <input type="text" placeholder="Try Searching: 'Python Documentation'">
+                    </div>
+                </div>
+                <div class="top-courses">
+                    <span id="top-courses">Top Courses:</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="280" viewBox="0 0 1920 280"><defs><filter id="Path_1" x="0" y="0" width="1920" height="280" filterUnits="userSpaceOnUse"><feOffset dy="3" input="SourceAlpha" /><feGaussianBlur stdDeviation="49.5" result="blur" /><feFlood flood-opacity="0.239" /><feComposite operator="in" in2="blur" /><feComposite in="SourceGraphic" /></filter></defs><g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_1)"><path id="Path_1-2" data-name="Path 1" d="M 1920 1080 S 1601 1153 1257 1144 S 849 1108 542 1096 S 0 1133 0 1133 V 1329 H 1920 Z" transform="translate(0 -1000)" fill="#c6f3cc" /></g></svg>
+                    <div class="background"></div>
+                    <div class="items">
+                        <div class="course">
+                            <span class="title">Code:</span>
+                            <div class="item"><span>HTML</span></div>
+                            <div class="item"><span>Python</span></div>
+                            <div class="item"><span>Javascript</span></div>
+                            <button type="button" class="view-more a">View More</button>
+                        </div>
+                        <div class="course">
+                            <span class="title">Software:</span>
+                            <div class="item"><span>Adobe Photoshop</span></div>
+                            <div class="item"><span>Microsoft Excel</span></div>
+                            <div class="item"><span>AutoCAD</span></div>
+                            <button type="button" class="view-more b">View More</button>
+                        </div>
+                        <div class="course">
+                            <span class="title">Science:</span>
+                            <div class="item"><span>Electromagnetism</span></div>
+                            <div class="item"><span>Refraction</span></div>
+                            <div class="item"><span>Cells</span></div>
+                            <button type="button" class="view-more c">View More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 		</main>
 	</body>
 </html>

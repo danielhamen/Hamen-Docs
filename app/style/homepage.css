@@ -1,0 +1,226 @@
+.home-page {
+    width: 100%;
+    height: 100%;
+}
+
+.first-section {
+    width: 100%;
+    height: calc(100vh - var(--header-size));
+}
+
+.tiles>.tile {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 99px 3px rgba(0, 0, 0, 0.2);
+    justify-content: space-around;
+}
+
+.tiles>.tile.hamen {
+    width: 50em;
+    height: 32em;
+    background: #FFCCCC;
+    border-radius: 3em;
+    position: absolute;
+    top: 4em;
+    left: 4em;
+    box-sizing: border-box;
+    padding-bottom: 10em;
+}
+
+.tiles>.tile.docs {
+    position: absolute;
+    width: 52em;
+    height: 23em;
+    background: #F5FFCC;
+    border-radius: 3em;
+    left: 8em;
+    bottom: 8em;
+}
+
+.tiles>.tile>span {
+    font-size: 6em;
+    font-weight: 900;
+    font-family: 'Exo 2';
+    color: #473F3F;
+}
+
+.paths>svg {
+    position: absolute;
+    z-index: 1;
+}
+
+.paths>#path-1 {
+    top: -20em;
+    right: -30em;
+}
+
+.paths>#path-2 {
+    right: -30em;
+    top: -33em;
+}
+
+.paths>#path-3 {
+    right: -40em;
+    top: -47em;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.search-input {
+    position: absolute;
+    right: 13vw;
+    top: 60vh;
+    z-index: 6;
+}
+
+.search-input>input {
+    width: 30em;
+    padding: 1.2em;
+    padding-left: 4em;
+    box-shadow: 0 0 50px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid hsl(0deg, 0%, 70%);
+    outline: none;
+    border-radius: 3em;
+}
+
+.search-input>#search-input-icon {
+    user-select: none;
+    position: relative;
+    left: 3.1em;
+    top: 0.35em;
+}
+
+.search-input>#search-input-icon>span {
+    font-size: 1.3em;
+}
+
+.top-courses>#top-courses {
+    font-size: 3em;
+    position: absolute;
+    font-weight: 800;
+    color: #342C2C;
+    font-family: 'Exo 2';
+    width: 100vw;
+    text-align: center;
+    z-index: 5;
+    translate: 0 5em;
+}
+
+.top-courses {
+    margin-top: -5em;
+}
+
+.top-courses > .background {
+    width: 100vw;
+    height: 30em;
+    background: #C6F3CC;
+    position: absolute;
+    translate: 0 -1em;
+}
+
+.top-courses > .items {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100vw;
+    height: fit-content;
+    position: absolute;
+    z-index: 4;
+    translate: 0 5em;
+}
+
+.top-courses > .items > .course {
+    width: 22%;
+    height: fit-content;
+    background: white;
+    border-radius: 1.3em;
+    box-shadow: 0 0 80px 4px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 2em;
+}
+
+.top-courses > .items > .course > .view-more {
+    width: 70%;
+    height: 3em;
+    background: #FFBEBE;
+    border: 0;
+    font-size: 1em;
+    border-radius: 1em;
+    transition: 0.3s;
+    margin-top: 2em;
+    box-shadow: 0 0 60px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.top-courses > .items > .course > .view-more:hover {
+    background: #f8cfcf;
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.2);
+}
+
+.top-courses > .items > .course > .view-more:active {
+    background: #e39999;
+    box-shadow: 0 0 50px 9px rgba(0, 0, 0, 0.25);
+}
+
+.top-courses > .items > .course > .view-more.b {
+    background: #C2C6FF;
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.2);
+}
+
+.top-courses > .items > .course > .view-more.b:hover {
+    background: #d4d6f6;
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.2);
+}
+
+.top-courses > .items > .course > .view-more.b:active {
+    background: #989cd4;
+    box-shadow: 0 0 50px 9px rgba(0, 0, 0, 0.25);
+}
+
+.top-courses > .items > .course > .view-more.c {
+    background: #FCC3FA;
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.2);
+}
+
+.top-courses > .items > .course > .view-more.c:hover {
+    background: #ffd6fe;
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.2);
+}
+
+.top-courses > .items > .course > .view-more.c:active {
+    background: #dd9fdb;
+    box-shadow: 0 0 50px 9px rgba(0, 0, 0, 0.25);
+}
+
+.top-courses > .items > .course > .title {
+    font-size: 1.6em;
+    font-weight: 600;
+    color: #4f4242;
+    margin-bottom: 0.5em;
+    font-family: 'Exo 2', serif;
+}
+
+.top-courses > .items > .course > .item {
+    width: calc(100% + 4em);
+    height: 3em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    transition: 0.12s;
+    user-select: none;
+    font-family: 'Noto Sans';
+}
+
+.top-courses > .items > .course > .item:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.top-courses > .items > .course > .item:active {
+    background: rgba(0, 0, 0, 0.14);
+}

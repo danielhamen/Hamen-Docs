@@ -1,0 +1,135 @@
+Helmet:
+Level 1
+- Enchants With Respiration V
+- Enchants With Aqua Affinity I
+Level 2
+- Enchants With Protection IV
+- Allows You To Breath Under Water
+Level 3
+- Gives You Resistance II Under Water
+- Gives You Night Vision Under Water
+
+Chestplate:
+Level 1
+- Gives Resistance I
+Level 2
+- Enchants With Protection IV
+- Enchants With Thorns II
+Level 3
+- Enchants With Fire Protection V, Blast Protection V, Projectile Protection V And Protection V
+
+Leggings:
+Level 1
+- Gives Speed I
+Level 2
+- Enchants With Swift Sneak III
+- Enchants With Protection IV
+- Gives You Dolphin's Grace Under Water
+Level 3
+- Gives You Speed III
+
+Boots:
+Level 1
+- Allows You To Double Jump
+- Enchants With Feather Falling III
+Level 2
+- Allows You To Jump 2 Blocks High On Your Second Jump
+- Enchants With Feather Falling IV
+- Enchants With Protection IV
+Level 3
+- Increases Your Jump Height To 4 Blocks
+- Removes Fall Damage
+
+Sword:
+Level 1
+- Increases Your Attack Speed By 130% While Using The Sword Gadget
+Level 2
+- Increases Your Attack Speed By 180%
+- Enchants With Sweeping Edge
+- Enchants With Fire Aspect II
+- Enchants With Sharpness IV
+Level 3
+- Makes Every Hit Have A 10% To Be A Critical Hit While Using The Sword Gadget
+- Enchants With Looting III
+- Enchants With Sharpness V
+
+Pickaxe:
+Level 1
+- Enchants With Efficiency V
+- Enchants With Fortune II
+Level 2
+- Automatically Smelts Blocks Mined
+- Enchants With Fortune III
+Level 3
+- Enchants With Fortune V
+- Enchants With Efficiency VI
+
+Axe:
+Level 1
+- When You Hit Another Player They Get Mining Fatigue I And Slowness I
+- Enchants With Efficiency V
+Level 2
+- Allows You To Cut Down A Whole Tree By Breaking One Block
+- Enchants With Sharpness II
+Level 3
+- When You Hit Another Player They Get Mining Fatigue II, Weakness I And Slowness II
+- Enchants With Sharpness III
+
+Shovel:
+Level 1
+- When You Hit A Player You Have A 25% Chance To Get Them Stuck In The Ground
+- Enchants With Efficiency V
+Level 2
+- Put A Block In Your Offhand Then Right Click To Throw It
+Level 3
+- Right Click A Block To Put A 3x3x3 Area Of Temporary Obsidian
+
+Hoe:
+Level 1
+- Drops Triple The Items Dropped When You Break Crops
+- Right Click 2 Animals With The Hoe Gadget To Breed Them
+- Enchants With Efficiency V
+Level 2
+- Gives Hero Of The Village I
+- Put Me In Your Offhand To Make Mobs Follow You
+- Enchants With Fortune III
+Level 3
+- Gives Hero Of The Village III
+
+Crossbow:
+Level 1
+- Automatically Charges Crossbow Gadget With Strong Rockets
+Level 2
+- Damages Everything Within A 2 Block Radius Of The Strong Rockets
+Level 3
+- Upgrades The Strong Rockets
+- Enchants With Multishot I
+- Enchants With Quick Charge IV
+
+Bow:
+Level 1
+- Can Be Used As A Grappling Hook
+- Enchants With Power III
+Level 2
+- Pulls The Player You Hit Towards You
+Level 3
+- Enchants With Power V
+
+Shield:
+Level 1
+- Protects Against Splash Potions And Explosions
+Level 2
+- Axes Disable Shields For 2.5 Seconds Instead Of 5 Seconds
+Level 3
+- Hold Shift And Right Click To Make A Power Shockwave
+
+Trident:
+Level 1
+- Enchants With Riptide II
+Level 2
+- Works In Fire And Lava
+- Enchants With Sharpness III
+- Enchants With Riptide III
+Level 3
+- Enchants With Riptide V
+- Enchants With Sharpness IV

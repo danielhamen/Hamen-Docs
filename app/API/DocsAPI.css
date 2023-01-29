@@ -16,7 +16,7 @@
 }
 
 h1,h2,h3,h4,h5,h6 {
-    color: hsl(0deg, 0%, 20%);
+    color: hsl(0deg, 9%, 26%);
     font-family: 'Exo 2', serif;
 }
 
@@ -35,4 +35,250 @@ h1,h2,h3,h4,h5,h6 {
 
 .docs\:br {
     display: block;
+}
+
+/* CODE: */
+docs-code-block {
+    display: block;
+    width: 100%;
+    height: fit-content;
+    background: hsl(0, 0%, 17.5%);
+    box-sizing: border-box;
+    padding: 0.75em;
+    border-left: 5px solid #86a8df;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.code\:internal,.code\:int {
+    color: rgb(87, 157, 214);
+}
+
+.code\:class,.code\:cls,.code\:lib {
+    color: rgb(132, 221, 124);
+}
+
+.code\:string,.code\:str {
+    color: rgb(216, 153, 128);
+}
+
+.code\:num,.code\:number {
+    color: rgb(247, 183, 194);
+}
+
+.code\:comment {
+    color: rgb(133, 133, 133);
+}
+
+.code\:variable,.code\:var {
+    color: rgb(169, 216, 247);
+}
+
+.code\:escape,.code\:esc {
+    color: rgb(247, 231, 169);
+}
+
+.code\:function,.code\:func {
+    color: rgb(220, 220, 170);
+}
+
+.code\:boolean {
+    color: rgb(132, 221, 124);
+}
+
+.code\:bracket {
+    color: rgb(227, 255, 255);
+}
+
+.code\:inline {
+    font-size: 1em;
+    color: rgb(242, 51, 51);
+}
+
+.code\:terminal::before,.code\:term::before {
+    content: '>>> ';
+    color: hsl(0deg, 0%, 65%);
+}
+
+.code\:output,.code\:out {
+    color: hsl(0deg, 0%, 65%);
+}
+
+.code\:box {
+    padding: 0.15em;
+    border: 1px solid hsl(0deg, 0%, 85%);
+    border-radius: 0.3em;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    background: hsl(0deg, 0%, 95%);
+}
+
+.option > .code\:inline {
+    padding-left: 4px;
+}
+
+.code\:error {
+    color: hsl(0, 75%, 65%);
+}
+
+docs-code-block > code {
+    color: white;
+}
+
+.docs-code {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.docs-code::-webkit-scrollbar {
+    height: 0.7em;
+}
+
+.docs-code::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.0);
+}
+
+.code\:copy-code-block {
+    width: 32px;
+    height: 32px;
+    border-radius: 0.6em;
+    background: rgba(255, 255, 255, 0.2);
+    position: absolute;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    translate: 0 -0.45em;
+    right: 3.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    user-select: none;
+    cursor: pointer;
+    transition: 0.12s;
+    opacity: 0;
+}
+
+.code\:copy-code-block:hover {
+    background: rgba(255, 255, 255, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.code\:copy-code-block:active {
+    background: rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.code\:copy-code-block > span {
+    font-size: 1.2em;
+    transition: 0.2s;
+    color: hsl(0deg, 0%, 80%);
+    height: fit-content;
+}
+
+.code\:copy-code-block:hover > span {
+    color: hsl(0deg, 0%, 85%);
+}
+
+.code\:copy-code-block:active > span {
+    color: hsl(0deg, 0%, 70%);
+}
+
+docs-code-block:hover > .code\:copy-code-block {
+    opacity: 1;
+}
+
+.code\:copy-code-block-label {
+    position: relative;
+    left: -1.8em;
+}
+
+.docs-details-dropdown {
+    width: 100%;
+    height: fit-content;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    background: hsl(0deg, 0%, 80%);
+    border-radius: 1em;
+    overflow: hidden;
+    border: 1px solid hsl(0deg, 0%, 80%);
+    box-shadow: 0 0 80px 10px rgba(0, 0, 0, 0.1);
+    transition: 0.2s;
+}
+
+.docs-details-dropdown:hover {
+    box-shadow: 0 0 80px 10px rgba(0, 0, 0, 0.15);
+}
+
+.docs-details-dropdown > .header {
+    cursor: pointer;
+    user-select: none;
+    width: 100%;
+    font-weight: 600;
+    color: hsl(0deg, 9%, 26%);
+    height: 3em;
+    background: hsl(0deg, 0%, 90%);
+    display: flex;
+    align-items: center;
+    transition: 0.14s;
+}
+
+.docs-details-dropdown:hover > .header {
+    color: rgb(68, 55, 55);
+}
+
+.docs-details-dropdown.closed > .body {
+    display: none;
+}
+
+.docs-details-dropdown.closed > .header {
+    border: 0;
+}
+
+.docs-details-dropdown > .header > .icon {
+    margin: 0.5em;
+    margin-left: 0.8em;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 1.3em;
+    padding-top: 0.25em;
+    transform: rotate(0deg);
+    transition: 0.23s;
+}
+
+.docs-details-dropdown.closed > .header > .icon {
+    transform: rotate(-90deg);
+}
+
+.docs-details-dropdown > .header > .label {
+    font-family: 'Exo 2';
+}
+
+.docs-details-dropdown > .body {
+    width: 100%;
+    height: fit-content;
+    min-height: 5em;
+    box-sizing: border-box;
+    background: hsl(0deg, 0%, 92%);
+    border-top: 1px solid hsl(0deg, 0%, 80%);
+    padding: 1.5em;
+}
+
+.docs-note-text {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    background: rgb(243, 239, 184);
+    font-weight: 400;
+    border-radius: 0.8em;
+}
+
+.docs-note-text > .prefix {
+    font-weight: 700;
+}
+
+.docs-note-text > .label {
+    color: hsl(0, 8%, 23%);
 }
