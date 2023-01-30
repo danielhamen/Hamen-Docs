@@ -106,7 +106,7 @@ const docsElements = {
         let prev,next,report = "";
 
         if (previousLink) { prev = `<a href="${previousLink}" title="Previous Tutorial: ${previousTitle}"><button class="course-navigator-button hmn-button blue" type="text">Previous</button></a>`; }
-        if (showReport) { report = `<a href="#">Report Issue</a>`; }
+        if (showReport) { report = `<a href="javascript:void(0);" id="report-issue">Report Issue</a>`; }
         if (nextLink) { next = `<a href="${nextLink}" title="Next Tutorial: ${nextTitle}"><button class="course-navigator-button hmn-button blue" type="text">Next</button></a>`; }
 
         let courseNavigator = new ArticleElement("div", `<br><div class='docs:hr'></div>
@@ -500,6 +500,72 @@ const DocsElements = {
                 dropdown.classList.toggle("closed");
             })
         })
+    }, makeReportIssue() {
+        document.body.innerHTML += `
+<div class="report-issue-dialog">
+    <div class="header">
+        <h3 class="title no-link">Report Issue:</h3>
+        <span class="material-symbols-outlined icon"> close </span>
+    </div>
+    <form class="body" action="https://www.hamen.tech/submit-report/index.php">
+        <select name="issue-type">
+            <option selected disabled>Issue Type...</option>
+            <option value="grammatical-error">Grammatical Error</option>
+            <option value="incorrect-content">Incorrect Content</option>
+            <option value="broken-link">Broken Link</option>
+            <option value="formatting-issue">Formatting Issue</option>
+            <option value="technical-issue">Technical Error</option>
+            <option value="other-issue">Other...</option>
+        </select>
+        <br>
+        <input name="email" type="text" placeholder="Your Email...">
+        <br>
+        <textarea name="body" class="text" placeholder="Describe your issue in-depth" oninput="document.querySelector('#char-count').innerHTML = this.value.length + ' / 500';if (this.value.length >= 450) { document.querySelector('#char-count').classList.add('red'); } else { document.querySelector('#char-count').classList.remove('red'); }" maxlength=500></textarea>
+        <span id="char-count">0 / 500</span>
+        <br>
+        <br>
+<!--
+
+Hey there,
+
+I believe I found an issue in your Python course! In the "Multiple Arguments" section, in the paragraph:
+"""
+You can pass multiple arguments to the print() function, separated by commas. For example, the following code will display the strings "Hello" and "World" on separate lines
+"""
+
+States how when using multiple arguments, the output is placed on multiple lines (as if you used the escape sequence: "\n"), but in the example, the next is NOT placed on different lines. A better description of what the output should be is:
+
+"""
+Using multiple arguments separates the info by spaces or commas
+"""
+
+Hope this helps!
+
+Thanks,
+Daniel
+
+-->
+        <button type="text" class="hmn-button blue">Submit Report!</button>
+        <br>
+        <span class="sub-text">By submitting this form, you accept our <a href="#" target="_blank">Terms and Conditions</a></span>
+    </form>
+</div>`;
+
+        // Toggle 'Report Issue' dialog when the user presses 'Report Issue' anchor on a tutorial:
+        document.querySelector("#report-issue").addEventListener("click", function () {
+            document.querySelector(".report-issue-dialog").classList.add("visible");
+        })
+
+        // Hide dialog when the user clicks the 'Report Dialog' header:
+        document.querySelector(".report-issue-dialog > .header").addEventListener("click", function () {
+            this.parentElement.classList.toggle("toggled");
+        })
+
+        // Close dialog when the user clicks the "X" close button:
+        document.querySelector(".report-issue-dialog > .header > .icon").addEventListener("click", function () {
+            this.parentElement.parentElement.classList.toggle("visible");
+            this.parentElement.parentElement.classList.add("toggled");
+        })
     }
 }
 
@@ -513,6 +579,7 @@ function makeElements() {
     try { DocsElements.addCodeBlockCopyIcon(); } catch (error) { };
     try { DocsElements.makeFooter(); } catch (error) { };
     try { DocsElements.makeDetailsDropdown(); } catch (error) { };
+    try { DocsElements.makeReportIssue() } catch (error) {}
 }
 
 window.addEventListener("load", () => {

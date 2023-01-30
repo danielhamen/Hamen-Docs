@@ -312,3 +312,126 @@ docs-code-block:hover > .code\:copy-code-block {
 .docs-note-text > .label {
     color: hsl(0, 8%, 23%);
 }
+
+/* Report Issue: */
+.report-issue-dialog {
+    position: fixed;
+    width: 25em;
+    height: fit-content;
+    background: hsl(0deg, 0%, 90%);
+    border: 1px solid hsl(0deg, 0%, 85%);
+    box-shadow: 0 0 40px 5px rgba(0, 0, 0, 0.3);
+    transition: 0;
+    border-radius: 0.5em;
+    z-index: 9;
+    bottom: 3em;
+    right: 3em;
+    display: none;
+    flex-direction: column;
+}
+
+.report-issue-dialog.visible {
+    display: flex;
+}
+
+.report-issue-dialog.toggled > .body {
+    display: none;
+}
+
+.report-issue-dialog > .body {
+    height: 25em;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2em;
+}
+
+.report-issue-dialog > .header {
+    box-sizing: border-box;
+    padding-left: 2em;
+    padding-right: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid hsl(0deg, 0%, 85%);
+    cursor: pointer;
+    height: 4em;
+}
+
+.report-issue-dialog > .header > .title {
+    margin: 0;
+}
+
+.report-issue-dialog > .header > .icon {
+    user-select: none;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: 400;
+    color: rgb(68, 61, 61);
+}
+
+.report-issue-dialog > .header > .icon:active {
+    font-weight: 800;
+}
+
+.report-issue-dialog > .body {
+    display: flex;
+    height: fit-content;
+    flex-direction: column;
+}
+
+.report-issue-dialog > .body > input,textarea,select {
+    outline: none;
+    border: 1px solid hsl(0deg, 0%, 70%);
+    border-radius: 0.3em;
+    height: 2.2em;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 0.95em;
+}
+
+.report-issue-dialog > .body > select {
+    cursor: pointer;
+    min-height: 2.4em;
+    font-size: 0.95em;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+}
+
+.report-issue-dialog > .body > input {
+    min-height: 2.2em;
+}
+
+.report-issue-dialog > .body > input:focus {
+    border: 1px solid hsl(0deg, 0%, 60%);
+}
+
+.report-issue-dialog > .body > textarea {
+    padding: 1em;
+    resize: none;
+    height: 8em;
+}
+
+.report-issue-dialog > .body > button {
+    min-height: 3em;
+}
+
+.report-issue-dialog > .body > .sub-text {
+    width: 80%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.report-issue-dialog > .body > #char-count {
+    font-size: 0.9em;
+    color: hsl(0deg, 0%, 40%);
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+    margin-left: auto;
+    margin-top: 0.8em;
+}
+
+.report-issue-dialog > .body > #char-count.red {
+    color: rgb(239, 64, 64);
+    font-weight: 700;
+}

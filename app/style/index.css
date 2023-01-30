@@ -455,6 +455,12 @@ h6 {
     font-size: 100%;
 }
 
+.sub-text {
+    font-size: 0.9em;
+    color: hsl(0deg, 0%, 50%);
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+}
+
 @media screen and (max-width:750px) {
     .docs-content {
         padding-bottom: 0;

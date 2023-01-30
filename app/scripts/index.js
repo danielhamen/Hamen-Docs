@@ -66,21 +66,23 @@ window.addEventListener("load", () => {
     let headings = Array.from(document.querySelectorAll("h1,h2,h3,h4,h5,h6"));
     let i = 0;
     headings.forEach(heading => {
-        let id = "UEID-" + i.toString();
-
-        let linkSpan = document.createElement("span");
-        linkSpan.id = id;
-        linkSpan.classList.add("material-symbols-outlined");
-        linkSpan.classList.add("link-section");
-        linkSpan.innerHTML = "link";
-        linkSpan.addEventListener("click", function () {
-            HamenAPI.logMessage("Heading link copied to clipboard!");
-            let URL = window.location.pathname + "#" + id;
-            window.location.replace(URL);
-            navigator.clipboard.writeText(URL);
-        })
-
-        heading.appendChild(linkSpan);
+        if (!heading.classList.contains("no-link")) {
+            let id = "UEID-" + i.toString();
+    
+            let linkSpan = document.createElement("span");
+            linkSpan.id = id;
+            linkSpan.classList.add("material-symbols-outlined");
+            linkSpan.classList.add("link-section");
+            linkSpan.innerHTML = "link";
+            linkSpan.addEventListener("click", function () {
+                HamenAPI.logMessage("Heading link copied to clipboard!");
+                let URL = window.location.pathname + "#" + id;
+                window.location.replace(URL);
+                navigator.clipboard.writeText(URL);
+            })
+    
+            heading.appendChild(linkSpan);
+        }
     })
 
     // 
