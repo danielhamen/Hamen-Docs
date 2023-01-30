@@ -20,17 +20,9 @@ window.addEventListener("load", function () {
                 "{var(x)} = {num(5)}",
                 "{func(print)}({var(x)})"
             ]),
-            docsElements.detailsDropdown("Print Function:", [
+            docsElements.detailsDropdown("Print Function Reference:", [
                 docsElements.p("The syntax of the " + docsElements.inlineCode("print()") + " function in Python is as follows: "),
                 docsElements.codeBlock([
-                    /* 
-                    print(
-                        *values: any,
-                        sep: str,
-                        end: str,
-                        flush: bool
-                    )
-                    */
                     "{func(print)}(",
                     "    *{var(values)}: {cls(any)},",
                     "    {var(sep)}: {cls(str)},",
@@ -56,7 +48,7 @@ window.addEventListener("load", function () {
                 "{func(print)}({str(\"Hello\")}, {str(\"World\")})",
                 "{term()}{out(Hello, World)}"
             ]),
-            docsElements.p("Or, you can join the two strings with a separator, for example:"),
+            docsElements.p("Or, you can " + docsElements.titleHint("concatenate", "Concatenation is when you 'merge', or 'join' 2 or more strings.\n\nEg. 'Hello' + 'World' => 'HelloWorld'") + " the two strings with a separator, for example:"),
             docsElements.codeBlock([
                 "{func(print)}({str(\"Hello\")} + {str(\")}{esc(\\n)}{str(\")} + {str(\"World\")})",
                 "{term()}{out(Hello)}",
@@ -84,7 +76,7 @@ window.addEventListener("load", function () {
                 "{var(age)} = {num(25)}",
                 "{func(print)}({int(f)}{str(\"My name is \\{name\\} and I am \\{age\\} years old\")})"
             ]),
-            docsElements.detailsDropdown("Format Function:", [
+            docsElements.detailsDropdown("Format Function Reference:", [
                 docsElements.p("The syntax of the " + docsElements.inlineCode("format()") + " function in Python is as follows: "),
                 docsElements.codeBlock([
                     "{func(format)}(",
@@ -110,8 +102,12 @@ window.addEventListener("load", function () {
             docsElements.noteText("You will learn more about Escape Sequences in the " + docsElements.anchorText("String Tutorial", "#", "_self"))
         ].forEach(elem => { section.appendChild(elem); }); body.appendChild(section);
 
+        /* Course Navigator: */
+        let courseNavigator = docsElements.courseNavigator("#", "Setting up a Development Environment", "../user-input/index.html", "User Input");
+        body.setCourseNavigator(courseNavigator);
+
         /* Footer: */
-        let footer = docsElements.footer("2syap8l9xk34");
+        let footer = docsElements.footer("January 29th, 2023");
         body.setFooter(footer);
     }; body.draw();
 

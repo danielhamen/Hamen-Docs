@@ -46,3 +46,31 @@
 .log\:warning-log {
     background: rgb(213, 167, 221);
 }
+
+/* Buttons: */
+.hmn-button.blue {
+    height: 3em;
+    padding-left: 4em;
+    padding-right: 4em;
+    cursor: pointer;
+    background: #b6d1fb;
+    border: 1px solid hsl(0deg, 0%, 70%);
+    border-radius: 0.3em;
+    color: rgb(66, 60, 60);
+    font-weight: 600;
+    transition: 0.15s;
+    font-size: 0.9em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.hmn-button.blue:hover {
+    background: #cadefe;
+    border: 1px solid hsl(0deg, 0%, 78%);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.23);
+}
+
+.hmn-button.blue:active {
+    background: #a9c0e4;
+    border: 1px solid hsl(0deg, 0%, 65%);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}

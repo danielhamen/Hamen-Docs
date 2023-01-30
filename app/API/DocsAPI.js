@@ -1,6 +1,6 @@
 const docsElements = {
-    footer(revisionID) {
-        let footerElement = new ArticleElement("div", "", { "id": revisionID, "class": "docs:footer" });
+    footer(date) {
+        let footerElement = new ArticleElement("div", "", { "id": date, "class": "docs:footer" });
         return footerElement;
     }, horizontalRule() {
         let breakElement = new ArticleElement("div", attributes = { "class": "docs:hr" });
@@ -62,7 +62,6 @@ const docsElements = {
 
         let codeWrapper = document.createElement("code");
         Array.from(code).forEach(line => {
-            console.log(line);
             let lineText = line;
 
             // Replace indents with "&nbsp;":
@@ -94,13 +93,29 @@ const docsElements = {
             innerHTML += elem + "";
         })
 
-        let wrapper = new ArticleElement("div", `<div class="header"><span class="material-symbols-outlined icon">expand_more</span><span class="label">${label}</span></div><div class="body">${innerHTML}</div>`, { "class": "docs-details-dropdown" });
+        let wrapper = new ArticleElement("div", `<div class="header"><span class="material-symbols-outlined icon">expand_more</span><span class="label">${label}</span></div><div class="body">${innerHTML}</div>`, { "class": "docs-details-dropdown closed" });
 
         return wrapper;
     }, noteText(text) {
         let noteWrapper = new ArticleElement("div", `<span class="prefix text">Note: </span><span class="text label">${text}</span>`, { "class": "docs-note-text" });
 
         return noteWrapper;
+    }, horizontalAd() {
+        return new ArticleElement("div", "<div class='docs:hr'></div><br><div class='horizontal-ad'></div>", { "class": "horizontal-ad-wrapper" });
+    }, courseNavigator(previousLink = "#", previousTitle = "", nextLink = "#", nextTitle = "", showReport = true) {
+        let prev,next,report = "";
+
+        if (previousLink) { prev = `<a href="${previousLink}" title="Previous Tutorial: ${previousTitle}"><button class="course-navigator-button hmn-button blue" type="text">Previous</button></a>`; }
+        if (showReport) { report = `<a href="#">Report Issue</a>`; }
+        if (nextLink) { next = `<a href="${nextLink}" title="Next Tutorial: ${nextTitle}"><button class="course-navigator-button hmn-button blue" type="text">Next</button></a>`; }
+
+        let courseNavigator = new ArticleElement("div", `<br><div class='docs:hr'></div>
+<div class='docs:course-navigator'>
+    ${prev}
+    ${report}
+    ${next}
+</div>`, { "class": "docs:course-navigator-wrapper" });
+        return courseNavigator;
     }
 }
 
@@ -201,6 +216,8 @@ class ArticleBody {
         };
 
         this.footer = null;
+        this.courseNavigator = null;
+
         this.bodyContent = [];
     }; appendChild(section) {
         this.bodyContent.push(section);
@@ -214,12 +231,31 @@ class ArticleBody {
 
         let HTML = `<content-title>${this.title}</content-title>` + "<content-body>" + outerHTML_.join(`<div class="docs:hr"></div>`) + "</content-body>";
 
+        // Add course navigator:
+        if (this.courseNavigator) {
+            HTML += this.courseNavigator;
+        }
+
         // Add footer:
         HTML += this.footer;
 
+        // Add footer ad:
+        const footerAd = true;
+        if (footerAd) {
+            HTML += `<div class="horizontal-ad"></div><br>`;
+        }
+
         return HTML;
+    }; setCourseNavigator(courseNavigatorElement) {
+        this.courseNavigator = courseNavigatorElement;
     }
 }
+
+/* 
+
+    THE FOLLOWING SECTION CONTAINS FUNCTIONS TO CREATE THE DOCS ELEMENTS:
+
+*/
 
 const DocsElements = {
     makeTreeTitle() {
@@ -456,7 +492,7 @@ const DocsElements = {
     }, makeFooter() {
         // Make footer:
         let footer = document.getElementsByClassName("docs:footer")[0];
-        footer.innerHTML = `<div class="docs:hr"></div><p>© Copyright Hamen Docs</p><p>Latest Revision ID: <a href="#">${footer.getAttribute('id')}</a></p><div class="docs:hr"></div>`
+        footer.innerHTML = `<div class="docs:hr"></div><p>© Copyright Hamen Docs</p><p>This document was last revised on <a href="#">${footer.getAttribute('id')}</a></p><div class="docs:hr"></div>`
     }, makeDetailsDropdown() {
         // Make `<docs-details-dropdown>`:
         Array.from(document.querySelectorAll(".docs-details-dropdown")).forEach(dropdown => {

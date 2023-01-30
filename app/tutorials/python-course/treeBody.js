@@ -5,7 +5,7 @@ const treeBody = {
         "Getting Started": { "href": "../getting-started/index.html", "id": "getting-started" },
         "Setting up a Development Environment": { "href": "#", "id": "setting-up-a-development-environment" },
         "Standard Output": { "href": "../standard-output/index.html", "id": "standard-output" },
-        "User Input": { "href": "#", "id": "user-input" },
+        "User Input": { "href": "../user-input/index.html", "id": "user-input" },
         "Comments": { "href": "#", "id": "comments" }
     }, "Variables & Data Types": {
         "Python: Variables": { "href": "#", "id": "introduction-to-variables" },

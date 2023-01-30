@@ -33,6 +33,35 @@ h1,h2,h3,h4,h5,h6 {
     line-height: 2;
 }
 
+.horizontal-ad {
+    width: 100%;
+    height: 10em;
+    border-radius: 0.4em;
+    background: red;
+    margin-bottom: 1em;
+}
+
+.horizontal-ad-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.docs\:course-navigator-wrapper {
+    width: 100%;
+}
+
+.docs\:course-navigator {
+    width: 100%;
+    height: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
 .docs\:br {
     display: block;
 }
@@ -197,7 +226,7 @@ docs-code-block:hover > .code\:copy-code-block {
     width: 100%;
     height: fit-content;
     margin-top: 2em;
-    margin-bottom: 2em;
+    margin-bottom: 1em;
     background: hsl(0deg, 0%, 80%);
     border-radius: 1em;
     overflow: hidden;
@@ -271,6 +300,7 @@ docs-code-block:hover > .code\:copy-code-block {
     padding-top: 1.5em;
     padding-bottom: 1.5em;
     background: rgb(243, 239, 184);
+    border: 1px solid hsl(0deg, 0%, 87%);
     font-weight: 400;
     border-radius: 0.8em;
 }

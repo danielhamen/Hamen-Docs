@@ -320,9 +320,9 @@ docs-related-topics > ul,ol {
 } */
 
 .option.selected {
-    border-left: 4px solid #406cd2;
+    border-left: 3px solid #406cd2;
     padding-left: 10px;
-    margin-left: calc(1.5em - 10px - 4px);
+    margin-left: calc(1.5em - 10px - 3px);
 }
 
 .option.display-none {
@@ -424,6 +424,11 @@ abbr {
 
 section > h2,h3,h4,h5,h6 {
     margin-bottom: 1em;
+}
+
+section > h2 > .code\:inline.code\:box {
+    margin-left: 0.3em;
+    margin-right: 0.3em;
 }
 
 h1 {
