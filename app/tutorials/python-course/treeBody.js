@@ -6,7 +6,7 @@ const treeBody = {
         "Setting up a Development Environment": { "href": "#", "id": "setting-up-a-development-environment" },
         "Standard Output": { "href": "../standard-output/index.html", "id": "standard-output" },
         "User Input": { "href": "../user-input/index.html", "id": "user-input" },
-        "Comments": { "href": "#", "id": "comments" }
+        "Comments": { "href": "../comments/index.html", "id": "comments" }
     }, "Variables & Data Types": {
         "Python: Variables": { "href": "#", "id": "introduction-to-variables" },
         "Python: Data Types": { "href": "#", "id": "comments" },

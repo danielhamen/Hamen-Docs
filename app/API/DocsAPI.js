@@ -8,8 +8,8 @@ const docsElements = {
     }, paragraph(content) {
         let pTag = new ArticleElement("p", content, { "class": "docs:p" });
         return pTag;
-    }, p(content) {
-        let pTag = new ArticleElement("p", content, { "class": "docs:p" });
+    }, p(content, options = {}) {
+        let pTag = new ArticleElement("p", content, Object.assign(options, { "class": "docs:p" }));
         return pTag;
     }, unorderedList(items = [], listTitle = null, options = { "colonSuffix": true, "boldTitle": true }) {
         let list = document.createElement("ul");
@@ -55,12 +55,9 @@ const docsElements = {
         return new ArticleElement("li", text, { "style": "list-style: " + listStyle + ";" })
     }, anchorText(text, href, target = "_self") {
         return new ArticleElement("a", text, { "href": href, "target": target });
-    }, codeBlock(code, options = { "showCopy": true }) {
-        [
-            "var(x) = int(123)"
-        ]
-
+    }, codeBlock(code, title, options = { "showCopy": true }) {
         let codeWrapper = document.createElement("code");
+
         Array.from(code).forEach(line => {
             let lineText = line;
 
@@ -82,9 +79,19 @@ const docsElements = {
             codeWrapper.appendChild(document.createElement("br"));
         })
 
-        // console.log(codeWrapper.outerHTML);
+        // 
+        let showCopy = options["showCopy"];
+        if (showCopy === null) {
+            options["showCopy"] = true;
+        }
         
-        codeWrapper = new ArticleElement("docs-code-block", codeWrapper.outerHTML, { "showCopy": options["showCopy"] });
+        // Add code title:
+        if (title) {
+            codeWrapper = new ArticleElement("docs-code-block", codeWrapper.outerHTML, { "style": "margin-top: 0.5em;" });
+            return new ArticleElement("div", `<span class="code:title">${title}:</span>` + codeWrapper);
+        }
+
+        codeWrapper = new ArticleElement("docs-code-block", codeWrapper.outerHTML);
 
         return codeWrapper;
     }, detailsDropdown(label, innerElements) {
@@ -205,6 +212,7 @@ class ArticleSection {
 class ArticleBody {
     constructor(title, selectedTreeItem) {
         this.selectedTreeItem = selectedTreeItem;
+
         this.title = title;
 
         // Global:
@@ -248,7 +256,7 @@ class ArticleBody {
         return HTML;
     }; setCourseNavigator(courseNavigatorElement) {
         this.courseNavigator = courseNavigatorElement;
-    }
+    };
 }
 
 /* 
@@ -496,6 +504,7 @@ const DocsElements = {
     }, makeDetailsDropdown() {
         // Make `<docs-details-dropdown>`:
         Array.from(document.querySelectorAll(".docs-details-dropdown")).forEach(dropdown => {
+            console.log(dropdown);
             dropdown.getElementsByClassName("header")[0].addEventListener("click", function() {
                 dropdown.classList.toggle("closed");
             })

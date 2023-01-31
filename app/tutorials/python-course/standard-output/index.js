@@ -29,7 +29,7 @@ window.addEventListener("load", function () {
                     "    {var(end)}: {cls(str)},",
                     "    {var(flush)}: {cls(bool)}",
                     ")"
-                ], { "showCopy": false }),
+                ], null, { "showCopy": false }),
                 docsElements.unorderedList([
                     docsElements.inlineCode("*values") + ": One or more values to be printed",
                     docsElements.inlineCode("sep") + ": Specifies the separator between values, default is ''",
@@ -82,7 +82,7 @@ window.addEventListener("load", function () {
                     "{func(format)}(",
                     "    *{var(values)}: {cls(str)}",
                     ")"
-                ], { "showCopy": false }),
+                ], null, { "showCopy": false }),
                 docsElements.unorderedList([
                     docsElements.inlineCode("*values") + ": One or more values to be formatted and inserted into the string"
                 ], "Where"),

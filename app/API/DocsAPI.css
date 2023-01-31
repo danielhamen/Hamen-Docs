@@ -170,6 +170,12 @@ docs-code-block > code {
     background: rgba(255, 255, 255, 0.0);
 }
 
+.code\:title {
+    font-weight: bold;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+    color: hsl(0, 4%, 37%);
+}
+
 .code\:copy-code-block {
     width: 32px;
     height: 32px;

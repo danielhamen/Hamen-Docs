@@ -56,7 +56,7 @@ window.addEventListener("load", function () {
         }); body.appendChild(section);
 
         /* Course Navigator: */
-        let courseNavigator = docsElements.courseNavigator("../standard-output/index.html", "Standard Output", "#", "Comments");
+        let courseNavigator = docsElements.courseNavigator("../standard-output/index.html", "Standard Output", "../comments/index.html", "Comments");
         body.setCourseNavigator(courseNavigator);
 
         /* Footer: */
