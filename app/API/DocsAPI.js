@@ -1,3 +1,16 @@
+function selectOption(ID) {
+    let option = document.getElementById(ID);
+
+    // Select the option:
+    option.classList.add("selected");
+
+    // Scroll to the option:
+    let rect = option.parentElement.getBoundingClientRect();
+    document.querySelector(".docs-tree-content").scrollTo({
+        top: rect.top - 90
+    })
+}
+
 const docsElements = {
     footer(date) {
         let footerElement = new ArticleElement("div", "", { "id": date, "class": "docs:footer" });

@@ -61,7 +61,7 @@ window.addEventListener("load", function () {
         }); body.appendChild(section);
 
         /* Course Navigator: */
-        let courseNavigator = docsElements.courseNavigator("../user-input/index.html", "User Input", "../python-variables/index.html", "Python: Variables");
+        let courseNavigator = docsElements.courseNavigator("../python-variables/index.html", "Python: Variables", "../python-integers/index.html", "Python: Integers");
         body.setCourseNavigator(courseNavigator);
 
         /* Footer: */
