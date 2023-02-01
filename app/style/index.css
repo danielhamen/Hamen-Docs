@@ -69,7 +69,7 @@ input {
     width: calc(100% - var(--tree-width));
     padding: 3em;
     box-sizing: border-box;
-    background: var(--content-color);
+    /* background: var(--content-color); */
 }
 
 .documentation {

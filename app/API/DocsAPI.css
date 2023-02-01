@@ -62,8 +62,36 @@ h1,h2,h3,h4,h5,h6 {
     padding-right: 2em;
 }
 
+@media screen and (max-width:930px) {
+    .docs\:course-navigator {
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .docs\:course-navigator > #report-issue {
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
+
+    .docs\:course-navigator > *:not(#report-issue) {
+        width: 100%;
+    }
+
+    .docs\:course-navigator > *:not(#report-issue) > button {
+        padding-bottom: 0.3em;
+        padding-top: 0.3em;
+        height: 2.5em;
+        width: 100%;
+    }
+}
+
 .docs\:br {
     display: block;
+}
+
+.docs\:quote {
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
 }
 
 /* CODE: */
@@ -133,7 +161,7 @@ docs-code-block {
 }
 
 .code\:output,.code\:out {
-    color: hsl(0deg, 0%, 65%);
+    color: hsl(0deg, 0%, 90%);
 }
 
 .code\:box {
@@ -440,4 +468,78 @@ docs-code-block:hover > .code\:copy-code-block {
 .report-issue-dialog > .body > #char-count.red {
     color: rgb(239, 64, 64);
     font-weight: 700;
+}
+
+@media screen and (max-height:700px) {
+    .report-issue-dialog > .body > textarea {
+        height: 6em;
+    }
+
+    .report-issue-dialog {
+        right: 1em;
+        bottom: 1em;
+    }
+}
+
+@media screen and (max-height:550px) {
+    .report-issue-dialog > .body > textarea {
+        height: 4em;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .report-issue-dialog {
+        width: 100%;
+        height: 100vh;
+        right: 0;
+        bottom: 0;
+    }
+
+    .report-issue-dialog > .body > textarea {
+        height: 8em;
+    }
+}
+
+/* Table: */
+.docs\:table {
+    width: 100%;
+    outline: 1px solid #d9d9d9;
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    border-radius: 0.3em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    /* overflow: hidden; */
+}
+
+.docs\:table > tbody > tr > th,td {
+    padding: 0.5em;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    padding-left: 0.8em;
+    margin: 0 !important;
+}
+
+.docs\:table > tbody > tr {
+    cursor: pointer;
+}
+
+.docs\:table > tbody > tr:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.docs\:table > tbody > tr > td {
+    font-size: 0.9em;
+    border-left: 1px solid #d9d9d9;
+}
+
+.docs\:table > tbody > tr > th {
+    font-weight: 700;
+    color: hsl(0deg, 0%, 10%);
+    padding-top: 0.9em;
+    padding-bottom: 0.9em;
+    background: #b0cdf3;
+    text-align: left;
+    font-size: 0.95em;
+    /* border: 1px solid #d9d9d9; */
 }

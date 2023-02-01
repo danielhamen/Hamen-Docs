@@ -94,13 +94,19 @@ const docsElements = {
         codeWrapper = new ArticleElement("docs-code-block", codeWrapper.outerHTML);
 
         return codeWrapper;
-    }, detailsDropdown(label, innerElements) {
+    }, detailsDropdown(label, innerElements, defaultClosed = true) {
         let innerHTML = ``;
         innerElements.forEach(elem => {
             innerHTML += elem + "";
         })
 
-        let wrapper = new ArticleElement("div", `<div class="header"><span class="material-symbols-outlined icon">expand_more</span><span class="label">${label}</span></div><div class="body">${innerHTML}</div>`, { "class": "docs-details-dropdown closed" });
+        // Toggle:
+        let toggled = " closed";
+        if (!defaultClosed) {
+            toggled = "";
+        }
+
+        let wrapper = new ArticleElement("div", `<div class="header"><span class="material-symbols-outlined icon">expand_more</span><span class="label">${label}</span></div><div class="body">${innerHTML}</div>`, { "class": "docs-details-dropdown" + toggled });
 
         return wrapper;
     }, noteText(text) {
@@ -116,13 +122,39 @@ const docsElements = {
         if (showReport) { report = `<a href="javascript:void(0);" id="report-issue">Report Issue</a>`; }
         if (nextLink) { next = `<a href="${nextLink}" title="Next Tutorial: ${nextTitle}"><button class="course-navigator-button hmn-button blue" type="text">Next</button></a>`; }
 
-        let courseNavigator = new ArticleElement("div", `<br><div class='docs:hr'></div>
+        let courseNavigator = new ArticleElement("div", `<div class='docs:hr'></div>
 <div class='docs:course-navigator'>
     ${prev}
     ${report}
     ${next}
 </div>`, { "class": "docs:course-navigator-wrapper" });
         return courseNavigator;
+    }, boldText(text) {
+        return new ArticleElement("span", text, { "style": "font-weight: bold;" })
+    }, table(tableRows, tableHeaders) {
+        let tableBody = document.createElement("tbody");
+        Array.from(tableRows).forEach(row => {
+            let tableRow = document.createElement("tr");
+            Array.from(row).forEach(cell => {
+                tableRow.innerHTML += cell + "";
+            })
+            
+            tableBody.appendChild(tableRow);
+        })
+
+        return new ArticleElement("table", tableBody.outerHTML, { "class": "docs:table" })
+    }, tableCell(text, alignment = "LEFT", justify = "MIDDLE") {
+        return new ArticleElement("td", text, { "class": "text", "style": `text-align: ${alignment.toLowerCase()};vertical-align: ${justify.toLowerCase()};` });
+    }, tableHeader(text, width = "auto", alignment = "CENTER", justify = "MIDDLE") {
+        // Parse width:
+        if (!isNaN(parseFloat(width))) { width = width;if (!width.endsWith("%")) { width = width + "%" } }
+        else { width = "auto"; }
+
+        return new ArticleElement("th", text, { "class": "text", "style": `width: ${width};text-align: ${alignment.toLowerCase()};vertical-align: ${justify.toLowerCase()};` });
+    }, inlineQuote(text, source = null) {
+        if (!source) { source = "" };
+
+        return new ArticleElement("span", "&ldquo;" + text + "&rdquo;", { "title": source, "class": "docs:quote" });
     }
 }
 
@@ -283,7 +315,9 @@ const DocsElements = {
         contentBody.parentElement.replaceChild(contentBodyWrapper, contentBody);
     }, relatedTopics() {
         let relatedTopics = document.querySelector("docs-related-topics");
-        relatedTopics.innerHTML = `<h2 id="docs-related-topics-title"><b>Related Topics:</b></h2>` + relatedTopics.innerHTML;
+        if (relatedTopics) {
+            relatedTopics.innerHTML = `<h2 id="docs-related-topics-title"><b>Related Topics:</b></h2>` + relatedTopics.innerHTML;
+        }
     }, makeTreeBody() {
         // Add tree title:
         document.querySelector("tree-title").innerHTML = treeBody["title"];
@@ -504,7 +538,6 @@ const DocsElements = {
     }, makeDetailsDropdown() {
         // Make `<docs-details-dropdown>`:
         Array.from(document.querySelectorAll(".docs-details-dropdown")).forEach(dropdown => {
-            console.log(dropdown);
             dropdown.getElementsByClassName("header")[0].addEventListener("click", function() {
                 dropdown.classList.toggle("closed");
             })
@@ -579,16 +612,30 @@ Daniel
 }
 
 function makeElements() {
-    try { DocsElements.makeTreeBody(); } catch (error) { };
-    try { DocsElements.makeTreeTitle(); } catch (error) { };
-    try { DocsElements.makeContentTitle(); } catch (error) { };
-    try { DocsElements.makeContentBody(); } catch (error) { };
-    try { DocsElements.relatedTopics(); } catch (error) { };
-    try { DocsElements.makeDocsCode(); } catch (error) { };
-    try { DocsElements.addCodeBlockCopyIcon(); } catch (error) { };
-    try { DocsElements.makeFooter(); } catch (error) { };
-    try { DocsElements.makeDetailsDropdown(); } catch (error) { };
-    try { DocsElements.makeReportIssue() } catch (error) {}
+    let catchErrors = false;
+    if (catchErrors) {
+        try { DocsElements.makeReportIssue() } catch (error) {}
+        try { DocsElements.makeTreeBody(); } catch (error) { };
+        try { DocsElements.makeTreeTitle(); } catch (error) { };
+        try { DocsElements.makeContentTitle(); } catch (error) { };
+        try { DocsElements.makeContentBody(); } catch (error) { };
+        try { DocsElements.relatedTopics(); } catch (error) { };
+        try { DocsElements.makeDocsCode(); } catch (error) { };
+        try { DocsElements.addCodeBlockCopyIcon(); } catch (error) { };
+        try { DocsElements.makeFooter(); } catch (error) { };
+        try { DocsElements.makeDetailsDropdown(); } catch (error) { };
+    } else {
+        DocsElements.makeReportIssue();
+        DocsElements.makeTreeBody();
+        DocsElements.makeTreeTitle();
+        DocsElements.makeContentTitle();
+        DocsElements.makeContentBody();
+        DocsElements.relatedTopics();
+        DocsElements.makeDocsCode();
+        DocsElements.addCodeBlockCopyIcon();
+        DocsElements.makeFooter();
+        DocsElements.makeDetailsDropdown();
+    }
 }
 
 window.addEventListener("load", () => {

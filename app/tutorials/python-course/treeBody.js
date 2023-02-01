@@ -8,13 +8,13 @@ const treeBody = {
         "User Input": { "href": "../user-input/index.html", "id": "user-input" },
         "Comments": { "href": "../comments/index.html", "id": "comments" }
     }, "Variables & Data Types": {
-        "Python: Variables": { "href": "#", "id": "introduction-to-variables" },
-        "Python: Data Types": { "href": "#", "id": "comments" },
-        "Python: Type Casting": { "href": "#", "id": "comments" },
+        "Python: Variables": { "href": "../python-variables/index.html", "id": "python-variables" },
+        "Python: Data Types": { "href": "../python-data-types/index.html", "id": "python-data-types" },
+        "Python: Strings": { "href": "../python-strings/index.html", "id": "python-strings" },
+        "Python: Integers": { "href": "#", "id": "python-integers" },
+        "Python: Floats": { "href": "#", "id": "python-floats" },
+        "Python: Booleans": { "href": "#", "id": "python-booleans" },
         "Python: Operators": { "href": "#", "id": "comments" },
-        "Python: Strings": { "href": "#", "id": "" },
-        "Python: Numbers": { "href": "#", "id": "" },
-        "Python: Booleans": { "href": "#", "id": "" }
     }, "Data Structures": {
         "Python: Data Structures": { "href": "#", "id": "" },
         "Python: Lists": { "href": "#", "id": "" },

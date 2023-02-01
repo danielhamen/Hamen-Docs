@@ -62,13 +62,13 @@ window.addEventListener("load", function () {
                 docsElements.inlineText("PEP8 and Comments", { "style": "font-weight: bold;" }) + ": PEP8 is the style guide for Python code, and it covers several aspects of commenting. For example, PEP8 recommends that you limit the length of comments to 72 characters, insert a space after the " + docsElements.inlineCode("#") + " symbol in comments, and avoid placing comments on the same line as code.",
             ], "Here are a few more things to note about commenting in Python"),
             docsElements.p("Comments are a critical part of writing clean, readable, and well-documented code, but it's important to strike a balance between adding enough comments to help others understand your code and not over-commenting to the point that the code becomes difficult to read"),
-            docsElements.noteText("For more information regarding PEP8 specifications, refer to our " + docsElements.anchorText("PEP-8 Style-Guide Course", "#", "_blank"))
+            docsElements.noteText("For more information regarding PEP8 specifications, refer to our " + docsElements.anchorText("PEP-8 Style-Guide Course", "#", "_blank") + " or read " + docsElements.anchorText("PEP-8", "https://peps.python.org/pep-0008/", "_blank") + " directly")
         ].forEach(elem => {
             section.appendChild(elem);
         }); body.appendChild(section);
 
         /* Course Navigator: */
-        let courseNavigator = docsElements.courseNavigator("../user-input/index.html", "User Input", "#", "Python: Variables");
+        let courseNavigator = docsElements.courseNavigator("../user-input/index.html", "User Input", "../python-variables/index.html", "Python: Variables");
         body.setCourseNavigator(courseNavigator);
 
         /* Footer: */
