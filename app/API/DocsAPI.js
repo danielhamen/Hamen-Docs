@@ -611,8 +611,7 @@ Daniel
     }
 }
 
-function makeElements() {
-    let catchErrors = false;
+function makeElements(catchErrors = true) {
     if (catchErrors) {
         try { DocsElements.makeReportIssue() } catch (error) {}
         try { DocsElements.makeTreeBody(); } catch (error) { };
