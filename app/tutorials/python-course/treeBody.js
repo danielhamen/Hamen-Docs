@@ -12,7 +12,7 @@ const treeBody = {
         "Python: Data Types": { "href": "../python-data-types/index.html", "id": "python-data-types" },
         "Python: Strings": { "href": "../python-strings/index.html", "id": "python-strings" },
         "Python: Integers": { "href": "../python-integers/index.html", "id": "python-integers" },
-        "Python: Floats": { "href": "#", "id": "python-floats" },
+        "Python: Floats": { "href": "../python-floats/index.html", "id": "python-floats" },
         "Python: Booleans": { "href": "#", "id": "python-booleans" },
         "Python: Operators": { "href": "#", "id": "comments" },
     }, "Data Structures": {

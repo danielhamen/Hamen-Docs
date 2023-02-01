@@ -46,14 +46,14 @@ window.addEventListener("load", function () {
                 "Create Graphs (with Matplotlib)",
                 "Machine Learning (with PyTorch, or TensorFlow)",
                 "Python has thousands of libraries, which is one of reasons Python is one of the most widely used languages"
-            ], "Additionally, ith the use of external libraries, you can extend Python to do things like", { "boldTitle": false }),
+            ], "Additionally, with the use of external libraries, you can extend Python to do things like", { "boldTitle": false }),
             docsElements.p("Python has thousands of libraries, which is one of reasons Python is one of the most widely used languages")
         ].forEach(elem => {
             section.appendChild(elem);
         }); body.appendChild(section);
 
         /* Footer: */
-        let footer = docsElements.footer("2syap8l9xk34");
+        let footer = docsElements.footer("February 1st, 2023");
         body.setFooter(footer);
     }; body.draw();
 
