@@ -6,7 +6,7 @@ window.addEventListener("load", function () {
 
         // Introduction Section:
         let section = layout.newSection(); [
-            docsElements.p("In Python, an " + docsElements.inlineCode("int()") + " value is a whole numb27, either positive, negative, or zero"),
+            docsElements.p("In Python, an " + docsElements.inlineCode("int()") + " value is a whole number, either positive, negative, or zero"),
             docsElements.p("Integers cannot contain decimals, whereas " + docsElements.inlineCode("float()") + " can"),
             docsElements.p("Unlike many other languages, integers are not limited to any range such as 32-bit or 64-bit"),
             docsElements.p("You can create an int value in Python by assigning a number without a decimal point to a variable:"),
