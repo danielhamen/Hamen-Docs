@@ -17,29 +17,29 @@
 }
 
 .tiles>.tile.hamen {
-    width: 50em;
-    height: 32em;
+    width: 40vw;
+    height: 50vh;
     background: #FFCCCC;
     border-radius: 3em;
     position: absolute;
     top: 4em;
     left: 4em;
     box-sizing: border-box;
-    padding-bottom: 10em;
+    padding-bottom: calc(40vh / 2.5);
 }
 
 .tiles>.tile.docs {
     position: absolute;
-    width: 52em;
-    height: 23em;
+    width: 45vw;
+    height: 40vh;
     background: #F5FFCC;
     border-radius: 3em;
     left: 8em;
-    bottom: 8em;
+    top: 37vh;
 }
 
 .tiles>.tile>span {
-    font-size: 6em;
+    font-size: 10vh;
     font-weight: 900;
     font-family: 'Exo 2';
     color: #473F3F;
@@ -71,12 +71,12 @@ body {
 
 .search-input {
     position: absolute;
-    right: 13vw;
-    top: 60vh;
+    right: 10vw;
+    bottom: 30vh;
     z-index: 6;
 }
 
-.search-input>input {
+.search-input > input {
     width: 30em;
     padding: 1.2em;
     padding-left: 4em;
@@ -86,14 +86,24 @@ body {
     border-radius: 3em;
 }
 
-.search-input>#search-input-icon {
+@media screen and (max-width:1600px) {
+    .search-input > input {
+        width: 30vw;
+    }
+
+    .search-input {
+        right: 5vw;
+    }
+}
+
+.search-input > #search-input-icon {
     user-select: none;
     position: relative;
     left: 3.1em;
     top: 0.35em;
 }
 
-.search-input>#search-input-icon>span {
+.search-input > #search-input-icon>span {
     font-size: 1.3em;
 }
 
@@ -142,6 +152,14 @@ body {
     align-items: center;
     box-sizing: border-box;
     padding: 2em;
+    transition: 0.3s;
+    position: relative;
+    bottom: 0;
+}
+
+.top-courses > .items > .course:hover {
+    bottom: 1em;
+    box-shadow: 0 0 60px 5px rgba(0, 0, 0, 0.3);
 }
 
 .top-courses > .items > .course > .view-more {
