@@ -3,7 +3,7 @@ window.addEventListener("load", function () {
     body.draw = function () {
         let layout = this.layout;
 
-        // 
+        body.appendChild(layout.newSection("TODO"))
 
         /* Footer: */
         let footer = docsElements.footer("2syap8l9xk34");

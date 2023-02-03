@@ -131,9 +131,9 @@ const docsElements = {
     }, courseNavigator(previousLink = "#", previousTitle = "", nextLink = "#", nextTitle = "", showReport = true) {
         let prev,next,report = "";
 
-        if (previousLink) { prev = `<a href="${previousLink}" title="Previous Tutorial: ${previousTitle}"><button class="course-navigator-button hmn-button blue" type="text">Previous</button></a>`; }
+        if (previousLink) { let disabled = ""; if (previousLink == "javascript:void(0);") { disabled = " disabled" }; prev = `<a href="${previousLink}" title="Previous Tutorial: ${previousTitle}"><button class="course-navigator-button hmn-button blue" type="text"${disabled}>Previous</button></a>`; }
         if (showReport) { report = `<a href="javascript:void(0);" id="report-issue">Report Issue</a>`; }
-        if (nextLink) { next = `<a href="${nextLink}" title="Next Tutorial: ${nextTitle}"><button class="course-navigator-button hmn-button blue" type="text">Next</button></a>`; }
+        if (nextLink) { let disabled = ""; if (nextLink == "javascript:void(0);") { disabled = " disabled" }; next = `<a href="${nextLink}" title="Next Tutorial: ${nextTitle}"><button class="course-navigator-button hmn-button blue" type="text">Next</button></a>`; }
 
         let courseNavigator = new ArticleElement("div", `<div class='docs:hr'></div>
 <div class='docs:course-navigator'>

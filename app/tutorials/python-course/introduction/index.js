@@ -52,6 +52,10 @@ window.addEventListener("load", function () {
             section.appendChild(elem);
         }); body.appendChild(section);
 
+        /* Course Navigator: */
+        let courseNavigator = docsElements.courseNavigator("javascript:void(0);", "None", "../getting-started/index.html", "Getting Started");
+        body.setCourseNavigator(courseNavigator);
+
         /* Footer: */
         let footer = docsElements.footer("February 1st, 2023");
         body.setFooter(footer);
