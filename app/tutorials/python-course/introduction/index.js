@@ -57,7 +57,7 @@ window.addEventListener("load", function () {
         body.setCourseNavigator(courseNavigator);
 
         /* Footer: */
-        let footer = docsElements.footer("February 1st, 2023");
+        let footer = docsElements.footer("February 3rd, 2023");
         body.setFooter(footer);
     }; body.draw();
 

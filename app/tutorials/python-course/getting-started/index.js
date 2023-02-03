@@ -6,7 +6,7 @@ window.addEventListener("load", function () {
         body.appendChild(layout.newSection("TODO"))
 
         /* Footer: */
-        let footer = docsElements.footer("2syap8l9xk34");
+        let footer = docsElements.footer("February 3rd, 2023");
         body.setFooter(footer);
     }; body.draw();
 
