@@ -92,61 +92,16 @@
 		<main>
             <div class="home-page">
                 <div class="first-section">
-                    <div class="tiles">
-                        <div class="tile hamen fade-in visible default">
-                            <span>Hamen</span>
+                    <h1 id="home-page-title" class="no-link fade-in">Hamen Docs</h1>
+                    <span id="home-page-sub-title" class="fade-in" delay="150ms">Experience the Power of Knowledge</span>
+                    <div class="home-page-search fade-in" delay="300ms">
+                        <div class="input">
+                            <input type="text" placeholder='Try searching: "Python Documentation"'>
+                            <button type="button" class="submit">
+                                <span class="material-symbols-outlined"> search </span>
+                            </button>
                         </div>
-                        <div class="tile docs fade-in visible default" delay="100ms">
-                            <span>Docs</span>
-                        </div>
-                    </div>
-                    <div class="paths">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="path-1" xmlns:xlink="http://www.w3.org/1999/xlink" class="fade-in visible default" width="1341.644" height="1074.321" delay="50ms" viewBox="0 0 1341.644 1074.321">
-                            <defs>
-                                <filter id="Path_3" x="0" y="0" width="1341.644" height="1074.321" filterUnits="userSpaceOnUse">
-                                    <feOffset dx="40" dy="-40" input="SourceAlpha" />
-                                    <feGaussianBlur stdDeviation="49.5" result="blur" />
-                                    <feFlood flood-opacity="0.141" />
-                                    <feComposite operator="in" in2="blur" />
-                                    <feComposite in="SourceGraphic" />
-                                </filter>
-                            </defs>
-                            <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_3)">
-                                <path id="Path_3-2" data-name="Path 3"
-                                    d="M1399.5,53.25s1.417,144.213,238.906,285.639,715.135,306.867,725.809,488.32"
-                                    transform="translate(-1251 136.26)" fill="none" stroke="#b1d5f9" stroke-width="80" />
-                            </g>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="fade-in visible default" delay="100ms" id="path-2" xmlns:xlink="http://www.w3.org/1999/xlink" width="1807.003" height="1529.983" viewBox="0 0 1807.003 1529.983">
-                            <defs>
-                                <filter id="Path_4" x="0" y="0" width="1807.003" height="1529.983" filterUnits="userSpaceOnUse">
-                                <feOffset dx="40" dy="-40" input="SourceAlpha"/>
-                                <feGaussianBlur stdDeviation="49.5" result="blur"/>
-                                <feFlood flood-opacity="0.141"/>
-                                <feComposite operator="in" in2="blur"/>
-                                <feComposite in="SourceGraphic"/>
-                                </filter>
-                            </defs>
-                            <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_4)">
-                                <path id="Path_4-2" data-name="Path 4" d="M1036.708-245.436S1274.2,250.889,1722.49,445.683s631.051,200.073,641.724,381.526" transform="matrix(0.99, -0.1, 0.1, 0.99, -859.18, 701.06)" fill="none" stroke="#c1cef8" stroke-width="80"/>
-                            </g>
-                        </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" id="path-3" xmlns:xlink="http://www.w3.org/1999/xlink" width="2242.079" height="2012.927" viewBox="0 0 2242.079 2012.927" class="fade-in visible default" delay="200ms">
-                            <defs>
-                                <filter id="Path_5" x="0" y="0" width="2242.079" height="2012.927" filterUnits="userSpaceOnUse">
-                                    <feOffset dx="40" dy="-40" input="SourceAlpha" />
-                                    <feGaussianBlur stdDeviation="49.5" result="blur" />
-                                    <feFlood flood-opacity="0.141" />
-                                    <feComposite operator="in" in2="blur" />
-                                    <feComposite in="SourceGraphic" />
-                                </filter>
-                            </defs>
-                            <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_5)">
-                                <path id="Path_5-2" data-name="Path 5"
-                                    d="M1040.713-570.929S1274.826,286.325,1723.12,481.119s581.047,49.864,936.636,277.1"
-                                    transform="translate(-737.14 1358.22) rotate(-13)" fill="none" stroke="#c8c2f1" stroke-width="80" />
-                            </g>
-                        </svg>
+                        <div class="results"></div>
                     </div>
                     <script type="text/javascript">
                         function editDistance(s1, s2) {
@@ -192,65 +147,75 @@
 
                         const courses = {
                             "Python Course": "tutorials/python-course/index.html",
-                            "Python Introduction": "tutorials/python-course/introduction/index.html",
-                            "Python Getting Started": "tutorials/python-course/introduction/index.html",
-                            "Python Setting up a Development Environment": "#",
-                            "Python Standard Output": "tutorials/python-course/standard-output/index.html",
-                            "Python User Input": "tutorials/python-course/user-input/index.html",
-                            "Python Comments": "tutorials/python-course/comments/index.html",
-                            "Python Variables": "tutorials/python-course/python-variables/index.html",
-                            "Python Data Types": "tutorials/python-course/python-data-types/index.html",
-                            "Python Strings": "tutorials/python-course/python-strings/index.html",
-                            "Python Integers": "tutorials/python-course/python-integers/index.html",
-                            "Python Floats": "tutorials/python-course/python-floats/index.html",
-                            "Python Booleans": "tutorials/python-course/python-booleans/index.html",
-                            "Python Operators": "#",
-                            "Python Data Structures": "#",
-                            "Python Lists": "#",
-                            "Python Tuples": "#",
-                            "Python Sets": "#",
-                            "Python Dictionaries": "#"
+                            "HTML Course": "tutorials/python-course/index.html",
+                            "CSS Course": "tutorials/python-course/index.html",
+                            "RWD Course": "tutorials/python-course/index.html",
+                            "Bootstrap Course": "tutorials/python-course/index.html",
                         }
 
-                        window.addEventListener("load", function() {
-                            let input = document.querySelector("#home-page-search-input");
-                            input.focus();
-                            input.select();
-
-                            input.addEventListener("keypress", function(e) {
-                                if (e.key == "Enter") {
-                                    let max = 0;
-                                    let maxCourses = [];
-                                    let value = input.value;
-                                    Object.keys(courses).forEach(key => {
-                                        let sim = similarity(value.toLowerCase(), key.toLowerCase());
-                                        if (sim > max) {
-                                            max = sim;
-                                            maxCourses = [key];
-                                        } else if (sim == max) {
-                                            maxCourses.push(key);
-                                        }
-                                    })
-
-                                    window.location.assign(courses[maxCourses[0]]);
+                        function getResults(input) {
+                            let max = 0;
+                            let maxCourses = [];
+                            let value = input.value;
+                            Object.keys(courses).forEach(key => {
+                                let sim = similarity(value.toLowerCase(), key.toLowerCase());
+                                if (sim > max) {
+                                    max = sim;
+                                    maxCourses = [key];
+                                } else if (sim == max) {
+                                    maxCourses.push(key);
                                 }
-                            });
+                            })
+
+                            return maxCourses;
+                        }
+                        
+                        window.addEventListener("load", function() {
+                            let input = document.querySelector(".home-page-search > .input > input");
+                            if (input) {
+                                input.focus();
+                                input.select();
+
+                                input.addEventListener("keypress", function(e) {
+                                    if (e.key == "Enter") {
+                                        window.location.assign(courses[getResults(input)[0]]);
+                                    }
+                                });
+
+                                input.addEventListener("input", function() {
+                                    let results = document.querySelector(".home-page-search > .results")
+                                    if (input.value.length == 0) {
+                                        results.classList.remove("visible");
+                                    } else {
+                                        let res = getResults(input);
+                                        let i = 0;
+                                        if (res.length != 0) {
+                                            results.innerHTML = "";
+                                            results.classList.add("visible");
+                                            Array.from(res).forEach(resultKey => {
+                                                if (i <= 8) {
+                                                    result = courses[resultKey];
+                                                    console.log(result);
+                                                    results.innerHTML += `<div class="result" onclick="window.location.assign('${result}')"> ${resultKey} </div>`;
+                                                    i += 1;
+                                                }
+                                            })
+                                        }
+                                    }
+                                })
+                            }
                         })
                     </script>
-                    <div class="search-input fade-in visible default" delay="200ms">
-                        <i id="search-input-icon"><span class="material-symbols-outlined"> search </span></i>
-                        <input type="text" id="home-page-search-input" placeholder="Try Searching: 'Python Documentation'">
-                    </div>
                 </div>
                 <div class="top-courses">
                     <span id="top-courses" class="fade-in">Top Courses:</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="280" viewBox="0 0 1920 280"><defs><filter id="Path_1" x="0" y="0" width="1920" height="280" filterUnits="userSpaceOnUse"><feOffset dy="3" input="SourceAlpha" /><feGaussianBlur stdDeviation="49.5" result="blur" /><feFlood flood-opacity="0.239" /><feComposite operator="in" in2="blur" /><feComposite in="SourceGraphic" /></filter></defs><g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_1)"><path id="Path_1-2" data-name="Path 1" d="M 1920 1080 S 1601 1153 1257 1144 S 849 1108 542 1096 S 0 1133 0 1133 V 1329 H 1920 Z" transform="translate(0 -1000)" fill="#c6f3cc" /></g></svg>
+                    <svg style="background: #20242a;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="280" viewBox="0 0 1920 280"><defs><filter id="Path_1" x="0" y="0" width="1920" height="280" filterUnits="userSpaceOnUse"><feOffset dy="3" input="SourceAlpha" /><feGaussianBlur stdDeviation="49.5" result="blur" /><feFlood flood-opacity="0.239" /><feComposite operator="in" in2="blur" /><feComposite in="SourceGraphic" /></filter></defs><g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_1)"><path id="Path_1-2" data-name="Path 1" d="M 1920 1080 S 1601 1153 1257 1144 S 849 1108 542 1096 S 0 1133 0 1133 V 1329 H 1920 Z" transform="translate(0 -1000)" fill="#c6f3cc" /></g></svg>
                     <div class="background"></div>
                     <div class="items">
                         <div class="course fade-in" delay="50ms">
                             <span class="title">Code:</span>
                             <div class="item"><span>HTML</span></div>
-                            <div class="item"><span>Python</span></div>
+                            <div class="item" onclick="window.location.assign('tutorials/python-course/index.html');"><span>Python</span></div>
                             <div class="item"><span>Javascript</span></div>
                             <button type="button" class="view-more a">View More</button>
                         </div>
@@ -271,7 +236,6 @@
                     </div>
                 </div>
             </div>
-            <div style="width: 100vw;display: block;height: 50em;"></div>
 		</main>
 	</body>
 </html>
