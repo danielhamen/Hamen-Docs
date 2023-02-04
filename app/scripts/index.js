@@ -1,7 +1,38 @@
 window.addEventListener("load", () => {
     // Make the header:
     let header = document.querySelector("header");
-    let headerHTML = `<div class="header"><!-- <img src="${header.getAttribute("step")}images/hamen-docs-logo.png" class="logo"><img src="${header.getAttribute("step")}images/hamen-docs-icon.png" class="logo media"> --><div class="actions"><input type="text" id="header-search" class="text hidden" placeholder="Search a Software, Company, etc"><span class="material-symbols-outlined" id="header-search-icon"> search </span><span class="material-symbols-outlined" id="header-account-icon"> person </span></div></div>`;
+    let headerHTML = `
+<div class="header">
+    <!--
+        <img src="${header.getAttribute("step")}images/hamen-docs-logo.png" class="logo">
+        <img src="${header.getAttribute("step")}images/hamen-docs-icon.png" class="logo media">
+    -->
+
+    <!--
+        <div class="actions">
+            <input type="text" id="header-search" class="text hidden" placeholder="Search a Software, Company, etc">
+            <span class="material-symbols-outlined" id="header-search-icon"> search </span>
+            <span class="material-symbols-outlined" id="header-account-icon"> person </span>
+        </div>
+    -->
+    <img src="${header.getAttribute("step")}images/hamen-docs-icon.png" class="logo">
+    <div class="options">
+        <div class="option">
+            <a href="#" id="nav-bar-docs">Docs</a>
+            <a href="#" id="nav-bar-services">Services</a>
+            <a href="#" id="nav-bar-account">
+                Account
+            </a>
+            <div class="account-options">
+                <a href="javascript:void(0);"> Sign Up </a>
+                <a href="javascript:void(0);"> Login </a>
+                <a href="javascript:void(0);"> Dark Mode </a>
+            </div>
+            <!-- <a href="#" id="nav-bar-dark-mode"><span class="material-symbols-outlined"> dark_mode </span></a> -->
+        </div>
+    </div>
+</div>
+    `;
     if (header.getAttribute("tutorial")) {
         headerHTML += `<div class="mobile-toggle-tree"><span id="mobile-toggle-tree-label" class="text">View Tree</span></div>`;
     }
@@ -20,18 +51,18 @@ window.addEventListener("load", () => {
     } catch (error) {}
 
     // Show 'header search input' when the user clicks the 'search' icon:
-    document.querySelector("#header-search-icon").addEventListener("click", function () {
-        let input = document.querySelector("#header-search");
-        if (this.innerHTML.trim() === "search") {
-            this.innerHTML = "close";
-            input.classList.remove("hidden");
-            input.focus();
-            input.select();
-        } else {
-            this.innerHTML = "search";
-            input.classList.add("hidden");
-        }
-    })
+    // document.querySelector("#header-search-icon").addEventListener("click", function () {
+    //     let input = document.querySelector("#header-search");
+    //     if (this.innerHTML.trim() === "search") {
+    //         this.innerHTML = "close";
+    //         input.classList.remove("hidden");
+    //         input.focus();
+    //         input.select();
+    //     } else {
+    //         this.innerHTML = "search";
+    //         input.classList.add("hidden");
+    //     }
+    // })
 
     // Hide/show tree item when the user clicks its header:
     Array.from(document.querySelectorAll(".title.toggle")).forEach(chev => {

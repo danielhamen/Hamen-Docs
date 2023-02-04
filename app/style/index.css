@@ -325,6 +325,14 @@ docs-related-topics > ul,ol {
     margin-left: calc(1.5em - 10px - 3px);
 }
 
+.option.selected:hover {
+    border-left: 3px solid #3d567d;
+}
+
+.option.selected:active {
+    border-left: 3px solid #7989a3;
+}
+
 .option.display-none {
     display: none !important;
 }
@@ -586,6 +594,95 @@ header > .header>.actions>span {
     justify-content: space-around;
     cursor: pointer;
     user-select: none;
+}
+
+header > .header {
+    border: 0;
+    border-bottom: 1px solid hsl(0deg, 0%, 40%);
+    background: #373b41;
+}
+
+header > .header > .options {
+    margin-left: auto;
+    margin-right: 2em;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+header > .header > .options > .option {
+    all: unset;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: fit-content;
+}
+
+header > .header > .options > .option > a {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-left: 2.5em;
+    padding-right: 2.5em;
+    width: fit-content;
+    color: #e3e6f0;
+    transition: 0.15s;
+}
+
+header > .header > .options > .option > a:hover {
+    color: #9fbdfa;
+}
+
+header > .header > .options > .option > a:active {
+    color: #6a92e2;
+}
+
+header {
+    box-shadow: 0 0 30px 8px rgba(0, 0, 0, 0.3);
+}
+
+header > .header > .options > .option > .account-options {
+    width: 10em;
+    height: fit-content;
+    position: absolute;
+    right: 1em;
+    top: var(--header-size);
+    background: #373b41;
+    box-shadow: 0 0 30px 8px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 7;
+    flex-direction: column;
+    border-bottom-left-radius: 0.3em;
+    border-bottom-right-radius: 0.3em;
+    box-sizing: border-box;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+header > .header > .options > .option > .account-options > a {
+    width: 100%;
+    height: 3.5em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: #e3e6f0;
+}
+
+header > .header > .options > .option > .account-options > a:hover {
+    color: #9fbdfa;
+}
+
+header > .header > .options > .option > .account-options > a:active {
+    color: #6a92e2;
+}
+
+header > .header > .options > .option > #nav-bar-account:hover + .account-options {
+    display: flex;
+}
+
+header > .header > .options > .option > .account-options:hover {
+    display: flex;
 }
 
 @media screen and (max-width:750px) {
