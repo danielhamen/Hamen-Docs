@@ -277,6 +277,7 @@ docs-related-topics > ul,ol {
     height: fit-content;
     font-size: 1.3em;
     cursor: pointer;
+    color: var(--text-primary);
 }
 
 .docs-tcs > .title.toggle > .chevron {
@@ -584,13 +585,14 @@ header > .header>.actions>span {
 .mobile-toggle-tree {
     width: 100%;
     height: var(--mobile-header-size);
-    background: hsl(0deg, 0%, 85%);
-    border-bottom: 1px solid hsl(0deg, 0%, 80%);
+    background: var(--background-2);
+    border-bottom: 1px solid var(--border-mid);
     display: flex;
     align-items: center;
     justify-content: space-around;
     cursor: pointer;
     user-select: none;
+    color: var(--text-default);
 }
 
 header > .header {
@@ -716,6 +718,86 @@ header > .header > .options > .option > .account-options:hover {
     color: var(--text-primary);
 }
 
-p {
+p,li,.text {
     color: var(--text-default);
+}
+
+header > .header > .options > .mobile {
+    display: none;
+}
+
+.mobile-nav-options {
+    display: none;
+}
+
+/* Nav Bar Mobile: */
+@media screen and (max-width:700px) {
+    header > .header > .options > .option {
+        display: none;
+    }
+
+    header > .header > .options > .mobile {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header > .header > .options > .mobile > img {
+        height: 3em;
+        margin-left: calc(calc(var(--header-size) - 3em) / 2);
+        cursor: pointer;
+        /* box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.2); */
+    }
+
+    header > .header > .options > .mobile > span {
+        padding: 1em;
+        user-select: none;
+        cursor: pointer;
+        color: var(--text-primary);
+        padding-right: 1.5em;
+    }
+
+    header > .header > .options {
+        margin-left: 0;
+        margin-right: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .mobile-nav-options {
+        display: none;
+        width: 100%;
+        height: calc(100vh - var(--header-size));
+        position: fixed;
+        top: var(--header-size);
+        z-index: 10;
+        background: white;
+        left: 0;
+        flex-direction: column;
+    }
+
+    .mobile-nav-options.visible {
+        display: flex;
+    }
+
+    .mobile-nav-options > .option {
+        all: unset;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        height: calc(100% / 4);
+        background: var(--background-secondary);
+    }
+
+    .mobile-nav-options > .option > a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        border-top: 1px solid var(--border-mid);
+    }
 }

@@ -556,29 +556,30 @@ const DocsElements = {
             })
         })
     }, makeReportIssue() {
-        document.body.innerHTML += `
-<div class="report-issue-dialog">
-    <div class="header">
-        <h3 class="title no-link">Report Issue:</h3>
-        <span class="material-symbols-outlined icon"> close </span>
-    </div>
-    <form class="body" action="https://www.hamen.tech/submit-report/index.php">
-        <select name="issue-type">
-            <option selected disabled>Issue Type...</option>
-            <option value="grammatical-error">Grammatical Error</option>
-            <option value="incorrect-content">Incorrect Content</option>
-            <option value="broken-link">Broken Link</option>
-            <option value="formatting-issue">Formatting Issue</option>
-            <option value="technical-issue">Technical Error</option>
-            <option value="other-issue">Other...</option>
-        </select>
-        <br>
-        <input name="email" type="text" placeholder="Your Email...">
-        <br>
-        <textarea name="body" class="text" placeholder="Describe your issue in-depth" oninput="document.querySelector('#char-count').innerHTML = this.value.length + ' / 500';if (this.value.length >= 450) { document.querySelector('#char-count').classList.add('red'); } else { document.querySelector('#char-count').classList.remove('red'); }" maxlength=500></textarea>
-        <span id="char-count">0 / 500</span>
-        <br>
-        <br>
+        let reportDialog = document.createElement("div");
+        reportDialog.classList.add("report-issue-dialog");
+        reportDialog.innerHTML = `
+<div class="header">
+    <h3 class="title no-link" style="color: hsl(0deg, 0%, 10%) !important;">Report Issue:</h3>
+    <span class="material-symbols-outlined icon"> close </span>
+</div>
+<form class="body" action="https://www.hamen.tech/submit-report/index.php">
+    <select name="issue-type">
+        <option selected disabled>Issue Type...</option>
+        <option value="grammatical-error">Grammatical Error</option>
+        <option value="incorrect-content">Incorrect Content</option>
+        <option value="broken-link">Broken Link</option>
+        <option value="formatting-issue">Formatting Issue</option>
+        <option value="technical-issue">Technical Error</option>
+        <option value="other-issue">Other...</option>
+    </select>
+    <br>
+    <input name="email" type="text" placeholder="Your Email...">
+    <br>
+    <textarea name="body" class="text" placeholder="Describe your issue in-depth" oninput="document.querySelector('#char-count').innerHTML = this.value.length + ' / 500';if (this.value.length >= 450) { document.querySelector('#char-count').classList.add('red'); } else { document.querySelector('#char-count').classList.remove('red'); }" maxlength=500></textarea>
+    <span id="char-count">0 / 500</span>
+    <br>
+    <br>
 <!--
 
 Hey there,
@@ -600,11 +601,11 @@ Thanks,
 Daniel
 
 -->
-        <button type="text" class="hmn-button blue">Submit Report!</button>
-        <br>
-        <span class="sub-text">By submitting this form, you accept our <a href="#" target="_blank">Terms and Conditions</a></span>
-    </form>
-</div>`;
+    <button type="text" class="hmn-button blue">Submit Report!</button>
+    <br>
+    <span class="sub-text">By submitting this form, you accept our <a href="#" target="_blank">Terms and Conditions</a></span>
+</form>`;
+        document.body.appendChild(reportDialog);
 
         // Toggle 'Report Issue' dialog when the user presses 'Report Issue' anchor on a tutorial:
         document.querySelector("#report-issue").addEventListener("click", function () {

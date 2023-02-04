@@ -99,7 +99,7 @@ docs-code-block {
     display: block;
     width: 100%;
     height: fit-content;
-    background: hsl(0, 0%, 17.5%);
+    background: var(--docs-code-block);
     box-sizing: border-box;
     padding: 0.75em;
     border-left: 5px solid #86a8df;
@@ -127,7 +127,8 @@ docs-code-block {
 }
 
 .code\:comment {
-    color: rgb(133, 133, 133);
+    color: #67ad66;
+    /* color: rgb(133, 133, 133); */
 }
 
 .code\:variable,.code\:var {
@@ -294,6 +295,18 @@ docs-code-block:hover > .code\:copy-code-block {
     display: none;
 }
 
+.docs-details-dropdown > .body > .docs\:p {
+    color: #625b5b;
+}
+
+.docs-details-dropdown > .body > .docs-note-text {
+    border-color: #d9d9d9;
+}
+
+.docs-details-dropdown > .body > docs-code-block > .code\:copy-code-block {
+    display: none;
+}
+
 .docs-details-dropdown.closed > .header {
     border: 0;
 }
@@ -343,7 +356,7 @@ docs-code-block:hover > .code\:copy-code-block {
     font-weight: 700;
 }
 
-.docs-note-text > .label {
+.docs-note-text > .label,.docs-note-text > .prefix {
     color: var(--docs-note-color);
 }
 
