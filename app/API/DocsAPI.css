@@ -9,7 +9,7 @@
     width: 100%;
     border-radius: 1em;
     height: 2px;
-    background: rgba(0, 0, 0, 0.08);
+    background: var(--docs-hr);
     margin-top: 1em;
     margin-bottom: 1em;
     min-height: 2px;
@@ -152,7 +152,7 @@ docs-code-block {
 
 .code\:inline {
     font-size: 1em;
-    color: rgb(242, 51, 51);
+    color: var(--docs-inline-code);
 }
 
 .code\:terminal::before,.code\:term::before {
@@ -333,8 +333,8 @@ docs-code-block:hover > .code\:copy-code-block {
     padding: 2em;
     padding-top: 1.5em;
     padding-bottom: 1.5em;
-    background: rgb(243, 239, 184);
-    border: 1px solid hsl(0deg, 0%, 87%);
+    background: var(--docs-note-background);
+    border: 1px solid var(--border-light);
     font-weight: 400;
     border-radius: 0.8em;
 }
@@ -344,7 +344,7 @@ docs-code-block:hover > .code\:copy-code-block {
 }
 
 .docs-note-text > .label {
-    color: hsl(0, 8%, 23%);
+    color: var(--docs-note-color);
 }
 
 /* Report Issue: */
@@ -542,4 +542,16 @@ docs-code-block:hover > .code\:copy-code-block {
     text-align: left;
     font-size: 0.95em;
     /* border: 1px solid #d9d9d9; */
+}
+
+.docs\:p {
+    color: var(--text-default);
+}
+
+section > h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+}
+
+#content-title {
+    color: var(--text-first);
 }

@@ -156,27 +156,27 @@ a > .code\:inline {
 
 a {
     text-decoration: none;
-    color: #2a6edd;
+    color: var(--anchor);
     font-weight: bold;
 }
 
 a:hover {
-    color: #3d567d;
+    color: var(--anchor-hover);
     text-decoration: underline;
 }
 
 a:active {
-    color: #7989a3;
+    color: var(--anchor-active);
     text-decoration: underline;
 }
 
 .documentation-option-separator {
-    width: 1px;
+    width: 2px;
     height: 1em;
     margin-left: 1em;
     margin-right: 1em;
     border-radius: 1em;
-    background: rgba(0, 0, 0, 0.4);
+    background: var(--docs-hr);
 }
 
 .option > .code\:inline {
@@ -303,7 +303,7 @@ docs-related-topics > ul,ol {
 }
 
 .option {
-    color: #406cd2;
+    color: var(--anchor);
     margin-top: 0.75em;
     margin-bottom: 0.75em;
     box-sizing: border-box;
@@ -320,17 +320,18 @@ docs-related-topics > ul,ol {
 } */
 
 .option.selected {
-    border-left: 3px solid #406cd2;
+    border-left: 3px solid var(--anchor);
     padding-left: 10px;
     margin-left: calc(1.5em - 10px - 3px);
 }
 
 .option.selected:hover {
-    border-left: 3px solid #3d567d;
+    border-left: 3px solid var(--anchor-hover);
 }
 
 .option.selected:active {
-    border-left: 3px solid #7989a3;
+    border-left: 5px solid var(--anchor-active);
+    padding-left: 8px;
 }
 
 .option.display-none {
@@ -356,10 +357,6 @@ abbr {
     align-items: center;
     color: hsl(0deg, 0%, 25%);
     transition: 0.12s;
-}
-
-.docs-tcs > .title:hover {
-    color: hsl(0deg, 0%, 40%);
 }
 
 :hover > .link-section {
@@ -598,8 +595,8 @@ header > .header>.actions>span {
 
 header > .header {
     border: 0;
-    border-bottom: 1px solid hsl(0deg, 0%, 40%);
-    background: #373b41;
+    border-bottom: 1px solid var(--border-mid);
+    background: var(--nav-bar-background);
 }
 
 header > .header > .options {
@@ -626,16 +623,16 @@ header > .header > .options > .option > a {
     padding-left: 2.5em;
     padding-right: 2.5em;
     width: fit-content;
-    color: #e3e6f0;
+    color: var(--nav-bar-items-color);
     transition: 0.15s;
 }
 
 header > .header > .options > .option > a:hover {
-    color: #9fbdfa;
+    color: var(--anchor-hover);
 }
 
 header > .header > .options > .option > a:active {
-    color: #6a92e2;
+    color: var(--anchor-active);
 }
 
 header {
@@ -648,7 +645,7 @@ header > .header > .options > .option > .account-options {
     position: absolute;
     right: 1em;
     top: var(--header-size);
-    background: #373b41;
+    background: var(--nav-bar-background);
     box-shadow: 0 0 30px 8px rgba(0, 0, 0, 0.3);
     display: none;
     z-index: 7;
@@ -658,6 +655,8 @@ header > .header > .options > .option > .account-options {
     box-sizing: border-box;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
+    border: 1px solid var(--border-mid);
+    border-top: 0;
 }
 
 header > .header > .options > .option > .account-options > a {
@@ -666,15 +665,16 @@ header > .header > .options > .option > .account-options > a {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    color: #e3e6f0;
+    color: var(--nav-bar-items-color);
+    transition: 0.15s;
 }
 
 header > .header > .options > .option > .account-options > a:hover {
-    color: #9fbdfa;
+    color: var(--anchor-hover);
 }
 
 header > .header > .options > .option > .account-options > a:active {
-    color: #6a92e2;
+    color: var(--anchor-active);
 }
 
 header > .header > .options > .option > #nav-bar-account:hover + .account-options {
@@ -697,4 +697,25 @@ header > .header > .options > .option > .account-options:hover {
     header > .header>.logo.media {
         display: block;
     }
+}
+
+.docs-content {
+    height: fit-content;
+    background: var(--background-primary);
+}
+
+.docs-tree-content {
+    background: var(--background-default);
+}
+
+.docs-tree-titles > .title {
+    color: var(--text-primary);
+}
+
+.docs-tcs > .title {
+    color: var(--text-primary);
+}
+
+p {
+    color: var(--text-default);
 }
