@@ -84,7 +84,7 @@ window.addEventListener("load", function () {
                 "{var(age)} = {cls(int)}({var(x)})",
                 "{func(print)}({func(type)}({var(x)}))",
                 "{term()}{out(&lt;type 'int'&gt;)}"
-            ], "For example:"),
+            ], "For example"),
             docsElements.p("In this example, the variable " + docsElements.inlineCode("age") + " was originally a string, but then we casted it to an integer")
         ].forEach(elem => {
             section.appendChild(elem);

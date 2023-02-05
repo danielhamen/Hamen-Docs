@@ -67,11 +67,13 @@ h1,h2,h3,h4,h5,h6 {
         height: fit-content;
         display: flex;
         flex-direction: column;
+        margin-top: 2em;
+        padding-bottom: 1em;
     }
 
     .docs\:course-navigator > #report-issue {
-        margin-top: 1em;
-        margin-bottom: 1em;
+        margin-top: 1.5em;
+        margin-bottom: 1.5em;
     }
 
     .docs\:course-navigator > *:not(#report-issue) {
@@ -81,8 +83,10 @@ h1,h2,h3,h4,h5,h6 {
     .docs\:course-navigator > *:not(#report-issue) > button {
         padding-bottom: 0.3em;
         padding-top: 0.3em;
-        height: 2.5em;
+        height: 3em;
         width: 100%;
+        margin-bottom: 0.25em;
+        margin-top: 0.25em;
     }
 }
 
@@ -143,7 +147,7 @@ docs-code-block {
     color: rgb(220, 220, 170);
 }
 
-.code\:boolean {
+.code\:boolean,.code\:bool {
     color: rgb(132, 221, 124);
 }
 

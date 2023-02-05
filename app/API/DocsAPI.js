@@ -71,6 +71,10 @@ const docsElements = {
     }, codeBlock(code, title, options = { "showCopy": true }) {
         let codeWrapper = document.createElement("code");
 
+        if (title?.endsWith(":")) {
+            throw "WARNING: `docsElements.codeBlock(...)` contains a title ending with \":\"";
+        }
+
         Array.from(code).forEach(line => {
             let lineText = line;
 
@@ -563,7 +567,7 @@ const DocsElements = {
     <h3 class="title no-link" style="color: hsl(0deg, 0%, 10%) !important;">Report Issue:</h3>
     <span class="material-symbols-outlined icon"> close </span>
 </div>
-<form class="body" action="https://www.hamen.tech/submit-report/index.php">
+<form class="body" action="https://www.hamen.tech/php/tutorial-report/submit.php">
     <select name="issue-type">
         <option selected disabled>Issue Type...</option>
         <option value="grammatical-error">Grammatical Error</option>
@@ -575,6 +579,7 @@ const DocsElements = {
     </select>
     <br>
     <input name="email" type="text" placeholder="Your Email...">
+    <input name="url" type="text" style="display: none;" id="report-url">
     <br>
     <textarea name="body" class="text" placeholder="Describe your issue in-depth" oninput="document.querySelector('#char-count').innerHTML = this.value.length + ' / 500';if (this.value.length >= 450) { document.querySelector('#char-count').classList.add('red'); } else { document.querySelector('#char-count').classList.remove('red'); }" maxlength=500></textarea>
     <span id="char-count">0 / 500</span>
@@ -622,6 +627,16 @@ Daniel
             this.parentElement.parentElement.classList.toggle("visible");
             this.parentElement.parentElement.classList.add("toggled");
         })
+
+        // Add the URL to the hidden URL input:
+        document.getElementById("report-url").setAttribute("value", window.location.href.toString());
+
+        // 
+        let reportSent = new URL(window.location.href);
+        reportSent = reportSent.searchParams.get("report-sent");
+        if (reportSent === "true") {
+            HamenAPI.logMessage("Report Sent!");
+        }
     }
 }
 
