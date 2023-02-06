@@ -2,3 +2,4 @@
 - Create Docs & Services homepage
 - Fix some issues from recent reports
 - Create error pages
+- Add sub-sections to the `docsElements` API
