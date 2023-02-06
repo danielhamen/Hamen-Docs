@@ -370,6 +370,10 @@ docs-code-block:hover > .code\:copy-code-block {
     color: #4f83d9;
 }
 
+.docs-details-dropdown > .body > table > tbody > tr > td {
+    color: #625b5b !important;
+}
+
 /* Report Issue: */
 .report-issue-dialog {
     position: fixed;
