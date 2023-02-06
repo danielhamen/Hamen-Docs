@@ -1,0 +1,21 @@
+[
+    {
+        "id": " 612592630718",
+        "url": " https//www.hamen.tech/tutorials/python-course/python-strings/index.html",
+        "from": " Danielhamen92@gmail.com",
+        "submission type": " formatting-issue",
+        "ip": " 72.138.54.206",
+        "date": " 2023/02/06 084622",
+        "body": [
+            "on the code blocks, the titles are bold, but since i'm on dark mode, the text is black (color not weight)"
+        ],
+        "status": {
+            "status": "RESOLVED",
+            "date": "February 6th, 2023",
+            "description": [
+                "Changed the `docsElements.codeBlock(...)` title to have: `color: var(--text-primary);`"
+            ],
+            "location": "DocsAPI.css -> `.code\\:title { ... }`"
+        }
+    }
+]

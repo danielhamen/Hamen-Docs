@@ -1,0 +1,21 @@
+[
+    {
+        "id": " 491396177850",
+        "url": " https//www.hamen.tech/tutorials/python-course/python-data-types/index.html",
+        "from": " Danielhamen92@gmail.com",
+        "submission type": " formatting-issue",
+        "ip": " 72.138.54.206",
+        "date": " 2023/02/06 085307",
+        "body": [
+            "the links on the \"note: ...\" banner are too bright"
+        ],
+        "status": {
+            "status": "RESOLVED",
+            "date": "February 6th, 2023",
+            "description": [
+                "Fixed styling to make anchor tags darker when on `docsElements.noteText(...)`"
+            ],
+            "location": "DocsAPI.css -> `.docs-note-text > .label > a { ... }`"
+        }
+    }
+]

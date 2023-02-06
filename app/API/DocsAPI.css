@@ -207,7 +207,7 @@ docs-code-block > code {
 .code\:title {
     font-weight: bold;
     font-family: 'Sofia Sans Semi Condensed', sans-serif;
-    color: hsl(0, 4%, 37%);
+    color: var(--text-primary);
 }
 
 .code\:copy-code-block {
@@ -364,6 +364,10 @@ docs-code-block:hover > .code\:copy-code-block {
 
 .docs-note-text > .label,.docs-note-text > .prefix {
     color: var(--docs-note-color);
+}
+
+.docs-note-text > .label > a {
+    color: #4f83d9;
 }
 
 /* Report Issue: */
