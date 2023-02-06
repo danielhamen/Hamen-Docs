@@ -7,6 +7,10 @@ body {
     margin: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 main {
     height: calc(100vh - calc(var(--header-size) + var(--mobile-header-size)));
     position: absolute;

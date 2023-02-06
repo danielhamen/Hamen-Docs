@@ -96,12 +96,29 @@
 		<header step=""></header>
 		<main>
             <div class="home-page">
+                <script type="text/javascript">
+                    window.addEventListener("load", function() {
+                        setTimeout(() => {
+                            let scrollNotifier = document.querySelector(".scroll-down-notifier");
+                            scrollNotifier.classList.add("visible");
+
+                            scrollNotifier.addEventListener("click", function() {
+                                scrollTo(0, window.innerHeight * 0.9);
+                            })
+                        }, 4000);
+                    })
+                </script>
+                <div class="scroll-down-notifier">
+                    <span class="material-symbols-outlined icon"> arrow_drop_down </span>
+                    <span class="text">Scroll Down</span>
+                    <span class="material-symbols-outlined icon"> arrow_drop_down </span>
+                </div>
                 <div class="first-section">
                     <h1 id="home-page-title" class="no-link fade-in">Hamen Docs</h1>
                     <span id="home-page-sub-title" class="fade-in" delay="150ms">Experience the Power of Knowledge</span>
                     <div class="home-page-search fade-in" delay="300ms">
                         <div class="input">
-                            <input type="text" placeholder='Try searching: "Python Documentation"'>
+                            <input type="text" placeholder='Try searching: "Python Course"'>
                             <!-- <button type="button" class="submit">
                                 <span class="material-symbols-outlined"> search </span>
                             </button> -->

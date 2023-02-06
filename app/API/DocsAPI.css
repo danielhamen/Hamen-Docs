@@ -112,6 +112,7 @@ docs-code-block {
     line-height: 1.5;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
+    border-radius: 0.8em;
 }
 
 .code\:internal,.code\:int {
@@ -213,11 +214,11 @@ docs-code-block > code {
     width: 32px;
     height: 32px;
     border-radius: 0.6em;
-    background: rgba(255, 255, 255, 0.2);
+    /* background: rgba(255, 255, 255, 0.2); */
     position: absolute;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    translate: 0 -0.45em;
-    right: 3.5em;
+    /* border: 1px solid rgba(255, 255, 255, 0.3); */
+    translate: 0 -1em;
+    right: 3em;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -225,31 +226,32 @@ docs-code-block > code {
     cursor: pointer;
     transition: 0.12s;
     opacity: 0;
+    padding: 1em;
 }
 
 .code\:copy-code-block:hover {
-    background: rgba(255, 255, 255, 0.35);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    /* background: rgba(255, 255, 255, 0.35); */
+    /* border: 1px solid rgba(255, 255, 255, 0.4); */
 }
 
 .code\:copy-code-block:active {
-    background: rgba(255, 255, 255, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* background: rgba(255, 255, 255, 0.3); */
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
 }
 
 .code\:copy-code-block > span {
     font-size: 1.2em;
-    transition: 0.2s;
+    transition: 0.14s;
     color: hsl(0deg, 0%, 80%);
     height: fit-content;
 }
 
 .code\:copy-code-block:hover > span {
-    color: hsl(0deg, 0%, 85%);
+    color: rgb(123, 183, 255);
 }
 
 .code\:copy-code-block:active > span {
-    color: hsl(0deg, 0%, 70%);
+    color: rgb(120, 153, 194);
 }
 
 docs-code-block:hover > .code\:copy-code-block {
@@ -379,6 +381,10 @@ docs-code-block:hover > .code\:copy-code-block {
     right: 3em;
     display: none;
     flex-direction: column;
+}
+
+.report-issue-dialog > input,textarea {
+    color: black !important;
 }
 
 .report-issue-dialog.visible {
