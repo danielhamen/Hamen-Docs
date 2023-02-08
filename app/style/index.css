@@ -196,9 +196,18 @@ a:active {
     flex-direction: column;
 }
 
-section > p {
+section > p,section > .items > p {
     margin-top: 1em;
     margin-bottom: 1em;
+}
+
+section > .items > * {
+    margin-left: 8px;
+}
+
+section > .items {
+    padding-left: 1em;
+    border-left: 8px solid rgba(0, 0, 0, 0.1);
 }
 
 section > ul,ol {

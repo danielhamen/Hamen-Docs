@@ -172,6 +172,26 @@ const docsElements = {
         if (!source) { source = "" };
 
         return new ArticleElement("span", "&ldquo;" + text + "&rdquo;", { "title": source, "class": "docs:quote" });
+    }, subSection(innerHTML = [], title = "", level = 2, options = { "showHR": true }) {
+        level += 1;
+
+        if (title.endsWith(":")) {
+            throw "WARNING: `docsElements.subSection( ... )` title ends with \":\" (resulting in double-colon)";
+        }
+
+        if (title && title !== "") {
+            title = `<h${level}>${title}:</h${level}>`;
+        }
+
+        innerHTML = innerHTML.join("");
+
+        // 
+        let pre = `<div class="docs:hr sub"></div>`;
+        if (options["showHR"] === false) {
+            pre = "";
+        }
+
+        return new ArticleElement("section", pre + title + `<div class="items">${innerHTML}</div>`, { "class": "sub-section level-" + level.toString() })
     }
 }
 

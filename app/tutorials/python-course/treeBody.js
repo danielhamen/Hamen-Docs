@@ -10,10 +10,10 @@ const treeBody = {
     }, "Variables & Data Types": {
         "Python: Variables": { "href": "../python-variables/index.html", "id": "python-variables" },
         "Python: Data Types": { "href": "../python-data-types/index.html", "id": "python-data-types" },
-        "Python: Strings": { "href": "../python-strings/index.html", "id": "python-strings" },
-        "Python: Integers": { "href": "../python-integers/index.html", "id": "python-integers" },
-        "Python: Floats": { "href": "../python-floats/index.html", "id": "python-floats" },
-        "Python: Booleans": { "href": "../python-booleans/index.html", "id": "python-booleans" },
+        // "Python: Strings": { "href": "../python-strings/index.html", "id": "python-strings" },
+        // "Python: Integers": { "href": "../python-integers/index.html", "id": "python-integers" },
+        // "Python: Floats": { "href": "../python-floats/index.html", "id": "python-floats" },
+        // "Python: Booleans": { "href": "../python-booleans/index.html", "id": "python-booleans" },
         "Python: Operators": { "href": "#", "id": "comments" },
     }, "Data Structures": {
         "Python: Data Structures": { "href": "#", "id": "" },
@@ -28,38 +28,39 @@ const treeBody = {
         "Python: Break / Continue": { "href": "#", "id": "" },
         "Python: While-Loops": { "href": "#", "id": "" },
         "Python: Iterators & Generators": { "href": "#", "id": "" }
-    }, "Functions & Modules": {
-        "Python: Functions": { "href": "#", "id": "" },
-        "Python: Arguments": { "href": "#", "id": "" },
-        "Python: Returning": { "href": "#", "id": "" },
-        "Python: Modules": { "href": "#", "id": "" },
-        "Python: Local Modules": { "href": "#", "id": "" }
-    }, "Exceptions": {
-        "Python: Exceptions": { "href": "#", "id": "" },
-        "Python: Try / Except / Except": { "href": "#", "id": "" },
-        "Python: Raising Exceptions": { "href": "#", "id": "" },
-        "Python: Custom Exceptions": { "href": "#", "id": "" }
-    }, "File Handling": {
-        "Python: File Handling": { "href": "#", "id": "" },
-        "Python: Reading Files": { "href": "#", "id": "" },
-        "Python: Writing to Files": { "href": "#", "id": "" },
-        "Python: Creating Files": { "href": "#", "id": "" },
-        "Python: Deleting Files": { "href": "#", "id": "" }
-    }, "Object Oriented Programming (OOP)": {
-        "Python: Classes & Objects": { "href": "#", "id": "" },
-        "Python: Inheritance": { "href": "#", "id": "" },
-        "Python: Polymorphism": { "href": "#", "id": "" },
-        "Python: Magic Methods": { "href": "#", "id": "" }
-    }, "Advanced Syntax": {
-        "Python: Lambdas": { "href": "#", "id": "" },
-        "Python: Yielding": { "href": "#", "id": "" },
-        "Python: With-Statements": { "href": "#", "id": "" },
-        "Python: Asserting": { "href": "#", "id": "" },
-        "Python: Decorators": { "href": "#", "id": "" }
-    }, "Advanced Topics": {
-        "Python: Type Annotation": { "href": "#", "id": "" },
-        "Python: Multiprocessing": { "href": "#", "id": "" },
-        "Python: Asynchronous & Awaiting": { "href": "#", "id": "" },
-        "Python: Meta-Programming": { "href": "#", "id": "" },
     }
+    // }, "Functions & Modules": {
+    //     "Python: Functions": { "href": "#", "id": "" },
+    //     "Python: Arguments": { "href": "#", "id": "" },
+    //     "Python: Returning": { "href": "#", "id": "" },
+    //     "Python: Modules": { "href": "#", "id": "" },
+    //     "Python: Local Modules": { "href": "#", "id": "" }
+    // }, "Exceptions": {
+    //     "Python: Exceptions": { "href": "#", "id": "" },
+    //     "Python: Try / Except / Except": { "href": "#", "id": "" },
+    //     "Python: Raising Exceptions": { "href": "#", "id": "" },
+    //     "Python: Custom Exceptions": { "href": "#", "id": "" }
+    // }, "File Handling": {
+    //     "Python: File Handling": { "href": "#", "id": "" },
+    //     "Python: Reading Files": { "href": "#", "id": "" },
+    //     "Python: Writing to Files": { "href": "#", "id": "" },
+    //     "Python: Creating Files": { "href": "#", "id": "" },
+    //     "Python: Deleting Files": { "href": "#", "id": "" }
+    // }, "Object Oriented Programming (OOP)": {
+    //     "Python: Classes & Objects": { "href": "#", "id": "" },
+    //     "Python: Inheritance": { "href": "#", "id": "" },
+    //     "Python: Polymorphism": { "href": "#", "id": "" },
+    //     "Python: Magic Methods": { "href": "#", "id": "" }
+    // }, "Advanced Syntax": {
+    //     "Python: Lambdas": { "href": "#", "id": "" },
+    //     "Python: Yielding": { "href": "#", "id": "" },
+    //     "Python: With-Statements": { "href": "#", "id": "" },
+    //     "Python: Asserting": { "href": "#", "id": "" },
+    //     "Python: Decorators": { "href": "#", "id": "" }
+    // }, "Advanced Topics": {
+    //     "Python: Type Annotation": { "href": "#", "id": "" },
+    //     "Python: Multiprocessing": { "href": "#", "id": "" },
+    //     "Python: Asynchronous & Awaiting": { "href": "#", "id": "" },
+    //     "Python: Meta-Programming": { "href": "#", "id": "" },
+    // }
 }

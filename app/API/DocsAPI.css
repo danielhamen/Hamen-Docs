@@ -15,6 +15,10 @@
     min-height: 2px;
 }
 
+.docs\:hr.sub {
+    background: var(--docs-hr-sub);
+}
+
 h1,h2,h3,h4,h5,h6 {
     color: hsl(0deg, 9%, 26%);
     font-family: 'Exo 2', serif;

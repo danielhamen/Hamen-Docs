@@ -23,6 +23,7 @@
 
     /* Docs Elements: */
     --docs-hr: rgba(0, 0, 0, 0.08);
+    --docs-hr-sub: rgba(0, 0, 0, 0.04);
     --docs-inline-code: rgb(242, 51, 51);
     --docs-note-background: rgb(243, 239, 184);
     --docs-note-color: hsl(0, 8%, 23%);
