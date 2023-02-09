@@ -6,7 +6,7 @@ function selectOption(ID) {
 
     // Scroll to the option:
     let rect = option.parentElement.getBoundingClientRect();
-    document.querySelector(".docsj-tree-content").scrollTo({
+    document.querySelector(".docs-tree-content").scrollTo({
         top: rect.top - 90
     })
 }
