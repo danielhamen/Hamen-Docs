@@ -1022,7 +1022,7 @@ header > .header > .options > .mobile {
 
 /* Hide Link on Firefox: */
 @-moz-document url-prefix() {
-    .documentation-options {
+    .link-section {
         display: none !important;
     }
 } 
