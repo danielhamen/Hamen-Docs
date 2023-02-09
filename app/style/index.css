@@ -1019,3 +1019,10 @@ header > .header > .options > .mobile {
         border-top: 1px solid var(--border-mid);
     }
 }
+
+/* Hide Link on Firefox: */
+@-moz-document url-prefix() {
+    .documentation-options {
+        display: none !important;
+    }
+} 
