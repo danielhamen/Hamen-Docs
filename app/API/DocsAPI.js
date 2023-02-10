@@ -326,6 +326,29 @@ class ArticleBody {
     }; setCourseNavigator(courseNavigatorElement) {
         this.courseNavigator = courseNavigatorElement;
     };
+    
+    /**
+     * Set the page description for SEO
+     */
+    setMetaDescription(description)
+    {
+        let descMeta = document.createElement("meta");
+        descMeta.setAttribute("name", "description");
+        descMeta.setAttribute("content", description);
+        document.head.appendChild(descMeta);
+    };
+
+    /**
+     * Set the course tags
+    */
+    setMetaTags(tags = [])
+    {
+        let tagsMeta = document.createElement("meta");
+        tagsMeta.setAttribute("name", "keywords");
+        tagsMeta.setAttribute("content", tags.map((tag) => {
+            return tag.trim();
+        }).join(", "));
+    }
 }
 
 /* 

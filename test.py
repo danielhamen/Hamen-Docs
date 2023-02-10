@@ -72,8 +72,37 @@ Trope
 Unreliable Narrator
 Utopia
 Vignette
-Villanelle""".split("\n")
+Villanelle
+English literature
+Literary terms
+Novels
+Poetry
+Drama
+Figurative language
+Metaphor
+Simile
+Symbolism
+Irony
+Theme
+Characterization
+Plot
+Setting
+Genre
+Allusion
+Foreshadowing
+Personification
+Imagery
+Stream of consciousness
+Structuralism
+Postmodernism
+Modernism
+Romanticism""".split("\n")
 
+x = list(set(x))
+
+tags = []
 for i in x:
     i = i.strip()
-    print(f"\"{i}\": {{ \"href\": \"../{i.lower()}/index.html\", \"id\": \"{i.lower()}\" }},")
+    tags.append(i)
+
+print(f"<meta name=\"keywords\" content=\"{', '.join(tags)}\">")

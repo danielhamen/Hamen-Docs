@@ -255,4 +255,9 @@ window.addEventListener("load", () => {
     } else {
         setLightMode();
     }
+
+    // Set author:
+    let authorMeta = document.createElement("meta");
+    authorMeta.setAttribute("name", "author");
+    authorMeta.setAttribute("content", "Hamen");
 })
