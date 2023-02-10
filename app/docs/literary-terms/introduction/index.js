@@ -37,13 +37,14 @@ window.addEventListener("load", function () {
                 docsElements.boldText("Character") + ": The people or creatures who populate a literary work, and who drive the plot and reveal the themes",
                 docsElements.boldText("Setting") + ": The time and place in which a literary work is set, and which contributes to the atmosphere and tone",
                 docsElements.boldText("Theme") + ": The underlying message or meaning of a literary work, which is often revealed through the characters, plot, and setting"
-            ], "Though we'll cover each of these categories later in the course, here are a few examples of common literary terms that you may have heard of")
+            ], "Though we'll cover each of these categories later in the course, here are a few examples of common literary terms that you may have heard of"),
+            docsElements.p("In the next many tutorials, we will go over the most common Literary Devices, Literary Elements, Literary Movements, and Literary Theories")
         ].forEach(elem => {
             section.appendChild(elem);
         }); body.appendChild(section);
 
         /* Course Navigator: */
-        let courseNavigator = docsElements.courseNavigator("javascript:void(0);", "None", "../getting-started/index.html", "Getting Started");
+        let courseNavigator = docsElements.courseNavigator("javascript:void(0);", "None", "../metaphors/index.html", "Metaphors");
         body.setCourseNavigator(courseNavigator);
 
         /* Footer: */
