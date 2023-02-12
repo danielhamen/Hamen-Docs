@@ -126,8 +126,12 @@ const docsElements = {
         let wrapper = new ArticleElement("div", `<div class="header"><span class="material-symbols-outlined icon">expand_more</span><span class="label">${label}</span></div><div class="body">${innerHTML}</div>`, { "class": "docs-details-dropdown" + toggled });
 
         return wrapper;
-    }, noteText(text) {
-        let noteWrapper = new ArticleElement("div", `<span class="prefix text">Note: </span><span class="text label">${text}</span>`, { "class": "docs-note-text" });
+    }, noteText(text, prefix = "Note") {
+        if (prefix.endsWith(":") || prefix.endsWith(" ")) {
+            throw "ERROR: `docsElements.noteText( ... )` must not end with \":\" or \" \"";
+        }
+
+        let noteWrapper = new ArticleElement("div", `<span class="prefix text">${prefix}: </span><span class="text label">${text}</span>`, { "class": "docs-note-text" });
 
         return noteWrapper;
     }, horizontalAd() {
@@ -168,11 +172,21 @@ const docsElements = {
         else { width = "auto"; }
 
         return new ArticleElement("th", text, { "class": "text", "style": `width: ${width};text-align: ${alignment.toLowerCase()};vertical-align: ${justify.toLowerCase()};` });
-    }, inlineQuote(text, source = null) {
+    }, inlineQuote(text, source = null, italic = false) {
         if (!source) { source = "" };
 
-        return new ArticleElement("span", "&ldquo;" + text + "&rdquo;", { "title": source, "class": "docs:quote" });
-    }, subSection(innerHTML = [], title = "", level = 2, options = { "showHR": true }) {
+        return new ArticleElement("span", "&ldquo;" + text + "&rdquo;", { "title": source, "class": "docs:quote", "style": italic ? "font-style: italic;" : "font-style: normal;" });
+    },
+    
+    /**
+     * Produces inline italic text
+    */
+    inlineItalic(text)
+    {
+        return new ArticleElement("span", text, { "style": "font-style: italic;" });
+    },
+    
+    subSection(innerHTML = [], title = "", level = 2, options = { "showHR": true }) {
         level += 1;
 
         if (title.endsWith(":")) {
