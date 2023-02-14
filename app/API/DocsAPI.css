@@ -244,6 +244,10 @@ docs-code-block > code {
     background: rgba(255, 255, 255, 0.0);
 }
 
+.code\:tree {
+    color: #6edb80;
+}
+
 .code\:title {
     font-weight: bold;
     font-family: 'Sofia Sans Semi Condensed', sans-serif;
@@ -695,4 +699,87 @@ section > h2, h3, h4, h5, h6 {
 
 #content-title {
     color: var(--text-first);
+}
+
+.docs\:tabbed-interface {
+    width: 100%;
+    height: fit-content;
+    background: hsl(0deg, 0%, 92%);
+    border-radius: 1em;
+    border: 1px solid hsl(0deg, 0%, 80%);
+    overflow: hidden;
+}
+
+.docs\:tabbed-interface > .header {
+    background: hsl(0deg, 0%, 95%);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid hsl(0deg, 0%, 80%);
+    user-select: none;
+}
+
+.docs\:tabbed-interface > .header > .item {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 1em;
+    transition: 0.2s;
+    padding-top: calc(1em + 6px);
+    border-bottom: 0px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    padding-bottom: calc(1em + 6px);
+}
+
+.docs\:tabbed-interface > .header > .item:hover {
+    padding-bottom: 1em;
+    border-bottom: 6px solid #c6ddfa;
+    background: hsl(0deg, 0%, 93%);
+}
+
+.docs\:tabbed-interface > .header > .item.active:hover {
+    padding-bottom: 1em;
+    border-bottom: 6px solid #c6ddfa;
+    background: hsl(0deg, 0%, 93%);
+}
+
+.docs\:tabbed-interface > .header > .item:active {
+    padding-bottom: calc(1em + 1px);
+    border-bottom: 5px solid #9bb6d9;
+    background: hsl(0deg, 0%, 90%);
+}
+
+.docs\:tabbed-interface > .header > .item.active:active {
+    padding-bottom: calc(1em + 1px);
+    border-bottom: 5px solid #9bb6d9;
+    background: hsl(0deg, 0%, 90%);
+}
+
+.docs\:tabbed-interface > .header > .item.active {
+    padding-bottom: 1em;
+    border-bottom: 6px solid #b0cdf3;
+    /* border-radius: 1em; */
+}
+
+.docs\:tabbed-interface > .header > .item > span {
+    font-weight: 700;
+    color: hsl(0deg, 0%, 10%);
+}
+
+.docs\:tabbed-interface-tab {
+    display: none;
+}
+
+.docs\:tabbed-interface-tab.active {
+    display: block;
+}
+
+.docs\:tabbed-interface > .body {
+    width: 100%;
+    height: fit-content;
+    box-sizing: border-box;
+    padding: 2em;
+}
+
+.docs\:tabbed-interface-tab.active > ul:first-of-type {
+    margin-top: 0;
+    /* margin-bottom: 0; */
 }

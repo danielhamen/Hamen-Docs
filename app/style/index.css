@@ -374,6 +374,7 @@ docs-related-topics > ul,ol {
 
 .docs-tcs > .title.toggle > .chevron {
     font-size: 1.2em;
+    margin-left: auto;
     -webkit-transition: 0.2s;
     -o-transition: 0.2s;
     transition: 0.2s;

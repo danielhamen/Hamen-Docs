@@ -11,6 +11,20 @@ function selectOption(ID) {
     })
 }
 
+function objectToTree(obj, depth = 0, tab = "  ") {
+    let output = '';
+    const prefix = tab.repeat(depth);
+    for (const key in obj) {
+        if (typeof obj[key] === 'object') {
+            output += `${prefix}└───${key}\n`;
+            output += objectToTree(obj[key], depth + 1, tab);
+        } else {
+            output += `${prefix}└───${key}\n`;
+        }
+    }
+    return output;
+}
+
 const docsElements = {
     footer(date) {
         let footerElement = new ArticleElement("div", "", { "id": date, "class": "docs:footer" });
@@ -82,7 +96,7 @@ const docsElements = {
             lineText = lineText.replace(/^[ \t]+/gm, match => match.replace(/ /g, '&nbsp;').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;'));
 
             // Define a regular expression to match keywords
-            const regex = /\{(func|function|num|number|var|variable|comment|bool|esc|str|string|cls|class|lib|internal|int|terminal|term|out|output)\((.*?)\)\}/g;
+            const regex = /\{(func|function|num|number|var|variable|comment|bool|esc|str|string|cls|class|lib|internal|int|terminal|term|out|output|tree)\((.*?)\)\}/g;
 
             // Replace all matches with the appropriate <span> element
             lineText = lineText.replace(regex, (match, type, content) => {
@@ -172,7 +186,16 @@ const docsElements = {
         else { width = "auto"; }
 
         return new ArticleElement("th", text, { "class": "text", "style": `width: ${width};text-align: ${alignment.toLowerCase()};vertical-align: ${justify.toLowerCase()};` });
-    }, inlineQuote(text, source = null, italic = false) {
+    },
+    
+    /**
+     * Returns a quotation with `&lsquo;` and `&rdquo;` (curly quotes)
+     * @param {string} text The text inside the quote
+     * @param {string} source This text will be displayed when the user hovers over the quote
+     * @param {boolean} italic When `true`, the quote will be italicized
+     * @returns ArticleElements
+     */
+    inlineQuote(text, source = null, italic = false) {
         if (!source) { source = "" };
 
         return new ArticleElement("span", "&ldquo;" + text + "&rdquo;", { "title": source, "class": "docs:quote", "style": italic ? "font-style: italic;" : "font-style: normal;" });
@@ -185,8 +208,12 @@ const docsElements = {
     {
         return new ArticleElement("span", text, { "style": "font-style: italic;" });
     },
-    
-    subSection(innerHTML = [], title = "", level = 2, options = { "showHR": true }) {
+
+    /**
+     * Produces a sub-section (up to 6 levels)
+     */
+    subSection(innerHTML = [], title = "", level = 2, options = { "showHR": true })
+    {
         level += 1;
 
         if (title.endsWith(":")) {
@@ -206,6 +233,227 @@ const docsElements = {
         }
 
         return new ArticleElement("section", pre + title + `<div class="items">${innerHTML}</div>`, { "class": "sub-section level-" + level.toString() })
+    },
+
+    /**
+     * Returns a paragraph (like `docsElements.p( ... )`), but you can use specific codes and syntax to produce different elements
+     * 
+     * View https://www.hamen.tech/docs/docs-api/format-text for more info
+     */
+    formatText(text)
+    {
+        /*
+        Example syntax:
+        ```
+        Hello World                              :       Paragraph
+
+        $*Hello World*$                          :       Bold Text
+
+        $**Hello World**$                        :       Italic Text
+
+        $***Hello World***$                      :       Bold + Italic Text
+
+        $"Hello":"Barack Obama"$                 :       Quote (with "Barack Obama" as the source)
+
+        $`print("Hello World")`$                 :       Inline Code
+
+        $```
+        {func(print)}({str("Hello World!")})     :       Code Block
+        ```$
+
+        $[                                       :       Table (CSV for multiple columns)
+            {Goodbye}                            :       Table Header
+            (Hello World!)                       :       Table Cell
+        ]$
+
+        $u<                                      :       Unordered List (use TPN - "o": ordered list, "c": circular list- read https://www.hamen.tech/docs/docs-api/table-prefix-notation)
+            (*Arrays*: Over 50+ functions...)    :       List item
+        >$
+
+        $|Python is a great language|:Fact$      :       noteText
+
+        $INS(break)$                             :       Insert something
+            - "break"       :       same as <br>
+            - "br"          :       same as <br>
+            - Use any HTML code (eg. "$INS(nbsp)$")
+            - "emoji:..." inserts an emoji ("..." is its ID)
+            - "icon:..." inserts a Google Icon ("..." is its name (eg. "remove"))
+            - "tab"         :       inserts a tab
+            - "tab:1"       :       inserts a tab (size 1)
+            - "tab:2"       :       inserts a tab (size 2)
+            - "tab:4"       :       inserts a tab (size 4)
+            - "tab:8"       :       inserts a tab (size 8)
+
+        Note: Use a colon after any elements to create the title (if element supports title)
+        Note: Use "\" before the start "$" to use plain text
+        Note: HTML tags will not be displayed
+
+        ```
+        */
+
+        text = `
+            Hello $*World*$!
+        `;
+
+        /*
+        Example `RegExSyntax`:
+        {
+            // the regex to match the line:
+            "regex": ...,
+
+            // name of the matched element (not function or tag name):
+            "name": ...,
+
+            // description of the matched element:
+            "description": ...,
+
+            // URL to the documentation to this syntax:
+            "help": ...,
+
+            // the `docsElement` that will correspond to this match:
+            "equivalent": ...,
+
+            // a function that will convert the line to the code:
+            "match": function(match) { ... },
+
+            // a function to ensure that the match follows the correct syntax (return `0` for error):
+            "conditions": function(match) { ... },
+
+        }
+        */
+
+        const RegExSyntax = [
+            {
+                "regex": /\$\*([^\*]*)\*\$/,
+                "name": "Bold Text",
+                "description": "Create bold text",
+                "help": "https://www.hamen.tech/docs/docs-api/format-text#bold-text",
+                "equivalent": docsElements.boldText,
+
+                "callback": function(match, groups) {
+                    replace(regex, (match, ...groups) => {
+                        let replacement = "docsElements.boldText(";
+                        groups.forEach((group, index) => {
+                            replacement += `'${group}'`;
+                            if (index < groups.length - 1) {
+                            replacement += ", ";
+                            }
+                        });
+                        replacement += ")";
+                        return replacement;
+                    });
+                },
+
+                "conditions": function(match) {
+                    return 1;
+                }
+            }
+        ]
+
+        // Split text into lines:
+        text = text.trim();
+        text = text.split("\n");
+        text = text.map(line => {
+            return line.trim();
+        });
+
+        // Output code:
+        let HTML = [];
+
+        // Go through each line and convert it to the correct HTML:
+        text.forEach((line,i) => {
+            let isMatched = false;
+            RegExSyntax.forEach(syntax => {
+                // Match line:
+                let match = line.match(syntax["regex"]);
+
+                // Line matches the iterated regex:
+                if (match)
+                {
+                    console.log(match);
+                    // Ensure that there are no syntax errors:
+                    if (syntax["conditions"](match) == 0)
+                    {
+                        throw `Syntax Error: An error occurred when parsing line: \"${i}\":\n\t\"${line}\"\n\nIf you're unsure on the syntax for: \"${syntax["name"]}\", you can read more at: \"${syntax["help"]}\"`
+                    }
+
+                    // Add HTML to `HTML`:
+                    HTML.push(syntax["match"](line, syntax["regex"]));
+
+                    // Change `isMatched` so this isn't treated as a paragraph:
+                    isMatched = true;
+
+                    // Break so no other regex is checked:
+                    this.break;
+                }
+            })
+
+            // Line is most likely a paragraph:
+            if (!isMatched) {
+                HTML.push(docsElements.p(line));
+            }
+        })
+
+        return HTML;
+    },
+
+    /**
+     * Creates a file tree (similar to `tree` in CMD)
+     */
+    directoryTree(tree, root = null, title = "") {
+        let treeBody = "";
+
+        if (root) {
+            treeBody += root + "\n";
+        }
+
+        treeBody += objectToTree(tree, 0, "&emsp;&emsp;&emsp;&emsp;");
+        treeBody = treeBody.split("\n").slice(0, -1);
+        treeBody = treeBody.map(line => {
+            return `{tree(${line})}`;
+        })
+
+        return docsElements.codeBlock(treeBody, title);
+    },
+
+    /**
+     * Creates a tabbed interface
+     * 
+     * @param {array} content An array of `docsElements.tab( ... )`
+     * @param {array} titles An array of strings for the titles (eg. ["Chrome", "Firefox", "Safari"])
+     * @param {string} title (optional) the title of the Tabbed Interface
+     */
+    tabbedInterface(content, titles, defaultTitle, title = "")
+    {
+        content.forEach(tab => {
+            if (tab["attributes"]["tab-id"] === defaultTitle) {
+                tab["attributes"]["class"] += " active";
+                this.break;
+            }
+        });
+
+        let innerHTML = `
+<div class="header">
+${titles.map(title => {
+
+    let isActive = defaultTitle === title ? " active" : "";
+    return `<div class="item${isActive}"><span class="text">${title}</span></div>`;
+}).join("\n")}
+</div>
+<div class="body">
+${content.join("\n")}
+</div>
+        `;
+
+        return new ArticleElement("div", innerHTML, { "class": "docs\:tabbed-interface" });
+    },
+
+    /**
+     * Creates a tab used inside a Tabbed Interface
+     */
+    tab(innerHTML, label)
+    {
+        return new ArticleElement("div", innerHTML.join(""), { "class": `docs\:tabbed-interface-tab`, "tab-id": label });
     }
 }
 
@@ -694,6 +942,27 @@ Daniel
         if (reportSent === "true") {
             HamenAPI.logMessage("Report Sent!");
         }
+    }, makeTabbedInterface() {
+        Array.from(document.getElementsByClassName("docs:tabbed-interface")).forEach(interface => {
+            // Add click event listeners:
+            let items = Array.from(interface.querySelector(".header").querySelectorAll(".item"));
+            items.forEach(item => {
+                item.addEventListener("click", () => {
+                    Array.from(interface.querySelector(".body").getElementsByClassName("docs:tabbed-interface-tab")).forEach(tab => {
+                        tab.classList.remove("active");
+                        if (tab.getAttribute("tab-id") === item.innerText) {
+                            tab.classList.add("active");
+
+                        }
+                    })
+
+                    // Remove other items:
+                    interface.querySelector(".header").querySelector(".item.active").classList.remove("active");
+
+                    item.classList.add("active");
+                })
+            })
+        })
     }
 }
 
@@ -709,6 +978,7 @@ function makeElements(catchErrors = true) {
         try { DocsElements.addCodeBlockCopyIcon(); } catch (error) { };
         try { DocsElements.makeFooter(); } catch (error) { };
         try { DocsElements.makeDetailsDropdown(); } catch (error) { };
+        try { DocsElements.makeTabbedInterface(); } catch (error) { };
     } else {
         DocsElements.makeReportIssue();
         DocsElements.makeTreeBody();
@@ -720,6 +990,7 @@ function makeElements(catchErrors = true) {
         DocsElements.addCodeBlockCopyIcon();
         DocsElements.makeFooter();
         DocsElements.makeDetailsDropdown();
+        DocsElements.makeTabbedInterface();
     }
 }
 
