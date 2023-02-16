@@ -238,7 +238,10 @@
 }
 
 body {
-    overflow-x: hidden;
+    overflow-x: hidden !important;
+    -moz-overflow-x: hidden !important;
+    -webkit-overflow-x: hidden !important;
+    -ms-overflow-x: hidden !important;
 }
 
 .search-input {
