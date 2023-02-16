@@ -1,5 +1,5 @@
 const HamenAPI = {
-    logMessage(message, type = "INFO") {
+    logMessage(message, type = "INFO", sticky = falsew) {
         // Remove previous boxes:
         let boxes = document.getElementsByClassName("log\:log-box");
         while (boxes.length !== 0) {
@@ -36,12 +36,22 @@ const HamenAPI = {
         document.body.appendChild(infoBox);
 
         // Remove info box after 7 seconds:
-        setTimeout(function () {
-            infoBox.classList.add("hidden");
+        if (!sticky) {
             setTimeout(function () {
+                infoBox.classList.add("hidden");
+                setTimeout(function () {
+                    infoBox.remove();
+                }, 300)
+            }, 7000);
+        }
+    }, clearMessages() {
+        let infoBox = document.querySelector(".log\\:log-box");
+        if (infoBox) {
+            infoBox.classList.add("hidden");
+            setTimeout(function() {
                 infoBox.remove();
-            }, 300)
-        }, 7000);
+            }, 300);
+        }
     }, generateID(length = 6) {
         let id = "";
         let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
