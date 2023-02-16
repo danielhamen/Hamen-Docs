@@ -100,6 +100,20 @@ window.addEventListener("load", function () {
         }); body.appendChild(section);
 
         // VSCode 'Hamen API' extension - Eg. "You'll notice that there is no auto-correct when using the HamenAPI, ou can use the HamenAPI VSCode Extension"
+        section = layout.newSection("Hamen API Text-Editor Extension"); [
+            docsElements.p("If you're using a " + docsElements.anchorText("Text-Editor", "https://www.hamen.tech/articles/chosing-the-right-text-editor", "_blank") + ", you may have some issues regarding Intelisense / suggestions when using our API"),
+            docsElements.p("Because of this, we've created Extensions for each of the following Text-Editors:"),
+            docsElements.unorderedList([
+                docsElements.anchorText("Visual Studio Code", "#", "_blank"),
+                docsElements.anchorText("Visual Studio", "#", "_blank"),
+                docsElements.anchorText("Sublime Text", "#", "_blank"),
+                docsElements.anchorText("Atom (depreciated)", "#", "_blank"),
+                docsElements.anchorText("Backets", "#", "_blank")
+            ]),
+            docsElements.p("With the use of our extension, you can access Intellisense, and many other useful features for ease when using our API")
+        ].forEach(elem => {
+            section.appendChild(elem);
+        }); body.appendChild(section);
 
         /* Course Navigator: */
         let courseNavigator = docsElements.courseNavigator("../introduction/index.html", "Introduction to the Hamen API", "javascript:void(0);", "");
