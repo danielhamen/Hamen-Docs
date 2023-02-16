@@ -55,10 +55,51 @@ window.addEventListener("load", function () {
                     ], "To extract the archived API on Windows, you can follow these steps"),
                     docsElements.noteText("The specific steps for extracting ZIP files on different distributions of Linux may vary")
                 ], "Linux (Ubuntu)")
-            ], ["Windows", "Linux (Ubuntu)", "MacOS"], "Windows")
+            ], ["Windows", "Linux (Ubuntu)", "MacOS"], "Windows"),
+            docsElements.p("Now that you have the API archive extracted, you can add it to your project"),
+            docsElements.directoryTree({
+                "index.html": 0,
+                "js": {
+                    "script.js": 0
+                }
+            }, "project/", "As an example, consider the following project directory"),
+            docsElements.p("This file tree contains an " + docsElements.inlineCode("index.html") + " file and a " + docsElements.inlineCode("./js") + " directory that contains a " + docsElements.inlineCode("script.js") + " file. If you want to use the HamenAPI in your project, you need to copy the extracted API files to the same directory as " + docsElements.inlineCode("index.html") + " and " + docsElements.inlineCode("script.js") + ""),
+
+            docsElements.p("To do this, go to the directory where you extracted the " + docsElements.inlineCode("HamenAPI.zip") +" archive, and find the " + docsElements.inlineCode("./HamenAPI") +" folder to the " + docsElements.inlineCode("./project") +" directory"),
+            docsElements.directoryTree({
+                "index.html": 0,
+                "js": {
+                    "script.js": 0
+                },
+                "HamenAPI": {
+                    "README.md": 0,
+                    "HamenAPI.js": 0,
+                    "HamenAPI_Arrays.js": 0,
+                }
+            }, "project/", "Once you have moved the " + docsElements.inlineCode("./HamenAPI") + " folder to the " + docsElements.inlineCode("./project") + " directory, your file tree should look like this"),
+            docsElements.noteText("You can delete " + docsElements.inlineCode("README.md") + " from your project file if you want"),
+            docsElements.p("Now that you have added the HamenAPI to your project directory, you need to import it into your HTML and JavaScript files"),
+            docsElements.p("To import the API into your HTML file, add the following code to the " + docsElements.inlineCode("&lt;head&gt;") + " section of your " + docsElements.inlineCode("index.html") + " file"),
+            docsElements.codeBlock([
+                "{comment(&lt;!-- Inside HTML File ... --&gt;)}",
+                "&lt;{html-tag(script)} {html-attr(type)}={str(\"text/javascript\")} {html-attr(src)}={str(\"HamenAPI/HamenAPI.js\")}&gt;&lt;/{html-tag(script)}&gt;",
+                "&lt;{html-tag(script)} {html-attr(type)}={str(\"text/javascript\")} {html-attr(src)}={str(\"HamenAPI/HamenAPI_Arrays.js\")}&gt;&lt;/{html-tag(script)}&gt;"
+            ]),
+            docsElements.p("Note that you should modify the " + docsElements.inlineCode("src") + " attribute of the " + docsElements.inlineCode("&lt;script&gt;") + " tags to match the relative path to your " + docsElements.inlineCode("HamenAPI") + " directory"),
+            docsElements.p("If you have additional API files that you want to import, include them using additional " + docsElements.inlineCode("&lt;script&gt;") + " tags"),
+            docsElements.p("Once you have imported the HamenAPI into your HTML file, you can use it in your JavaScript code"),
+            docsElements.codeBlock([
+                "{comment(// Inside `script.js` ...)}",
+                "{var(myArray)} = [{num(1)}, {num(2)}, {num(3)}]",
+                "{var(myArray)} = {lib(HamenAPI)}.{cls(Arrays)}.{func(reversed)}( {var(myArray)} )",
+                "{cls(console)}.{func(log)}( {var(myArray)} )",
+                "{term()}{out([3, 2, 1])}"
+            ], "For example, to use the " + docsElements.inlineCode("reversed") + " function in the " + docsElements.inlineCode("HamenAPI_Arrays.js") + " file, you can add the following code to your " + docsElements.inlineCode("script.js") + " file")
         ].forEach(elem => {
             section.appendChild(elem);
         }); body.appendChild(section);
+
+        // VSCode 'Hamen API' extension - Eg. "You'll notice that there is no auto-correct when using the HamenAPI, ou can use the HamenAPI VSCode Extension"
 
         /* Course Navigator: */
         let courseNavigator = docsElements.courseNavigator("../introduction/index.html", "Introduction to the Hamen API", "javascript:void(0);", "");

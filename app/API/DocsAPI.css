@@ -159,7 +159,20 @@ docs-code-block {
     color: rgb(87, 157, 214);
 }
 
-.code\:class,.code\:cls,.code\:lib {
+.code\:lib,.code\:mod {
+    color: rgb(25, 245, 69);
+    /* font-weight: 400; */
+}
+
+.code\:html-tag {
+    color: rgb(146, 179, 255);
+}
+
+.code\:html-attr {
+    color: #88e886;
+}
+
+.code\:class,.code\:cls {
     color: rgb(132, 221, 124);
 }
 
@@ -245,7 +258,7 @@ docs-code-block > code {
 }
 
 .code\:tree {
-    color: #6edb80;
+    color: #7cc589;
 }
 
 .code\:title {
@@ -708,6 +721,7 @@ section > h2, h3, h4, h5, h6 {
     border-radius: 1em;
     border: 1px solid hsl(0deg, 0%, 80%);
     overflow: hidden;
+    margin-bottom: 2em;
 }
 
 .docs\:tabbed-interface > .header {
@@ -770,6 +784,10 @@ section > h2, h3, h4, h5, h6 {
 
 .docs\:tabbed-interface-tab.active {
     display: block;
+}
+
+.docs\:tabbed-interface-tab.active > ul > li,.docs\:tabbed-interface-tab.active > ul > p {
+    color: #625b5b !important;
 }
 
 .docs\:tabbed-interface > .body {

@@ -153,6 +153,7 @@ window.addEventListener("load", () => {
     darkMode.addEventListener("click", function() {
         if (this.innerHTML.trim() === "Dark Mode") {
             setDarkMode();
+            HamenAPI.logMessage("Dark Mode is not 100% supported; bugs may be discovered! 🐛🦟🐞", "WARNING");
         } else {
             setLightMode();
         }
