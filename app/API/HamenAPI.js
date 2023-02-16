@@ -1,5 +1,5 @@
 const HamenAPI = {
-    logMessage(message, type = "INFO", sticky = falsew) {
+    logMessage(message, type = "INFO", sticky = false) {
         // Remove previous boxes:
         let boxes = document.getElementsByClassName("log\:log-box");
         while (boxes.length !== 0) {
