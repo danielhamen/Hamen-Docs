@@ -234,35 +234,131 @@
                         })
                     </script>
                 </div>
-                <div class="top-courses">
-                    <span id="top-courses" class="fade-in">Top Courses:</span>
+                <script type="text/javascript">
+                    function checkDeviceWidth() {
+                        if (window.innerWidth <= 600) {
+                            HamenAPI.logMessage("Our site works best on Desktop devices", "WARNING", true);
+                        } else {
+                            HamenAPI.clearMessages();
+                        }
+                    }
+
+                    window.addEventListener("load", function() {
+                        checkDeviceWidth();
+                        window.addEventListener("resize", function(e) {
+                            checkDeviceWidth();
+                        })
+                    })
+                </script>
+                <script type="text/javascript">
+                    window.addEventListener("load", function() {
+                        let items = document.querySelectorAll("hmn-bc-item");
+                        while (items.length > 0) {
+                            let item = items[0];
+
+                            let size = "";
+                            if (item.getAttribute("size")) {
+                                size = "style=\"height: " + item.getAttribute("size") + ";\"";
+                            }
+
+                            let newItem = document.createElement("div");
+
+                            // Get 'href':
+                            let href = item.getAttribute("href");
+                            if (!href) {
+                                href = "https://www.hamen.tech/error-pages/404.html";
+                            }; newItem.setAttribute("onclick", `window.location.assign('${href}')`);
+
+                            newItem.classList.add("item");
+                            newItem.innerHTML = `<div class="image"><img ${size} src="${item.getAttribute("icon")}"></div><span class="title">${item.innerHTML}</span><span class="description">Learn how to do something. Especially lorem ipsum domer lsi</span>`;
+
+                            item.parentElement.replaceChild(newItem, item);
+                            items = document.querySelectorAll("hmn-bc-item");
+                        }
+                    })
+                </script>
+                <div class="browse-courses">
+                    <span id="browse-courses" class="fade-in">Browse Courses:</span>
                     <svg style="background: #20242a;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="280" viewBox="0 0 1920 280"><defs><filter id="Path_1" x="0" y="0" width="1920" height="280" filterUnits="userSpaceOnUse"><feOffset dy="3" input="SourceAlpha" /><feGaussianBlur stdDeviation="49.5" result="blur" /><feFlood flood-opacity="0.239" /><feComposite operator="in" in2="blur" /><feComposite in="SourceGraphic" /></filter></defs><g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Path_1)"><path id="Path_1-2" data-name="Path 1" d="M 1920 1080 S 1601 1153 1257 1144 S 849 1108 542 1096 S 0 1133 0 1133 V 1329 H 1920 Z" transform="translate(0 -1000)" fill="#c6f3cc" /></g></svg>
                     <div class="background"></div>
                     <div class="items">
-                        <div class="course fade-in" delay="50ms">
-                            <span class="title">Code:</span>
-                            <div class="item"><span>HTML</span></div>
-                            <div class="item" onclick="window.location.assign('docs/python-course/index.html');"><span>Python</span></div>
-                            <div class="item"><span>Javascript</span></div>
-                            <button type="button" class="view-more a">View More</button>
+                        <div class="item">
+                            <h3 class="title no-link">Code:</h3>
+                            <div class="content" draggable="true">
+                                <hmn-bc-item href="docs/python-course/index.html" icon="images/docs-icons/python-logo.png">Python Course</hmn-bc-item>
+                                <hmn-bc-item href="docs/hamen-api/index.html" icon="images/hamen.png">Hamen API (JS)</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/ISO_C%2B%2B_Logo.svg/1822px-ISO_C%2B%2B_Logo.svg.png">C++ Course</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/1/19/C_Logo.png?20201023095457">C Course</hmn-bc-item>
+                                <hmn-bc-item icon="https://1000logos.net/wp-content/uploads/2020/09/Java-Logo.png">Java Course</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png?20170517184425">HTML Course</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/CSS3_logo_and_wordmark.svg/363px-CSS3_logo_and_wordmark.svg.png?20160530175649">CSS Course</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Javascript-shield.svg/397px-Javascript-shield.svg.png?20180912181046">Javascript (Web) Course</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/512px-Unofficial_JavaScript_logo_2.svg.png?20141107110902">Javascript  Course</hmn-bc-item>
+                            </div>
                         </div>
-                        <div class="course fade-in" delay="100ms">
-                            <span class="title">Software:</span>
-                            <div class="item"><span>Adobe Photoshop</span></div>
-                            <div class="item"><span>Microsoft Excel</span></div>
-                            <div class="item"><span>AutoCAD</span></div>
-                            <button type="button" class="view-more b">View More</button>
+                        <div class="item-separator"></div>
+                        <!-- <div class="item">
+                            <h3 class="title no-link">Math:</h3>
+                            <div class="content" draggable="true">
+                                <hmn-bc-item icon="images/docs-icons/python-logo.png">Basic Math</hmn-bc-item>
+                            </div>
                         </div>
-                        <div class="course fade-in" delay="150ms">
-                            <span class="title">Science:</span>
-                            <div class="item"><span>Electromagnetism</span></div>
-                            <div class="item"><span>Refraction</span></div>
-                            <div class="item"><span>Cells</span></div>
-                            <button type="button" class="view-more c">View More</button>
+                        <div class="item-separator"></div> -->
+                        <div class="item">
+                            <h3 class="title no-link">Biology:</h3>
+                            <div class="content" draggable="true">
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Cell_Cycle_2.svg/640px-Cell_Cycle_2.svg.png" size="70%">The Cell Cycle</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Digestive_system_-_Intestine_3_--_Smart-Servier.png/640px-Digestive_system_-_Intestine_3_--_Smart-Servier.png">The Digestive System</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Respiratory_system_-_Pneumothorax_1_--_Smart-Servier.png/640px-Respiratory_system_-_Pneumothorax_1_--_Smart-Servier.png">The Respiratory System</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/439-monkey-face.svg/640px-439-monkey-face.svg.png">Genetics and Evolution</hmn-bc-item>
+                                <hmn-bc-item size="90%" icon="https://img.freepik.com/premium-vector/human-brain-organ-vector-hand-drawn-doodle-line-style-cartoon-character-logo-illustration-isolated-onw-hite-background-human-brain-organ-anatomy-logo-concept_92289-3239.jpg">Neuroscience</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/201405_retina.png/640px-201405_retina.png">The Eyeball</hmn-bc-item>
+                            </div>
                         </div>
+                        <!-- <div class="item-separator"></div>
+                        <div class="item">
+                            <h3 class="title no-link">English:</h3>
+                            <div class="content" draggable="true">
+                                <hmn-bc-item icon="images/docs-icons/python-logo.png">Literary Devices</hmn-bc-item>
+                            </div>
+                        </div> -->
+                        <div class="item-separator"></div>
+                        <div class="item">
+                            <h3 class="title no-link">Adobe Software:</h3>
+                            <div class="content" draggable="true">
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/1200px-Adobe_Premiere_Pro_CC_icon.svg.png">Adobe Premiere Pro</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/1051px-Adobe_After_Effects_CC_icon.svg.png">Adobe After Effects</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/1200px-Adobe_Photoshop_CC_icon.svg.png">Adobe Photoshop</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/800px-Adobe_Illustrator_CC_icon.svg.png">Adobe Illustrator</hmn-bc-item>
+                                <hmn-bc-item icon="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Adobe_Photoshop_Lightroom_CC_logo.svg/512px-Adobe_Photoshop_Lightroom_CC_logo.svg.png?20200616120137">Adobe Lightroom</hmn-bc-item>
+                            </div>
+                        </div>
+                        <div class="item-separator"></div>
                     </div>
                 </div>
             </div>
 		</main>
 	</body>
 </html>
+
+<!-- <div class="course fade-in" delay="50ms">
+    <span class="title">Code:</span>
+    <div class="item"><span>HTML</span></div>
+    <div class="item" onclick="window.location.assign('docs/python-course/index.html');"><span>Python</span></div>
+    <div class="item"><span>Javascript</span></div>
+    <button type="button" class="view-more a">View More</button>
+</div>
+<div class="course fade-in" delay="100ms">
+    <span class="title">Software:</span>
+    <div class="item"><span>Adobe Photoshop</span></div>
+    <div class="item"><span>Microsoft Excel</span></div>
+    <div class="item"><span>AutoCAD</span></div>
+    <button type="button" class="view-more b">View More</button>
+</div>
+<div class="course fade-in" delay="150ms">
+    <span class="title">Science:</span>
+    <div class="item"><span>Electromagnetism</span></div>
+    <div class="item"><span>Refraction</span></div>
+    <div class="item"><span>Cells</span></div>
+    <button type="button" class="view-more c">View More</button>
+</div> -->
