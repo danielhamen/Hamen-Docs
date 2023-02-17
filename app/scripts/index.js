@@ -36,6 +36,9 @@ function setLightMode(changeStorage = true) {
         "--nav-bar-items-color":        "#545b68"
     };
 
+    // Remove "dark-mode" from every element:
+    Array.from(document.querySelectorAll(".dark-mode")).forEach(elem => { elem.classList.remove("dark-mode"); })
+
     let root = document.querySelector(":root");
     Array.from(Object.keys(colors)).forEach(key => {
         key = key.toLowerCase();
@@ -50,6 +53,12 @@ function setDarkMode(changeStorage = true) {
     if (changeStorage) {
         localStorage.setItem("hamen-docs-dark-mode", "true");
     }
+
+    // Add "dark-mode" to every element:
+    let children = document.querySelector("main");
+    Array.from(children.querySelectorAll("*")).forEach(elem => {
+        elem.classList.add("dark-mode");
+    })
 
     const colors = {
         "--text-first":                 "hsl(0deg, 9%, 100%)",
@@ -220,7 +229,7 @@ window.addEventListener("load", () => {
     headings.forEach(heading => {
         if (!heading.classList.contains("no-link")) {
             let id = "UEID-" + i.toString();
-    
+
             let linkSpan = document.createElement("span");
             linkSpan.id = id;
             linkSpan.classList.add("material-symbols-outlined");
@@ -234,6 +243,8 @@ window.addEventListener("load", () => {
             })
     
             heading.appendChild(linkSpan);
+
+            i++;
         }
     })
 

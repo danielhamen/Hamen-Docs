@@ -162,7 +162,8 @@ docs-code-block {
 }
 
 .code\:internal,
-.code\:int {
+.code\:int,
+.code\:prestr {
     color: rgb(87, 157, 214);
 }
 
@@ -480,7 +481,7 @@ docs-code-block:hover>.code\:copy-code-block {
     color: var(--docs-note-color);
 }
 
-.docs-note-text>.label>a {
+.docs-note-text>.label>a.dark-mode {
     color: #4f83d9;
 }
 
@@ -681,7 +682,7 @@ select {
 /* Table: */
 .docs\:table {
     width: 100%;
-    outline: 1px solid #d9d9d9;
+    border: 1px solid #d9d9d9;
     -webkit-box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.1);
     border-collapse: collapse;

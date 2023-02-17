@@ -10,11 +10,13 @@ const treeBody = {
     }, "Variables & Data Types": {
         "Python: Variables": { "href": "../python-variables/index.html", "id": "python-variables" },
         "Python: Data Types": { "href": "../python-data-types/index.html", "id": "python-data-types" },
-        // "Python: Strings": { "href": "../python-strings/index.html", "id": "python-strings" },
+        "Python: Strings": { "href": "../python-strings/index.html", "id": "python-strings" },
+        "Python: Numbers": { "href": "../python-numbers/index.html", "id": "python-numbers" },
+        "Python: Booleans": { "href": "../python-booleans/index.html", "id": "python-booleans" },
         // "Python: Integers": { "href": "../python-integers/index.html", "id": "python-integers" },
         // "Python: Floats": { "href": "../python-floats/index.html", "id": "python-floats" },
         // "Python: Booleans": { "href": "../python-booleans/index.html", "id": "python-booleans" },
-        "Python: Operators": { "href": "#", "id": "comments" },
+        "Python: Operators": { "href": "../python-operators/index.html", "id": "python-operators" },
     }, "Data Structures": {
         "Python: Data Structures": { "href": "#", "id": "" },
         "Python: Lists": { "href": "#", "id": "" },

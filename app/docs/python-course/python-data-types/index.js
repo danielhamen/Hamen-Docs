@@ -99,72 +99,160 @@ window.addEventListener("load", function () {
                 docsElements.p("Like Integers, and Floats, you can perform arithmetic operations on complex numbers in Python"),
                 docsElements.p("It's also worth noting that the real component of a complex number can be any real number, including floating-point numbers and decimal numbers. The imaginary component must be an integer or a floating-point number"),
                 docsElements.noteText("Python follows the Order of Operations (BEDMAS) when evaluating an expression")
-            ], "4. Complex"),
-            docsElements.subSection([
-                docsElements.p("The " + docsElements.inlineCode("bool") + " type in Python represents a boolean value, which is either " + docsElements.inlineCode("True") + " or " + docsElements.inlineCode("False")),
-                docsElements.p("The boolean type is commonly used in control flow statements and other logic operations"),
-                docsElements.codeBlock([
-                    "{var(x)} = {bool(True)}",
-                    "{func(print)}({var(x)})",
-                    "{term()}{out(True)}"
-                ], "Here is an example of how to define a boolean value in Python"),
-                docsElements.codeBlock([
-                    "{var(x)} = {bool(True)}",
-                    "{var(y)} = {bool(False)}",
-                    "{func(print)}({var(x)} {int(and)} {var(y)}) {comment(# Checks whether both variables are `True`)}",
-                    "{term()}{out(False)}",
-                    "",
-                    "{func(print)}({var(x)} {int(or)} {var(y)}) {comment(# Checks whether one, or both variables are `True`)}",
-                    "{term()}{out(True)}",
-                    "",
-                    "{func(print)}({int(not)} {var(x)}) {comment(# Inverts the boolean (`False` -> `True` and vice-versa))}",
-                    "{term()}{out(False)}",
-                    "",
-                    "{func(print)}({var(x)} {int(is)} {bool(True)}) {comment(# Checks whether `x` is equal to True (similar to `==`, but for booleans))}",
-                    "{term()}{out(False)}"
-                ], "You can perform operations on boolean values in Python using the " + docsElements.inlineCode("and") + ", " + docsElements.inlineCode("or") + ", " + docsElements.inlineCode("is") + ", and " + docsElements.inlineCode("not") + " operators"),
-                docsElements.codeBlock([
-                    "{var(x)} = {num(5)}",
-                    "{var(y)} = {num(10)}",
-                    "{func(print)}({var(x)} == {var(y)})",
-                    "{term()}{out(False)}",
-                    "",
-                    "{func(print)}({var(x)} != {var(y)})",
-                    "{term()}{out(True)}",
-                    "",
-                    "{func(print)}({var(x)} < {var(y)})",
-                    "{term()}{out(True)}"
-                ], "Boolean values can also be used in comparisons, such as " + docsElements.inlineCode("==") + ", " + docsElements.inlineCode("!=") + ", " + docsElements.inlineCode("<") + ", " + docsElements.inlineCode(">") + ", " + docsElements.inlineCode("<=") + ", and " + docsElements.inlineCode(">=") + ""),
-                docsElements.unorderedList([
-                    docsElements.listItem(docsElements.inlineCode("None")),
-                    docsElements.listItem(docsElements.inlineCode("False")),
-                    "Zero of any numeric type, for example, " + docsElements.inlineCode("0") + ", " + docsElements.inlineCode("0.0") + ", " + docsElements.inlineCode("0j"),
-                    "Empty sequences, for example, " + docsElements.inlineCode("''") + ", " + docsElements.inlineCode("[]") + ", " + docsElements.inlineCode("()") + "",
-                    "Empty collections, for example, " + docsElements.inlineCode("{}") + ", " + docsElements.inlineCode("set()")
-                ], "It's also worth noting that any value in Python can be evaluated as a boolean in a conditional statement. The following values are considered False in a boolean context"),
-                docsElements.p("All other values are considered " + docsElements.inlineCode("True")),
-                docsElements.noteText("You will learn more about comparison operators (eg. " + docsElements.inlineCode("and") + ", " + docsElements.inlineCode("not") + ", " + docsElements.inlineCode("==") + ", " + docsElements.inlineCode(">") + ", etc) in the " + docsElements.anchorText("Operators Tutorial", "../python-operators/index.html", "_self"))
-            ], "5. Booleans"),
-            docsElements.subSection([
-            ], "6. Lists"),
-            docsElements.subSection([
-            ], "7. Tuples"),
-            docsElements.subSection([
-            ], "8. Sets"),
-            docsElements.subSection([
-            ], "9. Frozen Sets"),
-                docsElements.subSection([
-            ], "10. Ranges"),
-            docsElements.subSection([
-            ], "11. Dictionaries"),
-            docsElements.subSection([
-            ], "12. Bytes"),
-            docsElements.subSection([
-            ], "13. Byte Arrays"),
-            docsElements.subSection([
-            ], "14. Memory Views"),
-            docsElements.subSection([
-            ], "15. NoneType")
+            ], "4. Complex")
+            // docsElements.subSection([
+            //     docsElements.p("A " + docsElements.inlineCode("list()") + " in Python represents a is one of the most commonly used data type"),
+            //     docsElements.p("Lists are used to store a collection, or sequence of items, which can be of different data types"),
+            //     docsElements.p("To create a list in Python, enclose a sequence of values inside square brackets, separated by commas"),
+            //     docsElements.codeBlock([
+            //         "{var(my_list)} = [{num(1)}, {num(2)}, {num(3)}, {num(4)}, {num(5)}]"
+            //     ], "Here's an example"),
+            //     docsElements.codeBlock([
+            //         "{var(my_list)} = []",
+            //         "{var(my_list)}.{func(push)}({num(1)})",
+            //         "{var(my_list)}.{func(push)}({num(2)})",
+            //         "{var(my_list)}.{func(push)}({num(3)})",
+            //         "",
+            //         "{func(print)}({var(my_list)})",
+            //         "{term()}{out([1, 2, 3])}"
+            //     ], "You can also create an empty list and add elements to it later"),
+            //     docsElements.subSection([
+            //         docsElements.p("To access an element in a list, use square brackets and the index of the element"),
+            //         docsElements.codeBlock([
+            //             "{var(my_list)} = [{num(1)}, {num(2)}, {num(3)}, {num(4)}, {num(5)}]",
+            //             "{func(print)}({var(my_list)}[{num(0)}]) {comment(# Output: 1)}",
+            //             "{func(print)}({var(my_list)}[{num(2)}]) {comment(# Output: 3)}"
+            //         ]),
+            //         docsElements.codeBlock([
+            //             "{var(my_list)} = [{num(1)}, {num(2)}, {num(3)}, {num(4)}, {num(5)}]",
+            //             "{func(print)}({var(my_list)}[-{num(1)}]) {comment(# Output: 5)}",
+            //             "{func(print)}({var(my_list)}[-{num(3)}]) {comment(# Output: 3)}"
+            //         ], "You can also use negative indexing to access elements from the end of the list"),
+            //         docsElements.noteText("Python uses 0-based indexing, which means that the first element has an index of 0")
+            //     ], "Accessing Elements in a List", 3),
+            //     docsElements.subSection([
+            //         docsElements.p("You can access a range of elements in a list using slicing"),
+            //         docsElements.p("Slicing is done using the colon (" + docsElements.inlineCode(":") + ") operator"),
+            //         docsElements.codeBlock([
+            //             "[",
+            //             "\tstart:",
+            //             "\tstop:",
+            //             "\tstep:",
+            //             "]"
+            //         ], "The syntax for slicing is"),
+            //         docsElements.codeBlock([
+            //             "{var(my_list)} = [{num(1)}, {num(2)}, {num(3)}, {num(4)}, {num(5)}]",
+            //             "{func(print)}({var(my_list)}[{num(1)}:{num(3)}])  &emsp;&emsp; {comment(# Output: [2, 3])}",
+            //             "{func(print)}({var(my_list)}[{num(1)}:])          &emsp;&emsp;&emsp; {comment(# Output: [2, 3, 4, 5])}",
+            //             "{func(print)}({var(my_list)}[:{num(3)}])          &emsp;&emsp;&emsp; {comment(# Output: [1, 2, 3])}",
+            //             "{func(print)}({var(my_list)}[::{num(2)}])         &emsp;&emsp; {comment(# Output: [1, 3, 5])}",
+            //             "{func(print)}({var(my_list)}[::-{num(1)}])        &emsp; {comment(# Output: [5, 4, 3, 2, 1])}"
+            //         ], "For example")
+            //     ], "Slicing Lists", 3),
+            //     docsElements.subSection([
+            //         docsElements.p("Lists are mutable, which means that you can modify them by changing the values of their elements"),
+            //         docsElements.p("You can also add or remove elements from a list"),
+            //         docsElements.codeBlock([
+            //             "{var(my_list)} = [{num(1)}, {num(2)}, {num(3)}, {num(4)}, {num(5)}]",
+            //             "{var(my_list)}[{num(0)}] = {num(0)}          {comment(# Modify the first element)}",
+            //             "{func(print)}({var(my_list)})",
+            //             "{term()}{out([0, 2, 3, 4, 5])}",
+            //             "",
+            //             "{var(my_list)}.{func(append)}({num(6)})       {comment(# Add an element to the end of the list)}",
+            //             "{func(print)}({var(my_list)})",
+            //             "{term()}{out([0, 2, 3, 4, 5, 6])}",
+            //             "",
+            //             "{int(del)} {var(my_list)}[{num(2)}]          {comment(# Remove the third element)}",
+            //             "{func(print)}({var(my_list)})",
+            //             "{term()}{out([0, 2, 4, 5, 6])}"
+            //         ], "Here's an example")
+            //     ], "Modifying Lists", 3)
+            // ], "6. Lists"),
+            // docsElements.subSection([
+            //     docsElements.p("Tuples are similar to lists, but they are immutable, which means that you cannot modify them once they are created"),
+            //     docsElements.p("Tuples are also created using parentheses instead of square brackets"),
+            //     docsElements.p("To create a tuple in Python, enclose a sequence of values inside parentheses, separated by commas"),
+            //     docsElements.codeBlock([
+            //         "{var(my_tuple)} = ({num(1)}, {num(2)}, {num(3)}, {num(4)}, {num(5)})"
+            //     ], "Here's an example"),
+            //     docsElements.codeBlock([
+            //         "{var(my_singleton_tuple)} = ({num(1)},)"
+            //     ],  "You can also create a tuple with a single element by including a trailing comma after the element"),
+            //     docsElements.p("Furthermore, the syntax for accessing elements in a tuple is the same as for accessing elements in a list")
+            // ], "7. Tuples"),
+            // docsElements.subSection([
+            //     docsElements.p("A set is an unordered collection of unique elements"),
+            //     docsElements.p("Sets are created using curly braces " + docsElements.inlineCode("{}") + " or by using the " + docsElements.inlineCode("set()") + " constructor"),
+            //     docsElements.codeBlock([
+            //         "{var(my_set)} = \{{num(1)}, {num(2)}, {num(3)}, {num(4)}, {num(5)}\}"
+            //     ], "Here's an example"),
+            //     docsElements.subSection([
+            //         docsElements.p("Sets have built-in methods for adding and removing elements"),
+            //         docsElements.p("You can add an element to a set using the " + docsElements.inlineCode("add()") +" method"),
+            //         docsElements.codeBlock([
+            //             "{var(my_set)} = {{num(1)}, {num(2)}, {num(3)}}",
+            //             "{var(my_set)}.{func(add)}({num(4)})",
+            //             "{func(print)}({var(my_set)})",
+            //             "{term()}{out({ 1, 2, 3, 4})}"
+            //         ], "Here's an example"),
+            //         docsElements.p("You can remove an element from a set using the " + docsElements.inlineCode("remove()") + " method"),
+            //         docsElements.p("If the element is not in the set, this method will raise a " + docsElements.inlineCode("KeyError")),
+            //         docsElements.codeBlock([
+            //             "{var(my_set)} = {{num(1)}, {num(2)}, {num(3)}}",
+            //             "{var(my_set)}.{func(remove)}({num(2)})",
+            //             "{func(print)}({var(my_set)})",
+            //             "{term()}{out({1, 3})}"
+            //         ]),
+            //         docsElements.p("To avoid raising a " + docsElements.inlineCode("KeyError") + ", you can use the " + docsElements.inlineCode("discard()") + " method instead"),
+            //         docsElements.codeBlock([
+            //             "{var(my_set)} = {{num(1)}, {num(2)}, {num(3)}}",
+            //             "{var(my_set)}.{func(discard)}({num(2)})",
+            //             "{func(print)}({var(my_set)})",
+            //             "{term()}{out({1, 2})}"
+            //         ])
+            //     ], "Adding and Removing Elements"),
+            //     docsElements.subSection([
+            //         docsElements.p("Python sets support a number of set operations, such as union, intersection, and difference"),
+            //         docsElements.codeBlock([
+            //             "{var(set_a)} = {{num(1)}, {num(2)}, {num(3)}}",
+            //             "{var(set_b)} = {{num(2)}, {num(3)}, {num(4)}}",
+            //             "",
+            //             "{comment(# Union of two sets)}",
+            //             "{var(set_c)} = {var(set_a)} | {var(set_b)}",
+            //             "{func(print)}({var(set_c)})",
+            //             "{term()}{out({1, 2, 3, 4})}",
+            //             "",
+            //             "{comment(# Intersection of two sets)}",
+            //             "{var(set_d)} = {var(set_a)} & {var(set_b)}",
+            //             "{func(print)}({var(set_d)})",
+            //             "{term()}{out({2, 3})}",
+            //             "",
+            //             "{comment(# Difference of two sets)}",
+            //             "{var(set_e)} = {var(set_a)} - {var(set_b)}",
+            //             "{func(print)}({var(set_e)})",
+            //             "{term()}{out({1})}"
+            //         ], "Here are a few examples"),
+            //         docsElements.unorderedList([
+            //             docsElements.boldText("Union") + " ( " + docsElements.inlineCode("|") + " ) : Combines all unique elements from two sets",
+            //             docsElements.boldText("Intersection") + " ( " + docsElements.inlineCode("&") + " ) : Returns all the elements that are common to both sets",
+            //             docsElements.boldText("Difference ") + " ( " + docsElements.inlineCode("-") + " ) : Returns all the elements that are in one set but not in the other",
+            //         ], "In this example, we can see that")
+            //     ], "Set Operations")
+            // ], "8. Sets"),
+            // docsElements.subSection([
+            // ], "9. Frozen Sets"),
+            //     docsElements.subSection([
+            // ], "10. Ranges"),
+            // docsElements.subSection([
+            // ], "11. Dictionaries"),
+            // docsElements.subSection([
+            // ], "12. Bytes"),
+            // docsElements.subSection([
+            // ], "13. Byte Arrays"),
+            // docsElements.subSection([
+            // ], "14. Memory Views"),
+            // docsElements.subSection([
+            // ], "15. NoneType")
         ].forEach(elem => {
             section.appendChild(elem);
         }); body.appendChild(section);
@@ -231,7 +319,7 @@ window.addEventListener("load", function () {
         body.setCourseNavigator(courseNavigator);
 
         /* Footer: */
-        let footer = docsElements.footer("January 30th, 2023");
+        let footer = docsElements.footer("February 17th, 2023");
         body.setFooter(footer);
     }; body.draw();
 

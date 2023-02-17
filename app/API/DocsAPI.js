@@ -96,7 +96,7 @@ const docsElements = {
             lineText = lineText.replace(/^[ \t]+/gm, match => match.replace(/ /g, '&nbsp;').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;'));
 
             // Define a regular expression to match keywords
-            const regex = /\{(html-tag|html-attr|func|function|num|number|var|variable|comment|bool|esc|str|string|cls|class|lib|mod|internal|int|terminal|term|out|output|tree)\((.*?)\)\}/g;
+            const regex = /\{(html-tag|html-attr|func|function|num|number|var|variable|comment|bool|esc|str|string|cls|class|lib|mod|internal|int|terminal|term|out|output|tree|prestr)\((.*?)\)\}/g;
 
             // Replace all matches with the appropriate <span> element
             lineText = lineText.replace(regex, (match, type, content) => {
