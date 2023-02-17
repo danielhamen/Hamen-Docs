@@ -31,12 +31,9 @@ table = """docsElements.table([
             ])
 """
 
-lines = """Operator	Description	Example
-&	Bitwise AND	0b1010 & 0b011 = 0b0010
-^	Bitwise XOR	0b1010 ^ 0b0110 = 0b1100
-~	Bitwise NOT	~0b1010 = -11
-<<	Left shift	0b1010 << 2 = 0b101000
->>	Right shift	0b1010 >> 1 = 0b0101""".split("\n")
+lines = """Operator	Meaning
+is	True if both variables point to the same object
+is not	True if both variables do not point to the same object""".split("\n")
 
 table = []
 for i,line in enumerate(lines):
@@ -44,11 +41,11 @@ for i,line in enumerate(lines):
     # Cell
     if i > 0:
         table.append(
-            f"[docsElements.tableCell(docsElements.inlineCode(\"{line[0]}\"), \"CENTER\"), docsElements.tableCell(\"{line[1]}\"), docsElements.tableCell(docsElements.inlineCode(\"{line[2]}\"), \"CENTER\")],")
+            f"[docsElements.tableCell(docsElements.inlineCode(\"{line[0]}\"), \"CENTER\"), docsElements.tableCell(\"{line[1]}\")")
 
     # Header
     else:
-        table.append(f"[docsElements.tableHeader(\"{line[0]}\", \"CENTER\"), docsElements.tableHeader(\"{line[1]}\"), docsElements.tableHeader(\"{line[2]}\", \"CENTER\")],"),
+        table.append(f"[docsElements.tableHeader(\"{line[0]}\", \"CENTER\"), docsElements.tableHeader(\"{line[1]}\")"),
 
 table = "".join(table)
 table = f"docsElements.table([{table}])"

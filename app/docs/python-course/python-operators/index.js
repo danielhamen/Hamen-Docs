@@ -9,13 +9,13 @@ window.addEventListener("load", function () {
             docsElements.p("In Python, operators are special symbols that are used to perform operations on variables and values"),
             docsElements.p("There are 7 different \"groups\" of operators and each group is used to perform specific tasks"),
             docsElements.unorderedList([
-                docsElements.boldText("Arithmetic operators") + ": Used to perform mathematical operations on numbers",
-                docsElements.boldText("Assignment operators") + ": Used to assign values to variables",
-                docsElements.boldText("Comparison operators") + ": Used to compare values and return Boolean values (True or False)",
-                docsElements.boldText("Logical operators") + ": Used to combine Boolean values and return Boolean values",
-                docsElements.boldText("Identity operators") + ": Used to compare the memory locations of two objects",
-                docsElements.boldText("Membership operators") + ": Used to test whether a value is a member of a sequence (such as a list or a string)",
-                docsElements.boldText("Bitwise operators") + ": Used to perform bit-level operations on binary numbers"
+                docsElements.anchorText(docsElements.boldText("Arithmetic Operators"), "#", "_self") + ": Used to perform mathematical operations on numbers",
+                docsElements.anchorText(docsElements.boldText("Assignment Operators"), "#", "_self") + ": Used to assign values to variables",
+                docsElements.anchorText(docsElements.boldText("Comparison Operators"), "#", "_self") + ": Used to compare values and return Boolean values (True or False)",
+                docsElements.anchorText(docsElements.boldText("Logical Operators"), "#", "_self") + ": Used to combine Boolean values and return Boolean values",
+                docsElements.anchorText(docsElements.boldText("Identity Operators"), "#", "_self") + ": Used to compare the memory locations of two objects",
+                docsElements.anchorText(docsElements.boldText("Membership Operators"), "#", "_self") + ": Used to test whether a value is a member of a sequence (such as a list or a string)",
+                docsElements.anchorText(docsElements.boldText("Bitwise Operators"), "#", "_self") + ": Used to perform bit-level operations on binary numbers"
             ], "The 7 groups are")
         ].forEach(elem => {
             section.appendChild(elem);
@@ -101,6 +101,15 @@ window.addEventListener("load", function () {
             docsElements.p("Bitwise operators are used to perform operations on individual bits of binary numbers"),
             docsElements.p("They take two integer operands and return bitwise operators in Python:"),
             docsElements.table([[docsElements.tableHeader("Operator", "CENTER"), docsElements.tableHeader("Description"), docsElements.tableHeader("Example", "CENTER")], [docsElements.tableCell(docsElements.inlineCode("&"), "CENTER"), docsElements.tableCell("Bitwise AND"), docsElements.tableCell(docsElements.inlineCode("0b1010 & 0b011 = 0b0010"), "CENTER")], [docsElements.tableCell(docsElements.inlineCode("^"), "CENTER"), docsElements.tableCell("Bitwise XOR"), docsElements.tableCell(docsElements.inlineCode("0b1010 ^ 0b0110 = 0b1100"), "CENTER")], [docsElements.tableCell(docsElements.inlineCode("~"), "CENTER"), docsElements.tableCell("Bitwise NOT"), docsElements.tableCell(docsElements.inlineCode("~0b1010 = -11"), "CENTER")], [docsElements.tableCell(docsElements.inlineCode("<<"), "CENTER"), docsElements.tableCell("Left shift"), docsElements.tableCell(docsElements.inlineCode("0b1010 << 2 = 0b101000"), "CENTER")], [docsElements.tableCell(docsElements.inlineCode(">>"), "CENTER"), docsElements.tableCell("Right shift"), docsElements.tableCell(docsElements.inlineCode("0b1010 >> 1 = 0b0101"), "CENTER")],])
+        ].forEach(elem => {
+            section.appendChild(elem);
+        }); body.appendChild(section);
+
+        section = layout.newSection("Identity Operators");[
+            docsElements.p("Identity operators are used to compare the memory locations of two objects"),
+            docsElements.p("Here are the two identity operators:"),
+            docsElements.table([
+                [docsElements.tableHeader("Operator", "CENTER"), docsElements.tableHeader("Meaning", "50%")],[docsElements.tableCell(docsElements.inlineCode("is"), "CENTER"), docsElements.tableCell("True if both variables point to the same object")],[docsElements.tableCell(docsElements.inlineCode("is not"), "CENTER"), docsElements.tableCell("True if both variables do not point to the same object")]])
         ].forEach(elem => {
             section.appendChild(elem);
         }); body.appendChild(section);
