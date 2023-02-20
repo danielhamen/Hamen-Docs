@@ -307,7 +307,8 @@ window.addEventListener("load", () => {
 
     // Add banner to top of website
     let blacklistBanner = [
-        "/terms-and-conditions.html"
+        "/terms-and-conditions.html",
+        "/"
     ];
 
     // Add banner:
