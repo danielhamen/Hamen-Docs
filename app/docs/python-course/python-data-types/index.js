@@ -15,7 +15,7 @@ window.addEventListener("load", function () {
 
         // 'Category of Data Types' section:
         section = layout.newSection("Data Type Categories:"); [
-            docsElements.p("The data types inside of Python can be classified into 7 different \"categories\":"),
+            docsElements.p("Python's built-in data types can be divided / classified into 7 different \"categories\""),
             docsElements.unorderedList([
                 "Text Types",
                 "Numerical Types",
@@ -24,82 +24,83 @@ window.addEventListener("load", function () {
                 "Mapping Types",
                 "Binary Types",
                 "NoneType"
-            ])
+            ], "These categories are"),
+            docsElements.p("In the next several tutorials, we'll go over the different data types built-into Python")
         ].forEach(elem => {
             section.appendChild(elem);
         }); body.appendChild(section);
 
         // 'Python's Data Types' section:
-        section = layout.newSection("Built-in Data Types:"); [
-            docsElements.p("In Python, there are several built-in data types you can use"),
-            docsElements.p("Within the next 15 sections, we'll go over each one"),
-            docsElements.subSection([
-                docsElements.p("A string value is a sequence of characters and is used to represent text in Python"),
-                docsElements.p("A string is denoted by either single or double quotes"),
-                docsElements.codeBlock([
-                    "{comment(# String:)}",
-                    "{var(x)} = {str(\"Hello World!\")}",
-                    "",
-                    "{comment(# Also a string:)}",
-                    "{var(x)} = {str('Hello World!')}"
-                ], "For example"),
-                docsElements.noteText("There is absolutely no difference between defining a string with double quotes or single quotes. The reason there are 2 ways is because is most other programming languages, there is a type called: " + docsElements.inlineCode("char") + " which is defined by single quotes")
-            ], "1. Strings"),
-            docsElements.subSection([
-                docsElements.p("An " + docsElements.inlineCode("int()") + " value is a whole number, either positive, negative, or zero"),
-                docsElements.p("Integers cannot contain decimals, whereas " + docsElements.inlineCode("float()") + " can"),
-                docsElements.p("Unlike many other languages, integers are not limited to any range such as 32-bit or 64-bit"),
-                docsElements.p("You can create an int value in Python by assigning a number without a decimal point to a variable:"),
-                docsElements.codeBlock([
-                    "{var(x)} = {num(14)}",
-                    "{var(y)} = {num(-64)}"
-                ]),
-                docsElements.p("You can perform basic arithmetic operations on int values in Python, such as addition, subtraction, multiplication, and division"),
-                docsElements.codeBlock([
-                    "{var(x)} = {num(14)}",
-                    "{var(y)} = {num(27)}",
-                    "{var(z)} = {var(x)} + {var(y)}",
-                    "",
-                    "{func(print)}({var(z)})",
-                    "{term()}{out(34)}"
-                ])
-            ], "2. Integers"),
-            docsElements.subSection([
-                docsElements.p("A " + docsElements.inlineCode("float()") + " value is like an " + docsElements.anchorText("integer", "../python-integers/index.html", "_self") + ", but contains decimals"),
-                docsElements.p("Again, similar to integers, floats are not limited to a 32-bit or 64-bit range"),
-                docsElements.p("You can create a float value in Python by assigning a number with a decimal point to a variable:"),
-                docsElements.codeBlock([
-                    "{var(x)} = {num(6.3)}",
-                    "{var(y)} = {num(-27.5)}",
-                    "{var(y)} = {num(-0.0)}"
-                ]),
-                docsElements.codeBlock([
-                    "{var(x)} = {num(135)}",
-                    "{var(y)} = {num(0.5)}",
-                    "{var(z)} = {var(x)} * {var(y)}",
-                    "",
-                    "{func(print)}({var(z)})",
-                    "{term()}{out(67.5)}"
-                ], "Additionally, like Integers, you can perform basic arithmetic operations on floats in Python")
-            ], "3. Floats"),
-            docsElements.subSection([
-                docsElements.p("A " + docsElements.inlineCode("complex") + " value is a number with a real and imaginary component, represented as " + docsElements.inlineCode("a + bj") + " where " + docsElements.inlineCode("a") + " is the real component, " + docsElements.inlineCode("b") + " is the imaginary component, and " + docsElements.inlineCode("j") + " is the imaginary unit"),
-                docsElements.codeBlock([
-                    "{var(x)} = {num(3)} + {num(4j)}",
-                    "{func(print)}({num(x)})",
-                    "{term()}{out((3 + 4j))}"
-                ], "Here is an example of how to define a complex number in Python"),
-                docsElements.codeBlock([
-                    "x = 3 + 4j",
-                    "{func(print)}({var(x)}.{var(real)})",
-                    "{term()}{out(3.0)}",
-                    "{func(print)}({var(x)}.{var(imag)})",
-                    "{term()}{out(4.0)}"
-                ], "You can access the real and imaginary components of a complex number using the real and imag attributes respectively"),
-                docsElements.p("Like Integers, and Floats, you can perform arithmetic operations on complex numbers in Python"),
-                docsElements.p("It's also worth noting that the real component of a complex number can be any real number, including floating-point numbers and decimal numbers. The imaginary component must be an integer or a floating-point number"),
-                docsElements.noteText("Python follows the Order of Operations (BEDMAS) when evaluating an expression")
-            ], "4. Complex")
+        // section = layout.newSection("Built-in Data Types:"); [
+            // docsElements.p("In Python, there are several built-in data types you can use"),
+            // docsElements.p("Within the next 15 sections, we'll go over each one"),
+            // docsElements.subSection([
+            //     docsElements.p("A string value is a sequence of characters and is used to represent text in Python"),
+            //     docsElements.p("A string is denoted by either single or double quotes"),
+            //     docsElements.codeBlock([
+            //         "{comment(# String:)}",
+            //         "{var(x)} = {str(\"Hello World!\")}",
+            //         "",
+            //         "{comment(# Also a string:)}",
+            //         "{var(x)} = {str('Hello World!')}"
+            //     ], "For example"),
+            //     docsElements.noteText("There is absolutely no difference between defining a string with double quotes or single quotes. The reason there are 2 ways is because is most other programming languages, there is a type called: " + docsElements.inlineCode("char") + " which is defined by single quotes")
+            // ], "1. Strings"),
+            // docsElements.subSection([
+            //     docsElements.p("An " + docsElements.inlineCode("int()") + " value is a whole number, either positive, negative, or zero"),
+            //     docsElements.p("Integers cannot contain decimals, whereas " + docsElements.inlineCode("float()") + " can"),
+            //     docsElements.p("Unlike many other languages, integers are not limited to any range such as 32-bit or 64-bit"),
+            //     docsElements.p("You can create an int value in Python by assigning a number without a decimal point to a variable:"),
+            //     docsElements.codeBlock([
+            //         "{var(x)} = {num(14)}",
+            //         "{var(y)} = {num(-64)}"
+            //     ]),
+            //     docsElements.p("You can perform basic arithmetic operations on int values in Python, such as addition, subtraction, multiplication, and division"),
+            //     docsElements.codeBlock([
+            //         "{var(x)} = {num(14)}",
+            //         "{var(y)} = {num(27)}",
+            //         "{var(z)} = {var(x)} + {var(y)}",
+            //         "",
+            //         "{func(print)}({var(z)})",
+            //         "{term()}{out(34)}"
+            //     ])
+            // ], "2. Integers"),
+            // docsElements.subSection([
+            //     docsElements.p("A " + docsElements.inlineCode("float()") + " value is like an " + docsElements.anchorText("integer", "../python-integers/index.html", "_self") + ", but contains decimals"),
+            //     docsElements.p("Again, similar to integers, floats are not limited to a 32-bit or 64-bit range"),
+            //     docsElements.p("You can create a float value in Python by assigning a number with a decimal point to a variable:"),
+            //     docsElements.codeBlock([
+            //         "{var(x)} = {num(6.3)}",
+            //         "{var(y)} = {num(-27.5)}",
+            //         "{var(y)} = {num(-0.0)}"
+            //     ]),
+            //     docsElements.codeBlock([
+            //         "{var(x)} = {num(135)}",
+            //         "{var(y)} = {num(0.5)}",
+            //         "{var(z)} = {var(x)} * {var(y)}",
+            //         "",
+            //         "{func(print)}({var(z)})",
+            //         "{term()}{out(67.5)}"
+            //     ], "Additionally, like Integers, you can perform basic arithmetic operations on floats in Python")
+            // ], "3. Floats"),
+            // docsElements.subSection([
+            //     docsElements.p("A " + docsElements.inlineCode("complex") + " value is a number with a real and imaginary component, represented as " + docsElements.inlineCode("a + bj") + " where " + docsElements.inlineCode("a") + " is the real component, " + docsElements.inlineCode("b") + " is the imaginary component, and " + docsElements.inlineCode("j") + " is the imaginary unit"),
+            //     docsElements.codeBlock([
+            //         "{var(x)} = {num(3)} + {num(4j)}",
+            //         "{func(print)}({num(x)})",
+            //         "{term()}{out((3 + 4j))}"
+            //     ], "Here is an example of how to define a complex number in Python"),
+            //     docsElements.codeBlock([
+            //         "x = 3 + 4j",
+            //         "{func(print)}({var(x)}.{var(real)})",
+            //         "{term()}{out(3.0)}",
+            //         "{func(print)}({var(x)}.{var(imag)})",
+            //         "{term()}{out(4.0)}"
+            //     ], "You can access the real and imaginary components of a complex number using the real and imag attributes respectively"),
+            //     docsElements.p("Like Integers, and Floats, you can perform arithmetic operations on complex numbers in Python"),
+            //     docsElements.p("It's also worth noting that the real component of a complex number can be any real number, including floating-point numbers and decimal numbers. The imaginary component must be an integer or a floating-point number"),
+            //     docsElements.noteText("Python follows the Order of Operations (BEDMAS) when evaluating an expression")
+            // ], "4. Complex")
             // docsElements.subSection([
             //     docsElements.p("A " + docsElements.inlineCode("list()") + " in Python represents a is one of the most commonly used data type"),
             //     docsElements.p("Lists are used to store a collection, or sequence of items, which can be of different data types"),
@@ -253,9 +254,9 @@ window.addEventListener("load", function () {
             // ], "14. Memory Views"),
             // docsElements.subSection([
             // ], "15. NoneType")
-        ].forEach(elem => {
-            section.appendChild(elem);
-        }); body.appendChild(section);
+        // ].forEach(elem => {
+        //     section.appendChild(elem);
+        // }); body.appendChild(section);
 
         // 'Determining Data Types' section:
         section = layout.newSection("Determining Data Types"); [
@@ -319,7 +320,7 @@ window.addEventListener("load", function () {
         body.setCourseNavigator(courseNavigator);
 
         /* Footer: */
-        let footer = docsElements.footer("February 17th, 2023");
+        let footer = docsElements.footer("February 20th, 2023");
         body.setFooter(footer);
     }; body.draw();
 

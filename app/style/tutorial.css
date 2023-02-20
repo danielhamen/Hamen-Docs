@@ -1,0 +1,23 @@
+/*
+
+    THIS CSS FILE IS INCLUDED IN EVERY TUTORIAL
+
+*/
+
+@media screen and (max-width:750px) {
+    main {
+        height: calc(100vh - calc(var(--header-size) + var(--mobile-header-size)));
+        margin-top: calc(var(--header-size) + var(--mobile-header-size)) !important;
+    }
+}
+
+@media screen and (min-width:750px) {
+    body {
+        overflow-y: scroll !important;
+    }
+}
+
+main.tree-visible {
+    height: calc(100vh - calc(var(--header-size)));
+    margin-top: calc(var(--header-size)) !important;
+}

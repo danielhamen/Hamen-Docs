@@ -10,14 +10,17 @@ function setLightMode(changeStorage = true) {
         "--text-first":                 "hsl(0deg, 9%, 14%)",
         "--text-primary":               "hsl(0deg, 9%, 20%)",
         "--text-default":               "hsl(0, 4%, 37%)",
+        "--text-secondary":             "rgb(147, 135, 135)",
         "--anchor":                     "#2a6edd",
         "--anchor-hover":               "#3d567d",
         "--anchor-active":              "#7989a3",
         "--background-primary":         "hsl(0deg, 0%, 99%)",
+        "--background-2":               "hsl(0deg, 0%, 85%)",
+        "--background-2-dark":          "hsl(0deg, 0%, 82%)",
         "--background-default":         "hsl(0deg, 0%, 94%)",
         "--background-secondary":       "hsl(0deg, 0%, 89%)",
         "--docs-hr":                    "rgba(0, 0, 0, 0.08)",
-        "--docs-hr-sub":                    "rgba(0, 0, 0, 0.07)",
+        "--docs-hr-sub":                "rgba(0, 0, 0, 0.07)",
         "--docs-inline-code":           "rgb(242, 51, 51)",
         "--docs-note-background":       "rgb(243, 239, 184)",
         "--docs-note-color":            "hsl(0, 8%, 23%)",
@@ -55,7 +58,7 @@ function setDarkMode(changeStorage = true) {
     }
 
     // Add "dark-mode" to every element:
-    let children = document.querySelector("main");
+    let children = document.querySelector("body");
     Array.from(children.querySelectorAll("*")).forEach(elem => {
         elem.classList.add("dark-mode");
     })
@@ -64,10 +67,12 @@ function setDarkMode(changeStorage = true) {
         "--text-first":                 "hsl(0deg, 9%, 100%)",
         "--text-primary":               "hsl(0deg, 9%, 96%)",
         "--text-default":               "hsl(0, 4%, 93%)",
+        "--text-secondary":             "rgba(226, 210, 210, 0.7)",
         "--anchor":                     "#88b5ff",
         "--anchor-hover":               "#6588c1",
         "--anchor-active":              "#667da1",
         "--background-2":               "#444c57",
+        "--background-2-dark":          "#39404a",
         "--background-primary":         "#262b32",
         "--background-default":         "#2a2e34",
         "--background-secondary":       "#292d34",
@@ -175,7 +180,7 @@ window.addEventListener("load", () => {
             document.querySelector(".docs-tree-content").style.display = "none";
             document.querySelector("body").style.overflow = "scroll";
             document.querySelector(".mobile-toggle-tree").style.display = "flex";
-            document.querySelector("main").style.top = "calc(var(--header-size) + var(--mobile-header-size))";
+            document.querySelector("main").classList.remove("tree-visible");
             document.querySelector("body").style.overflow = "scroll";
         })
     } catch (error) {}
@@ -224,29 +229,34 @@ window.addEventListener("load", () => {
     })
 
     // Add 'Copy Hyperlink' icon to all headings:
-    let headings = Array.from(document.querySelectorAll("h1,h2,h3,h4,h5,h6"));
-    let i = 0;
-    headings.forEach(heading => {
-        if (!heading.classList.contains("no-link")) {
-            let id = "UEID-" + i.toString();
+    // let headings = Array.from(document.querySelectorAll("h1,h2,h3,h4,h5,h6"));
+    // let i = 0;
+    // headings.forEach(heading => {
+    //     if (!heading.classList.contains("no-link")) {
+    //         let id = "UEID-" + i.toString();
 
-            let linkSpan = document.createElement("span");
-            linkSpan.id = id;
-            linkSpan.classList.add("material-symbols-outlined");
-            linkSpan.classList.add("link-section");
-            linkSpan.innerHTML = "link";
-            linkSpan.addEventListener("click", function () {
-                HamenAPI.logMessage("Heading link copied to clipboard!");
-                let URL = window.location.pathname + "#" + id;
-                window.location.replace(URL);
-                navigator.clipboard.writeText(URL);
-            })
-    
-            heading.appendChild(linkSpan);
+    //         let linkSpan = document.createElement("span");
+    //         linkSpan.id = id;
+    //         linkSpan.classList.add("material-symbols-outlined");
+    //         linkSpan.classList.add("link-section");
+    //         linkSpan.innerHTML = "link";
+    //         linkSpan.addEventListener("click", function () {
+    //             HamenAPI.logMessage("Heading link copied to clipboard!");
 
-            i++;
-        }
-    })
+    //             let URL = window.location.href;
+    //             let end = URL.indexOf("#");
+    //             URL = end === -1 ? URL : URL.slice(0, end);
+    //             URL += "#" + id;
+
+    //             window.location.replace(URL);
+    //             navigator.clipboard.writeText(URL);
+    //         })
+
+    //         heading.appendChild(linkSpan);
+
+    //         i++;
+    //     }
+    // })
 
     // 
     try {
@@ -254,8 +264,8 @@ window.addEventListener("load", () => {
             document.querySelector(".docs-tree").style.display = "block";
             document.querySelector(".docs-tree-content").style.display = "block";
             document.querySelector(".mobile-toggle-tree").style.display = "none";
-            document.querySelector("main").style.top = "var(--header-size)";
-            document.querySelector("body").style.overflow = "hidden";
+            document.querySelector("main").classList.add("tree-visible");
+            document.querySelector("body").style.overflowY = "hidden";
         })
     } catch (error) {}
 
@@ -272,4 +282,65 @@ window.addEventListener("load", () => {
     let authorMeta = document.createElement("meta");
     authorMeta.setAttribute("name", "author");
     authorMeta.setAttribute("content", "Hamen");
+
+    // Set footer:
+    const footer = document.querySelector("footer");
+    if (footer) {
+        const div1 = document.createElement("div");
+        div1.classList.add("footer");
+
+        const div2 = document.createElement("div");
+        div2.classList.add("bottom");
+
+        const p = document.createElement("p");
+        p.innerText = "© Copyright ";
+        const a = document.createElement("a");
+        a.href = "javascript:void(0);";
+        a.textContent = "Hamen Docs";
+        p.appendChild(a);
+
+        div2.appendChild(p);
+        div1.appendChild(div2);
+        footer.innerHTML = "";
+        footer.appendChild(div1);
+    }
+
+    // Add banner to top of website
+    let blacklistBanner = [
+        "/terms-and-conditions.html"
+    ];
+
+    // Add banner:
+    if (blacklistBanner.indexOf(window.location.pathname) === -1) {
+        // List of banners ("TEXT:COLOR_CLASS:HREF"):
+        const banners = [
+            [`Introducing our New <a href="#" class="force-light-mode" target="_self">Python Course!</a>`, `blue`, `https://www.hamen.tech/docs/python-course`],
+            [`<a href="#" class="force-light-mode" target="_self">Join our Newsletter</a> and be Part of a Community of Millions!`, `blue`, `https://www.hamen.tech/newsletter/join`],
+        ];
+
+        // Find random banner:
+        let banner = banners[Math.floor(Math.random() * banners.length)];
+        let [text,color,href] = banner;
+
+        // Choose random color:
+        color = color.split("|");
+        color = color[Math.floor(Math.random() * color.length)];
+
+        // Add banner to header:
+        let header = document.querySelector("header");
+        const bannerHTML = document.createElement("div");
+        bannerHTML.classList.add("banner", color);
+        bannerHTML.id = "banner";
+        const span = document.createElement("span");
+        span.classList.add("text");
+        span.innerHTML = text;
+        bannerHTML.appendChild(span);
+        header.insertBefore(bannerHTML, header.firstChild);
+
+        // Go to `href` on click:
+        document.getElementById("banner").addEventListener("click", function() { window.location.assign(href); });
+
+        // Increase `var(--header-size)` by `2.3em` (to adjust for banner);
+        document.querySelector(":root").classList.add("has-banner");
+    }
 })

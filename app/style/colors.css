@@ -9,6 +9,7 @@
     --text-first: hsl(0deg, 9%, 14%);
     --text-primary: hsl(0deg, 9%, 20%);
     --text-default: hsl(0, 4%, 37%);
+    --text-secondary: rgb(147, 135, 135);
 
     /* Anchor Links: */
     --anchor: #2a6edd;
@@ -17,6 +18,7 @@
 
     /* Monochrome / BW Backgrounds: */
     --background-2: hsl(0deg, 0%, 85%);
+    --background-2-dark: hsl(0deg, 0%, 87%);
     --background-primary: hsl(0deg, 0%, 99%);
     --background-default: hsl(0deg, 0%, 94%);
     --background-secondary: hsl(0deg, 0%, 89%);
