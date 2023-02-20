@@ -873,7 +873,7 @@ const DocsElements = {
     <span class="material-symbols-outlined icon"> close </span>
 </div>
 <form class="body" action="https://www.hamen.tech/php/tutorial-report/submit.php">
-    <select name="issue-type">
+    <select name="issue-type" id="report-issue-type">
         <option selected disabled>Issue Type...</option>
         <option value="grammatical-error">Grammatical Error</option>
         <option value="incorrect-content">Incorrect Content</option>
@@ -883,10 +883,10 @@ const DocsElements = {
         <option value="other-issue">Other...</option>
     </select>
     <br>
-    <input name="email" type="text" placeholder="Your Email...">
+    <input name="email" type="text" id="submit-report-email" placeholder="Your Email...">
     <input name="url" type="text" style="display: none;" id="report-url">
     <br>
-    <textarea name="body" class="text" placeholder="Describe your issue in-depth" oninput="document.querySelector('#char-count').innerHTML = this.value.length + ' / 500';if (this.value.length >= 450) { document.querySelector('#char-count').classList.add('red'); } else { document.querySelector('#char-count').classList.remove('red'); }" maxlength=500></textarea>
+    <textarea name="body" id="submit-report-message" class="text" placeholder="Describe your issue in-depth" oninput="document.querySelector('#char-count').innerHTML = this.value.length + ' / 500';if (this.value.length >= 450) { document.querySelector('#char-count').classList.add('red'); } else { document.querySelector('#char-count').classList.remove('red'); }" maxlength=500></textarea>
     <span id="char-count">0 / 500</span>
     <br>
     <br>
@@ -911,11 +911,30 @@ Thanks,
 Daniel
 
 -->
-    <button type="text" class="hmn-button blue">Submit Report!</button>
+    <button type="text" id="submit-report-button" class="hmn-button blue">Submit Report!</button>
     <br>
     <span class="sub-text">By submitting this form, you accept our <a href="#" target="_blank">Terms and Conditions</a></span>
 </form>`;
         document.body.appendChild(reportDialog);
+
+        // Make sure all fields are filled out:
+        document.querySelector("#submit-report-button").addEventListener("click", function(e) {
+            const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            let email = document.querySelector("#submit-report-email").value;
+            let body = document.querySelector("#submit-report-message").value;
+            let issueType = document.querySelector("#report-issue-type").value;
+            if (email.trim() === "" || body.trim() === "" || issueType.trim() === "Issue Type...") {
+                e.stopPropagation();
+                e.preventDefault();
+
+                HamenAPI.logMessage("Please ensure all fields are filled", "ERROR");
+            } else if (!emailRegex.test(email)) {
+                e.stopPropagation();
+                e.preventDefault();
+
+                HamenAPI.logMessage("Invalid email", "ERROR");
+            }
+        })
 
         // Toggle 'Report Issue' dialog when the user presses 'Report Issue' anchor on a tutorial:
         document.querySelector("#report-issue").addEventListener("click", function () {
