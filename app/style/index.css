@@ -275,29 +275,6 @@ a.force-light-mode:active { color: #7989a3 !important; }
     flex-direction: column;
 }
 
-section>p,
-section>.items>p {
-    margin-top: 1.2em;
-    margin-bottom: 1.2em;
-}
-
-section>.items>* {
-    margin-left: 8px;
-}
-
-section>.items>table {
-    width: calc(100% - 8px);
-    background: rgba(0, 0, 0, 0.05);
-}
-
-section>.items {
-    padding-left: 1em;
-    border-left: 8px solid rgba(0, 0, 0, 0.1);
-}
-
-.docs\:table>tbody>tr>th.dark-mode {
-}
-
 section>ul,
 ol {
     line-height: 1.8;

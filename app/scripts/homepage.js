@@ -1,30 +1,32 @@
-window.addEventListener("load", function() {
-    Array.from(document.querySelectorAll(".browse-courses > .items > .item > .content")).forEach(row => {
-        const slider = row;
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-        let scrollSpeed = 1;
-        slider.addEventListener("mousedown", (e) => {
-            isDown = true;
-            slider.classList.add("active");
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        });
-        slider.addEventListener("mouseleave", () => {
-            isDown = false;
-            slider.classList.remove("active");
-        });
-        slider.addEventListener("mouseup", () => {
-            isDown = false;
-            slider.classList.remove("active");
-        });
-        slider.addEventListener("mousemove", (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * scrollSpeed;
-            slider.scrollLeft = scrollLeft - walk;
-        });
+function checkScroll() {
+    let items = document.querySelector('.items');
+    let left = document.querySelector("#items-scroll-left");
+    let right = document.querySelector("#items-scroll-right");
+
+    // Hide scroll right:
+    if (items.scrollLeft <= 600) {
+        right.style.display = "flex";
+    } else if (items.scrollLeft > 600) {
+        right.style.display = "none";
+    }
+
+    // 
+    if (items.scrollLeft <= 50) {
+        left.style.display = "none";
+    } else if (items.scrollLeft > 50) {
+        left.style.display = "flex";
+    }
+}
+
+function scrollItems(amount) {
+    let items = document.querySelector('.items');
+    items.scrollBy({
+        left: amount, behavior: 'smooth'
     });
+
+    checkScroll();
+}
+
+window.addEventListener("load", function() {
+    checkScroll();
 })
