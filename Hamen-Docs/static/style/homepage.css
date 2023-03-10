@@ -1,0 +1,82 @@
+.home-page {
+    width: 100%;
+    height: 100%
+}
+
+.first-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 100%;
+    padding-bottom: 3em;
+}
+
+#home-page-title {
+    color: #e5f0f9;
+    margin: 0;
+    font-size: 5em
+}
+
+#home-page-sub-title {
+    margin-top: .5em;
+    text-align: center;
+    color: #bac2c9;
+    font-family: 'Noto Sans', sans-serif
+}
+
+.home-page-search {
+    margin-top: 1em;
+}
+
+.scroll-down-notifier {
+    width: fit-content;
+    min-width: 16em;
+    position: relative;
+    top: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    opacity: 100%;
+}
+
+.scroll-down-notifier>span {
+    color: #adb9c2;
+}
+
+.scroll-down-notifier>.text {
+    font-size: 0.9em;
+}
+
+.scroll-down-notifier>.icon {
+    margin: 1em;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+@keyframes notifierFadeIn {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 100%
+    }
+}
+
+.scroll-down-notifier.visible {
+    -webkit-animation: notifierFadeIn .8s forwards;
+    animation: notifierFadeIn .8s forwards
+}
+
+@media screen and (max-width:650px) {
+    #home-page-title {
+        font-size: 4em;
+        max-width: 80%;
+        text-align: center
+    }
+}

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Favicon: -->
+		<link rel="icon" href="favicon.ico">
+
+		<!-- Stylesheets: -->
+		<link rel="stylesheet" href="static/style/index.css">
+		<link rel="stylesheet" href="static/style/homepage.css">
+
+        <!-- Javascript: -->
+        <script type="text/javascript" src="static/scripts/index.js"></script>
+
+        <!-- HamenAPI: -->
+        <script type="text/javascript" src="static/HamenAPI/lib/DocsAPI.js"></script>
+        <script type="text/javascript" src="static/HamenAPI/HamenAPI.js"></script>
+        <link rel="stylesheet" href="static/HamenAPI/lib/DocsAPI.css">
+        <link rel="stylesheet" href="static/HamenAPI/HamenAPI.css">
+
+		<title>Hamen Docs</title>
+	</head>
+	<body>
+		<header><div class="header"></div></header>
+		<main>
+            <div class="home-page">
+                <script type="text/javascript">
+                    window.addEventListener("load", function() {
+                        setTimeout(() => {
+                            let scrollNotifier = document.querySelector(".scroll-down-notifier");
+                            scrollNotifier.classList.add("visible");
+
+                            scrollNotifier.addEventListener("click", function() {
+                                scrollTo(0, window.innerHeight * 0.9);
+                            })
+                        }, 4000);
+                    })
+                </script>
+                <div class="first-section">
+                    <h1 id="home-page-title" class="fade-in">Hamen Docs</h1>
+                    <span id="home-page-sub-title" class="fade-in" delay="150ms">Experience the Power of Knowledge</span>
+                    <br>
+                    <script type="text/javascript">
+                        window.addEventListener("DOMContentLoaded", () => {
+                            let input = document.querySelector(".home-page-search>input");
+                            input.focus();
+                            input.select();
+                        })
+                    </script>
+                    <div class="home-page-search fade-in" delay="300ms">
+                        <input type="text" class="hamen-input" placeholder='Try searching: "???"'>
+                    </div>
+                    <div class="scroll-down-notifier">
+                        <span class="material-symbols-outlined icon"> arrow_drop_down </span>
+                        <span class="text">Scroll Down</span>
+                        <span class="material-symbols-outlined icon"> arrow_drop_down </span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+		</main>
+        <footer></footer>
+	</body>
+</html>

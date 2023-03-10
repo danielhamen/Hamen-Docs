@@ -1,0 +1,127 @@
+@-webkit-keyframes showLogBox {
+    from {
+        opacity: 0;
+        bottom: -1em;
+    } to {
+        opacity: 1;
+        bottom: 0;
+    }
+}
+
+@keyframes showLogBox {
+    from {
+        opacity: 0;
+        bottom: -1em;
+    }
+
+    to {
+        opacity: 1;
+        bottom: 0;
+    }
+}
+
+.log\:log-box {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    border-radius: 0.3em;
+    padding: 0.7em;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    margin: 2em;
+    position: fixed;
+    cursor: pointer;
+    z-index: 999;
+    bottom: 0;
+    right: 0;
+    font-family: 'Sofia Sans Semi Condensed', sans-serif;
+    border: 1px solid hsl(0deg, 0%, 70%);
+    -webkit-box-shadow: 0 0 80px 7px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 80px 7px rgba(0, 0, 0, 0.3);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: 0.13s;
+    -o-transition: 0.13s;
+    transition: 0.13s;
+    -webkit-animation: showLogBox 0.2s;
+    animation: showLogBox 0.2s;
+}
+
+.log\:log-box.hidden {
+    opacity: 0;
+    bottom: -1em;
+}
+
+.log\:error-log {
+    background: rgb(215, 128, 128);
+}
+
+.log\:info-log {
+    background: rgb(148, 215, 128);
+}
+
+.log\:warning-log {
+    background: rgb(213, 167, 221);
+}
+
+/* Buttons: */
+.hmn-button.blue {
+    height: 3em;
+    padding-left: 4em;
+    padding-right: 4em;
+    cursor: pointer;
+    background: #b6d1fb;
+    border: 1px solid hsl(0deg, 0%, 70%);
+    border-radius: 0.3em;
+    color: rgb(66, 60, 60);
+    font-weight: 600;
+    -webkit-transition: 0.15s;
+    -o-transition: 0.15s;
+    transition: 0.15s;
+    font-size: 0.9em;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.hmn-button.blue:hover {
+    background: #cadefe;
+    border: 1px solid hsl(0deg, 0%, 78%);
+    -webkit-box-shadow: 0 0 40px rgba(0, 0, 0, 0.23);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.23);
+}
+
+.hmn-button.blue:active {
+    background: #a9c0e4;
+    border: 1px solid hsl(0deg, 0%, 65%);
+    -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Hamen Elements: */
+input.hamen-input {
+    width: 40em;
+    max-width: 70vw;
+    outline: 0px;
+    /* border: 1px solid hsl(0deg, 0%, 40%); */
+    border: 0;
+    padding: 1.1em;
+    padding-left: 2.3em;
+    border-radius: 6em;
+    font-family: 'Noto Sans';
+    transition: 0.2s;
+    font-weight: 500;
+    box-shadow: 0 12px 30px 5px rgba(0, 0, 0, 0.5);
+}
+
+input.hamen-input:focus {
+    /* color: rgb(34, 130, 209); */
+    /* border: 1px solid hsl(0deg, 0%, 20%); */
+    border: 0;
+    outline: 3px solid rgba(112, 186, 255, 1);
+    box-shadow: 0 12px 30px 5px rgba(0, 0, 0, 0.9);
+}
